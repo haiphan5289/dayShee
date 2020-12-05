@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="montserrat_regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ReferralCodeView" customModule="Dayshee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akN-H8-dfI">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_order" translatesAutoresizingMaskIntoConstraints="NO" id="YcX-jN-8Q6">
+                            <rect key="frame" x="37" y="10" width="16" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="33" id="3X3-Zw-fOh"/>
+                                <constraint firstAttribute="width" constant="16" id="rco-4Q-69c"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã giới thiệu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94j-bQ-5Xp">
+                            <rect key="frame" x="63.000000000000007" y="15" width="124.66666666666669" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="23" id="U77-er-hif"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rbx-k5-vQp">
+                            <rect key="frame" x="37" y="51" width="357" height="50"/>
+                            <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="0.60881314210000004" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="asn-in-tTz"/>
+                            </constraints>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tcg-QQ-pWR">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="a7A-dO-3kR"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="Tcg-QQ-pWR" firstAttribute="top" secondItem="akN-H8-dfI" secondAttribute="top" id="1di-jb-aRf"/>
+                        <constraint firstItem="94j-bQ-5Xp" firstAttribute="leading" secondItem="YcX-jN-8Q6" secondAttribute="trailing" constant="10" id="6Dj-KJ-qHG"/>
+                        <constraint firstAttribute="bottom" secondItem="rbx-k5-vQp" secondAttribute="bottom" constant="15" id="FXj-cx-M52"/>
+                        <constraint firstAttribute="trailing" secondItem="rbx-k5-vQp" secondAttribute="trailing" constant="20" id="Hnl-Y3-MFo"/>
+                        <constraint firstAttribute="trailing" secondItem="Tcg-QQ-pWR" secondAttribute="trailing" id="MnL-Hr-GY3"/>
+                        <constraint firstItem="94j-bQ-5Xp" firstAttribute="centerY" secondItem="YcX-jN-8Q6" secondAttribute="centerY" id="QJQ-zl-vwa"/>
+                        <constraint firstItem="YcX-jN-8Q6" firstAttribute="leading" secondItem="akN-H8-dfI" secondAttribute="leading" constant="37" id="cp3-gU-qGE"/>
+                        <constraint firstItem="Tcg-QQ-pWR" firstAttribute="leading" secondItem="akN-H8-dfI" secondAttribute="leading" id="fEv-Cf-7At"/>
+                        <constraint firstItem="YcX-jN-8Q6" firstAttribute="top" secondItem="akN-H8-dfI" secondAttribute="top" constant="10" id="sSw-FS-OzO"/>
+                        <constraint firstItem="rbx-k5-vQp" firstAttribute="leading" secondItem="YcX-jN-8Q6" secondAttribute="leading" id="u1f-DF-aBa"/>
+                        <constraint firstItem="rbx-k5-vQp" firstAttribute="top" secondItem="YcX-jN-8Q6" secondAttribute="bottom" constant="8" symbolic="YES" id="wgj-xz-mQk"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="akN-H8-dfI" secondAttribute="trailing" id="3HM-kX-qor"/>
+                <constraint firstItem="akN-H8-dfI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="6iA-NK-Gca"/>
+                <constraint firstAttribute="bottom" secondItem="akN-H8-dfI" secondAttribute="bottom" id="AfT-uO-xA9"/>
+                <constraint firstItem="akN-H8-dfI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tL8-MM-hez"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="heightReferralCode" destination="asn-in-tTz" id="tgb-gc-v7p"/>
+                <outlet property="tvReferralCode" destination="rbx-k5-vQp" id="a8j-Su-FWm"/>
+            </connections>
+            <point key="canvasLocation" x="100" y="68"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_order" width="16" height="20"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

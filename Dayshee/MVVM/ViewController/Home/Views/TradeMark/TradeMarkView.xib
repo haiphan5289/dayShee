@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="montserrat_regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TradeMarkView" customModule="Dayshee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="365"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jI-t0-IwT">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="365"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgZ-32-k35">
+                            <rect key="frame" x="0.0" y="5" width="414" height="40.333333333333336"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thương hiệu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-c5-yT9">
+                                    <rect key="frame" x="0.0" y="8.6666666666666661" width="121.66666666666667" height="23.333333333333336"/>
+                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="19"/>
+                                    <color key="textColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghi-ic-PzA">
+                                    <rect key="frame" x="314" y="6.3333333333333357" width="65" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="Am2-OY-xvq"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                    <state key="normal" title="Xem tất cả">
+                                        <color key="titleColor" red="0.0078431372550000003" green="0.0078431372550000003" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                </button>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_chevron_right" translatesAutoresizingMaskIntoConstraints="NO" id="1qd-EI-kj4">
+                                    <rect key="frame" x="389" y="15.666666666666668" width="5" height="9"/>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_logo_home" translatesAutoresizingMaskIntoConstraints="NO" id="xEX-Gd-7KL">
+                                    <rect key="frame" x="131.66666666666666" y="10.333333333333336" width="70" height="20"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="iAj-c5-yT9" firstAttribute="leading" secondItem="OgZ-32-k35" secondAttribute="leading" id="974-Uk-kIo"/>
+                                <constraint firstAttribute="bottom" secondItem="iAj-c5-yT9" secondAttribute="bottom" constant="8.3300000000000001" id="JFe-Xk-fg9"/>
+                                <constraint firstItem="xEX-Gd-7KL" firstAttribute="centerY" secondItem="OgZ-32-k35" secondAttribute="centerY" id="OaQ-Fw-fZT"/>
+                                <constraint firstAttribute="trailing" secondItem="1qd-EI-kj4" secondAttribute="trailing" constant="20" id="S3o-8p-6gQ"/>
+                                <constraint firstItem="iAj-c5-yT9" firstAttribute="top" secondItem="OgZ-32-k35" secondAttribute="top" constant="8.6699999999999999" id="gNF-7S-sxz"/>
+                                <constraint firstItem="1qd-EI-kj4" firstAttribute="centerY" secondItem="OgZ-32-k35" secondAttribute="centerY" id="sEV-JT-I1q"/>
+                                <constraint firstItem="Ghi-ic-PzA" firstAttribute="centerY" secondItem="OgZ-32-k35" secondAttribute="centerY" id="tpj-Lk-tfi"/>
+                                <constraint firstItem="xEX-Gd-7KL" firstAttribute="leading" secondItem="iAj-c5-yT9" secondAttribute="trailing" constant="10" id="wNO-yi-B2B"/>
+                                <constraint firstItem="1qd-EI-kj4" firstAttribute="leading" secondItem="Ghi-ic-PzA" secondAttribute="trailing" constant="10" id="xyh-3X-F3Y"/>
+                            </constraints>
+                        </view>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vmn-Is-rJ5">
+                            <rect key="frame" x="0.0" y="50.333333333333343" width="414" height="304.66666666666663"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QNb-QT-nRv">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="OgZ-32-k35" firstAttribute="leading" secondItem="6jI-t0-IwT" secondAttribute="leading" id="9Na-u4-5z6"/>
+                        <constraint firstItem="vmn-Is-rJ5" firstAttribute="top" secondItem="OgZ-32-k35" secondAttribute="bottom" constant="5" id="GIk-RE-PRP"/>
+                        <constraint firstAttribute="trailing" secondItem="OgZ-32-k35" secondAttribute="trailing" id="L47-aT-Djj"/>
+                        <constraint firstAttribute="height" constant="365" id="OVi-Wt-Y2G"/>
+                        <constraint firstAttribute="trailing" secondItem="vmn-Is-rJ5" secondAttribute="trailing" id="Vhw-L2-2wO"/>
+                        <constraint firstAttribute="bottom" secondItem="vmn-Is-rJ5" secondAttribute="bottom" constant="10" id="ey4-ZG-ysx"/>
+                        <constraint firstItem="vmn-Is-rJ5" firstAttribute="top" secondItem="OgZ-32-k35" secondAttribute="bottom" constant="5" id="klk-DS-tl9"/>
+                        <constraint firstItem="OgZ-32-k35" firstAttribute="top" secondItem="6jI-t0-IwT" secondAttribute="top" constant="5" id="qLc-80-Uhq"/>
+                        <constraint firstItem="vmn-Is-rJ5" firstAttribute="leading" secondItem="6jI-t0-IwT" secondAttribute="leading" id="yF8-iL-2Ox"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="6jI-t0-IwT" secondAttribute="trailing" id="3ZN-rS-RVW"/>
+                <constraint firstItem="6jI-t0-IwT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="51R-Nr-W5F"/>
+                <constraint firstItem="6jI-t0-IwT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AwJ-Fk-l3f"/>
+                <constraint firstAttribute="bottom" secondItem="6jI-t0-IwT" secondAttribute="bottom" id="HjO-G6-f16"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btViewAll" destination="Ghi-ic-PzA" id="a7V-EM-1Ub"/>
+                <outlet property="collectionView" destination="vmn-Is-rJ5" id="aqF-Lx-urc"/>
+                <outlet property="hView" destination="OVi-Wt-Y2G" id="3Gp-0Q-NtC"/>
+                <outlet property="imgTextLogo" destination="xEX-Gd-7KL" id="G9L-10-zk2"/>
+                <outlet property="lbTitle" destination="iAj-c5-yT9" id="uWM-Mk-v4H"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="83"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_chevron_right" width="5" height="9"/>
+        <image name="text_logo_home" width="70" height="20"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

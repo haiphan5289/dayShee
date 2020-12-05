@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="montserrat_regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputCodeVC" customModule="Dayshee" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomButton" destination="8IS-W3-8A7" id="W68-3g-mYy"/>
+                <outlet property="btNext" destination="sUn-Js-yg0" id="y8M-1V-PXS"/>
+                <outlet property="textCode" destination="qfn-kY-cZW" id="3W4-9W-7aq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vui lòng nhập mã số đã gửi về Email / Số điện thoại của bạn." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-zl-shR">
+                    <rect key="frame" x="56" y="19.999999999999996" width="338" height="36.666666666666657"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUn-Js-yg0">
+                    <rect key="frame" x="20" y="646" width="374" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="lvC-V4-9ta"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Tiếp theo">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số điện thoại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDa-uK-kUB">
+                    <rect key="frame" x="56.000000000000007" y="76.666666666666671" width="98.666666666666686" height="18.333333333333329"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ire-MP-jra">
+                    <rect key="frame" x="56" y="103" width="338" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfn-kY-cZW" customClass="KWVerificationCodeView" customModule="KWVerificationCodeView">
+                            <rect key="frame" x="94" y="0.0" width="150" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="SjD-7Y-hod"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="digits">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="qfn-kY-cZW" firstAttribute="centerY" secondItem="Ire-MP-jra" secondAttribute="centerY" id="Kvr-YP-pCA"/>
+                        <constraint firstAttribute="height" constant="50" id="N5n-Qj-9TN"/>
+                        <constraint firstItem="qfn-kY-cZW" firstAttribute="height" secondItem="Ire-MP-jra" secondAttribute="height" id="l3v-B2-Uow"/>
+                        <constraint firstItem="qfn-kY-cZW" firstAttribute="centerX" secondItem="Ire-MP-jra" secondAttribute="centerX" id="z40-Z6-s6M"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="digits">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sJu-zl-shR" secondAttribute="trailing" constant="20" id="24z-dl-2fy"/>
+                <constraint firstItem="Ire-MP-jra" firstAttribute="top" secondItem="sDa-uK-kUB" secondAttribute="bottom" constant="8" symbolic="YES" id="4uf-5a-zF2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sUn-Js-yg0" secondAttribute="bottom" constant="40" id="8IS-W3-8A7"/>
+                <constraint firstItem="sDa-uK-kUB" firstAttribute="leading" secondItem="sJu-zl-shR" secondAttribute="leading" id="JOZ-MN-iay"/>
+                <constraint firstItem="sUn-Js-yg0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="NUa-2q-h6y"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sUn-Js-yg0" secondAttribute="trailing" constant="20" id="SPo-YZ-DKi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ire-MP-jra" secondAttribute="trailing" constant="20" id="cUR-wI-J8r"/>
+                <constraint firstItem="sJu-zl-shR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="56" id="iiC-Ha-okQ"/>
+                <constraint firstItem="Ire-MP-jra" firstAttribute="leading" secondItem="sDa-uK-kUB" secondAttribute="leading" id="lvQ-c2-OeP"/>
+                <constraint firstItem="sJu-zl-shR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="n9V-e2-Dgg"/>
+                <constraint firstItem="sDa-uK-kUB" firstAttribute="top" secondItem="sJu-zl-shR" secondAttribute="bottom" constant="20" id="vhR-tc-5xV"/>
+            </constraints>
+            <point key="canvasLocation" x="136" y="64"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="montserrat_regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoryVC" customModule="Dayshee" customModuleProvider="target">
+            <connections>
+                <outlet property="btFilter" destination="1UW-Gp-LZv" id="Jd6-Po-PRD"/>
+                <outlet property="collectionView" destination="Dze-wb-yVK" id="wh4-b3-h8V"/>
+                <outlet property="tfSearch" destination="ekt-Cp-Bgc" id="aee-ge-l78"/>
+                <outlet property="topProductContant" destination="K0W-Y2-10d" id="QuG-N0-rP6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewSearch" destination="uMB-ws-hQM" id="BTA-12-oMe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMB-ws-hQM">
+                    <rect key="frame" x="20" y="15" width="374" height="40"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="ANW-C5-eix">
+                            <rect key="frame" x="15" y="13.666666666666668" width="13" height="13"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="13" id="cdD-nS-OTQ"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UW-Gp-LZv">
+                            <rect key="frame" x="344" y="9" width="15" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="on3-bq-DAa"/>
+                            </constraints>
+                            <state key="normal" image="ic_filter"/>
+                        </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="tìm kiếm" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekt-Cp-Bgc">
+                            <rect key="frame" x="38" y="0.0" width="296" height="40"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="1UW-Gp-LZv" firstAttribute="leading" secondItem="ekt-Cp-Bgc" secondAttribute="trailing" constant="10" id="0KC-Pc-uAQ"/>
+                        <constraint firstItem="1UW-Gp-LZv" firstAttribute="centerY" secondItem="ANW-C5-eix" secondAttribute="centerY" id="Coe-iY-j1n"/>
+                        <constraint firstItem="ekt-Cp-Bgc" firstAttribute="top" secondItem="uMB-ws-hQM" secondAttribute="top" id="DtS-WJ-dvt"/>
+                        <constraint firstAttribute="bottom" secondItem="ekt-Cp-Bgc" secondAttribute="bottom" id="Y1V-ik-tmV"/>
+                        <constraint firstItem="ANW-C5-eix" firstAttribute="centerY" secondItem="uMB-ws-hQM" secondAttribute="centerY" id="Zzm-Gl-fNi"/>
+                        <constraint firstItem="ekt-Cp-Bgc" firstAttribute="leading" secondItem="ANW-C5-eix" secondAttribute="trailing" constant="10" id="bD1-mL-SZd"/>
+                        <constraint firstAttribute="height" constant="40" id="l0F-yk-Kyy"/>
+                        <constraint firstItem="ANW-C5-eix" firstAttribute="leading" secondItem="uMB-ws-hQM" secondAttribute="leading" constant="15" id="l3w-Zk-JL6"/>
+                        <constraint firstAttribute="trailing" secondItem="1UW-Gp-LZv" secondAttribute="trailing" constant="15" id="wQl-6z-AH8"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Dze-wb-yVK">
+                    <rect key="frame" x="0.0" y="125" width="414" height="601"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7xr-oH-DUW">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="uMB-ws-hQM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="4Gz-6m-ybl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Dze-wb-yVK" secondAttribute="bottom" constant="10" id="4Zd-r2-fzb"/>
+                <constraint firstItem="Dze-wb-yVK" firstAttribute="top" secondItem="uMB-ws-hQM" secondAttribute="bottom" constant="70" id="K0W-Y2-10d"/>
+                <constraint firstItem="uMB-ws-hQM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="MlI-ar-rnk"/>
+                <constraint firstItem="uMB-ws-hQM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-20" id="X7p-mO-cSa"/>
+                <constraint firstItem="Dze-wb-yVK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cdn-AY-qNv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Dze-wb-yVK" secondAttribute="trailing" id="imK-Bq-8cT"/>
+            </constraints>
+            <point key="canvasLocation" x="138" y="83"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_filter" width="15" height="13"/>
+        <image name="ic_search" width="13" height="13"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--OrdersVC-->
+        <scene sceneID="rXm-91-Tid">
+            <objects>
+                <viewController storyboardIdentifier="OrdersVC" id="bf1-Fo-rFg" customClass="OrdersVC" customModule="Dayshee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VJ7-JL-dSl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kI5-l6-L02">
+                                <rect key="frame" x="0.0" y="8" width="414" height="46"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jn6-ve-o0G">
+                                        <rect key="frame" x="20" y="6" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="4nE-gU-Vtj"/>
+                                            <constraint firstAttribute="height" constant="20" id="4xo-Jb-TOM"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_menu"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đơn hàng" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BV2-8Q-fFE">
+                                        <rect key="frame" x="170" y="5.9999999999999982" width="74" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ft-Ma-3yY">
+                                        <rect key="frame" x="0.0" y="45" width="414" height="1"/>
+                                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="sNp-aN-RAo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="8ft-Ma-3yY" firstAttribute="leading" secondItem="kI5-l6-L02" secondAttribute="leading" id="AXR-Pn-krm"/>
+                                    <constraint firstAttribute="trailing" secondItem="8ft-Ma-3yY" secondAttribute="trailing" id="GTc-n5-y6E"/>
+                                    <constraint firstItem="BV2-8Q-fFE" firstAttribute="centerY" secondItem="Jn6-ve-o0G" secondAttribute="centerY" id="LqU-yf-Y1f"/>
+                                    <constraint firstItem="Jn6-ve-o0G" firstAttribute="leading" secondItem="kI5-l6-L02" secondAttribute="leading" constant="20" id="Oie-Dl-fZL"/>
+                                    <constraint firstAttribute="bottom" secondItem="8ft-Ma-3yY" secondAttribute="bottom" id="cBX-Xa-xHo"/>
+                                    <constraint firstItem="Jn6-ve-o0G" firstAttribute="top" secondItem="kI5-l6-L02" secondAttribute="top" constant="6" id="uYA-fg-Tth"/>
+                                    <constraint firstItem="BV2-8Q-fFE" firstAttribute="centerX" secondItem="kI5-l6-L02" secondAttribute="centerX" id="xbJ-jL-KwY"/>
+                                    <constraint firstAttribute="height" constant="46" id="ztU-ha-0c4"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="QLg-3C-KQx">
+                                <rect key="frame" x="0.0" y="54" width="414" height="674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ws7-ie-xQ7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QLg-3C-KQx" secondAttribute="trailing" id="6bb-tq-8MQ"/>
+                            <constraint firstItem="kI5-l6-L02" firstAttribute="leading" secondItem="VJ7-JL-dSl" secondAttribute="leading" id="Ujg-UJ-mek"/>
+                            <constraint firstItem="kI5-l6-L02" firstAttribute="top" secondItem="Ws7-ie-xQ7" secondAttribute="top" constant="8" id="aOf-Y1-7BA"/>
+                            <constraint firstItem="Ws7-ie-xQ7" firstAttribute="bottom" secondItem="QLg-3C-KQx" secondAttribute="bottom" constant="8" id="eB7-0D-RiA"/>
+                            <constraint firstItem="QLg-3C-KQx" firstAttribute="leading" secondItem="Ws7-ie-xQ7" secondAttribute="leading" id="goF-am-VkM"/>
+                            <constraint firstAttribute="trailing" secondItem="kI5-l6-L02" secondAttribute="trailing" id="o3W-0q-kqc"/>
+                            <constraint firstItem="QLg-3C-KQx" firstAttribute="top" secondItem="kI5-l6-L02" secondAttribute="bottom" id="vSK-97-HyU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="QLg-3C-KQx" id="Z1h-Ks-lxm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BBn-we-VVl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="82"/>
+        </scene>
+        <!--Order DetailVC-->
+        <scene sceneID="qDN-QJ-9dd">
+            <objects>
+                <viewController storyboardIdentifier="OrderDetailVC" id="eSx-4M-R6P" customClass="OrderDetailVC" customModule="Dayshee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hS5-Xj-7Fz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TD9-WU-SSS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zgy-rM-QMa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121.875" y="81.338028169014081"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_menu" width="13" height="12"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

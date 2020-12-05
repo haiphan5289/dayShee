@@ -1,0 +1,6 @@
+framework module Pods_Dayshee {
+  umbrella header "Pods-Dayshee-umbrella.h"
+
+  export *
+  module * { export * }
+}

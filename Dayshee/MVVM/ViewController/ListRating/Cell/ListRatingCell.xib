@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="montserrat_regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ListRatingCell" customModule="Dayshee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bS-mh-BLU">
+                        <rect key="frame" x="20" y="0.0" width="280" height="70"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thiên Trường" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qo-WD-Dyl">
+                                <rect key="frame" x="0.0" y="10" width="100.5" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="omp-ei-n0f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 ngày trước" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZf-su-KTl">
+                                <rect key="frame" x="215.5" y="12.5" width="64.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faL-0J-6RY" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="0.0" y="33" width="95" height="15"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Gvj-tb-DBY"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                        <color key="value" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xfn-Mp-71y">
+                                <rect key="frame" x="0.0" y="53" width="265" height="7"/>
+                                <string key="text">UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action </string>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="faL-0J-6RY" firstAttribute="top" secondItem="5qo-WD-Dyl" secondAttribute="bottom" constant="5" id="DXW-A5-HMb"/>
+                            <constraint firstItem="5qo-WD-Dyl" firstAttribute="leading" secondItem="3bS-mh-BLU" secondAttribute="leading" id="HCE-9j-6d2"/>
+                            <constraint firstAttribute="trailing" secondItem="PZf-su-KTl" secondAttribute="trailing" id="MEb-hM-oEo"/>
+                            <constraint firstAttribute="trailing" secondItem="Xfn-Mp-71y" secondAttribute="trailing" constant="15" id="PSF-Mp-S6b"/>
+                            <constraint firstItem="faL-0J-6RY" firstAttribute="leading" secondItem="3bS-mh-BLU" secondAttribute="leading" id="UaK-ql-o1O"/>
+                            <constraint firstItem="Xfn-Mp-71y" firstAttribute="top" secondItem="faL-0J-6RY" secondAttribute="bottom" constant="5" id="W9o-ue-9Dx"/>
+                            <constraint firstAttribute="bottom" secondItem="Xfn-Mp-71y" secondAttribute="bottom" constant="10" id="eGv-b6-eTT"/>
+                            <constraint firstItem="Xfn-Mp-71y" firstAttribute="leading" secondItem="3bS-mh-BLU" secondAttribute="leading" id="eMj-i8-Iiv"/>
+                            <constraint firstItem="PZf-su-KTl" firstAttribute="centerY" secondItem="5qo-WD-Dyl" secondAttribute="centerY" id="noh-J5-ZQk"/>
+                            <constraint firstItem="PZf-su-KTl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5qo-WD-Dyl" secondAttribute="trailing" constant="10" id="wBu-2b-Sio"/>
+                            <constraint firstItem="5qo-WD-Dyl" firstAttribute="top" secondItem="3bS-mh-BLU" secondAttribute="top" constant="10" id="xy0-8q-fHb"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3bS-mh-BLU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q1n-ea-jOc"/>
+                    <constraint firstItem="3bS-mh-BLU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="X2V-Do-fH7"/>
+                    <constraint firstAttribute="bottom" secondItem="3bS-mh-BLU" secondAttribute="bottom" id="fG3-gT-H5h"/>
+                    <constraint firstAttribute="trailing" secondItem="3bS-mh-BLU" secondAttribute="trailing" constant="20" id="pfs-5D-PMe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lbContent" destination="Xfn-Mp-71y" id="niA-24-mAn"/>
+                <outlet property="lbName" destination="5qo-WD-Dyl" id="bNB-jk-bwV"/>
+                <outlet property="lbTime" destination="PZf-su-KTl" id="VMp-TX-Bef"/>
+                <outlet property="viewRating" destination="faL-0J-6RY" id="lVy-2D-bbV"/>
+            </connections>
+            <point key="canvasLocation" x="138" y="65"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="faL-0J-6RY">
+            <size key="intrinsicContentSize" width="95" height="15"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

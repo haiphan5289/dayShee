@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>396673572262-sii4l6v75vb91ed6ucar74rdccuo8m2t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.396673572262-sii4l6v75vb91ed6ucar74rdccuo8m2t</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>396673572262-jehe5g5fcibjvu0fk0uffv9ci2k20tvf.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAi_wjn6NWgL9V-79RqPPPskfyjtsyAZyU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>396673572262</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kantek.woodpeckers</string>
+	<key>PROJECT_ID</key>
+	<string>woodpeckers-e6f37</string>
+	<key>STORAGE_BUCKET</key>
+	<string>woodpeckers-e6f37.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:396673572262:ios:4035320b8d20ddf4be8367</string>
+	<key>DATABASE_URL</key>
+	<string>https://woodpeckers-e6f37.firebaseio.com</string>
+</dict>
+</plist>
