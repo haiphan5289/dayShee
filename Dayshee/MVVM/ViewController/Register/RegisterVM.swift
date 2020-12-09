@@ -35,7 +35,7 @@ class RegisterVM: ActivityTrackingProgressProtocol {
                     self.err.onNext(err)
                 }}.disposed(by: disposeBag)
     }
-    func uploadImage(p: [String: Any], img: UIImage, urlIMG: String) {
+    func uploadImage(p: [String: Any], img: [UIImage], urlIMG: String) {
         RequestService.shared.APIUpload(ofType: OptionalMessageDTO<UserInfo>.self,
                                         url: SERVER + APILink.register.rawValue,
                                         parameters: p,

@@ -10,8 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NotificationDetailVC: UIViewController {
+class NotificationDetailVC: UIViewController, ActivityTrackingProgressProtocol {
 
+    private var readNotifcation: PublishSubject<ReadNotificationModel> = PublishSubject.init()
+    private var msgAlert: PublishSubject<String> = PublishSubject.init()
+    private var err: PublishSubject<ErrorService> = PublishSubject.init()
+    var id: Int?
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +50,43 @@ extension NotificationDetailVC {
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.height.equalTo(1)
         }
+        
+        self.indicator.asObservable().bind(onNext: { (item) in
+            item ? LoadingManager.instance.show() : LoadingManager.instance.dismiss()
+        }).disposed(by: disposeBag)
+        
+        self.err.asObservable().bind(onNext: weakify({ (err, wSelf) in
+            wSelf.showAlert(title: nil, message: err.message)
+        })).disposed(by: disposeBag)
+        
+        self.msgAlert.asObservable().bind(onNext: weakify({ (msg, wSelf) in
+//            wSelf.showAlert(title: nil, message: msg)
+        })).disposed(by: disposeBag)
+        
+        guard  let id = self.id else {
+            return
+        }
+        let p: [String: Any] = ["id": id]
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<ReadNotificationModel>.self,
+                                      url: APILink.readNotifcation.rawValue,
+                                      parameters: p,
+                                      method: .post)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                                        switch result {
+                                        case .success(let value):
+                                            guard let data = value.data, let item = data else {
+                                                return
+                                            }
+                                            self.readNotifcation.onNext(item)
+                                            self.msgAlert.onNext(value.message ?? "")
+                                        case .failure(let err):
+                                            self.err.onNext(err)
+                                        }}.disposed(by: disposeBag)
     }
     private func setupRX() {
        
     }
+    
     
 }

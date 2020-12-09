@@ -25,7 +25,13 @@ class ProductDetailCell: UITableViewCell {
         vDetail.snp.makeConstraints { (make) in
             make.top.equalTo(self.vImage.snp.bottom)
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(10).priority(.high)
+        }
+        
+        self.addSubview(vComment)
+        vComment.snp.makeConstraints { (make) in
+            make.top.equalTo(self.vDetail.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().inset(10)
         }
 
     }
@@ -36,11 +42,6 @@ class ProductDetailCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func addViewComment() {
-        self.addSubview(vComment)
-        vComment.snp.makeConstraints { (make) in
-            make.top.equalTo(self.vDetail.snp.bottom)
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(10)
-        }
+        
     }
 }

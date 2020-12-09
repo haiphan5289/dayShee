@@ -89,7 +89,7 @@ extension LoginVC {
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(15)
         })
-        self.btSignIn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        self.btSignIn.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 17.0) 
         self.tfNumberPhone.placeholder = "Nhập số điện thoại"
         self.tfPassword.placeholder = "Nhập mật khẩu"
         self.tfPassword.isSecureTextEntry = true

@@ -42,8 +42,6 @@ class ListAddressDeliveryVC: UIViewController {
         super.viewDidLoad()
         visualize()
         setupRX()
-        let token = Token()
-        print("\(token.token)")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,6 +74,7 @@ extension ListAddressDeliveryVC {
         
         btConfirm.setTitle("Thêm địa chỉ mới", for: .normal)
         btConfirm.backgroundColor = #colorLiteral(red: 0.007841385901, green: 0.007844363339, blue: 0.007840993814, alpha: 1)
+        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         btConfirm.setTitleColor(.white, for: .normal)
         btConfirm.clipsToBounds = true
         btConfirm.layer.cornerRadius = 5
@@ -293,8 +292,8 @@ extension ListAddressDeliveryVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại bạn chưa có điạ chỉ"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19) ]
-        let t = NSAttributedString(string: text, attributes: titleTextAttributes)
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }
 }

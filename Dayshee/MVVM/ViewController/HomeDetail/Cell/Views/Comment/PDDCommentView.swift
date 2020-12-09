@@ -79,9 +79,12 @@ extension PDDCommentView {
             let heightHeaderFooter: CGFloat = 30
             let heightLbNameViewCosmos: CGFloat = 33
             let spacingOutLetCell: CGFloat = 20
-//            wSelf.hTableView.constant = height + (heightHeaderFooter * 2) + (heightLbNameViewCosmos * 2) + (spacingOutLetCell * 2)
             wSelf.tableView.snp.updateConstraints { (make) in
-                make.height.equalTo(height + (heightHeaderFooter * 2) + (heightLbNameViewCosmos * 2) + (spacingOutLetCell * 2))
+                if self.dataSource.count >= 2 {
+                    make.height.equalTo(height + (heightHeaderFooter * 2) + (heightLbNameViewCosmos * 2) + (spacingOutLetCell * 2))
+                } else {
+                    make.height.equalTo(height + (heightHeaderFooter) + (heightLbNameViewCosmos) + (spacingOutLetCell))
+                }
             }
             wSelf.updateHeight?()
         })).disposed(by: disposeBag)
@@ -92,13 +95,21 @@ extension PDDCommentView {
             return
         }
         self.listFAQ = list
+        guard self.listFAQ.count > 0 else {
+            self.tableView.snp.updateConstraints { (make) in
+                make.height.equalTo(50)
+            }
+            return
+        }
         if list.count > 2 {
             for i in 0...1 {
                 self.dataSource.append(list[i])
             }
         } else {
-            self.dataSource = list
+            self.dataSource = listFAQ
         }
+
+        
         
         list.forEach { (v) in
             self.totalRating += (v.rating ?? 0)
@@ -113,7 +124,7 @@ extension PDDCommentView: UITableViewDelegate {
         let v: UIView = UIView(frame: .zero)
         let lbComment: UILabel = UILabel(frame: .zero)
         lbComment.text = "Nhận xét (\(self.listFAQ.count))"
-        lbComment.font = UIFont.systemFont(ofSize: 15)
+        lbComment.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         v.addSubview(lbComment)
         lbComment.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview()
@@ -137,7 +148,7 @@ extension PDDCommentView: UITableViewDelegate {
         let btSeeAll: UIButton = UIButton(frame: .zero)
         btSeeAll.setTitle("Xem tất cả     ", for: .normal)
         btSeeAll.setTitleColor(.black, for: .normal)
-        btSeeAll.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        btSeeAll.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 13.0)
         let img: UIImage = UIImage(named: "ic_chevron_black") ?? UIImage()
         btSeeAll.imageView?.snp.makeConstraints({ (make) in
             make.centerY.right.equalToSuperview()
@@ -159,7 +170,7 @@ extension PDDCommentView: UITableViewDelegate {
         
         let btSendComment: UIButton = UIButton(frame: .zero)
         let underLineButton: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 13),
+            .font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ,
             .foregroundColor: UIColor.black,
             .underlineStyle: NSUnderlineStyle.single.rawValue]
         let attributeString = NSMutableAttributedString(string: "Gửi nhận xét",

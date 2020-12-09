@@ -41,7 +41,7 @@ class RowCellRegisterCity: Eureka.Cell<Int>, CellType, UITextFieldDelegate, Upda
         contentView.addSubview(lbTitle)
         lbTitle.text = "Họ tên"
         lbTitle.textAlignment = .left
-        lbTitle.font = UIFont.systemFont(ofSize: 13)
+        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 13.0)
         lbTitle.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(10)
             make.left.right.equalTo(55)
@@ -52,8 +52,7 @@ class RowCellRegisterCity: Eureka.Cell<Int>, CellType, UITextFieldDelegate, Upda
         tfSub.placeholder = "Chọn"
         let placeholderDistrict = tfSub.placeholder ?? "" //There should be a placeholder set in storyboard or elsewhere string or pass empty
         tfSub.attributedPlaceholder = NSAttributedString(string: placeholderDistrict, attributes: [NSAttributedString.Key.foregroundColor : colorDistrict])
-        tfSub.font = UIFont.systemFont(ofSize: 13)
-        tfSub.font = UIFont.systemFont(ofSize: 13)
+        tfSub.font = UIFont(name: "Montserrat-Regular", size: 13.0)
         tfSub.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tfSub.frame.height))
         tfSub.rightViewMode = .always
         tfSub.snp.makeConstraints { (make) in

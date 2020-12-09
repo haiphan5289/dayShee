@@ -63,7 +63,7 @@ extension FormOfDeliveryVC {
 
         title = "Hình thức giao hàng"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19) ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) as Any]
                 
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
@@ -363,8 +363,8 @@ extension FormOfDeliveryVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại bạn chưa có giỏ hàng"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19) ]
-        let t = NSAttributedString(string: text, attributes: titleTextAttributes)
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0)]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }
 }

@@ -16,6 +16,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TechnicalFeedBack" customModule="Dayshee" customModuleProvider="target">
             <connections>
+                <outlet property="btSendFeedback" destination="r6S-SZ-cUT" id="ptD-Y5-o0G"/>
+                <outlet property="tfEmail" destination="l95-35-cqG" id="BOC-y9-5Yr"/>
+                <outlet property="tfFullName" destination="0iB-MY-l1m" id="KBM-NE-Cyz"/>
                 <outlet property="tvContent" destination="vOS-Ce-h2a" id="VEf-6P-0xA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,7 +29,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vOS-Ce-h2a">
-                    <rect key="frame" x="20" y="110.66666666666669" width="374" height="525.33333333333326"/>
+                    <rect key="frame" x="20" y="178" width="374" height="458"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" systemColor="labelColor"/>
@@ -34,18 +37,18 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEG-kA-lct">
-                    <rect key="frame" x="20" y="20" width="43" height="18.333333333333329"/>
+                    <rect key="frame" x="20" y="87.333333333333329" width="43" height="18.333333333333329"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l95-35-cqG">
-                    <rect key="frame" x="20" y="43.333333333333336" width="374" height="34.000000000000007"/>
+                    <rect key="frame" x="20" y="110.66666666666667" width="374" height="34.000000000000014"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phản hồi kỹ thuật" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PY-Hl-mqN">
-                    <rect key="frame" x="20" y="82.333333333333329" width="133.66666666666666" height="18.333333333333329"/>
+                    <rect key="frame" x="20" y="149.66666666666666" width="133.66666666666666" height="18.333333333333343"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -65,21 +68,37 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Họ &amp; tên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjl-PS-pAi">
+                    <rect key="frame" x="20" y="20" width="64.666666666666671" height="18.333333333333329"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập họ và tên" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0iB-MY-l1m">
+                    <rect key="frame" x="20" y="43.333333333333336" width="374" height="34.000000000000007"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="l95-35-cqG" secondAttribute="trailing" constant="20" id="101-4N-eh5"/>
+                <constraint firstItem="CEG-kA-lct" firstAttribute="leading" secondItem="bjl-PS-pAi" secondAttribute="leading" id="4OE-dd-tmq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="vOS-Ce-h2a" secondAttribute="bottom" constant="100" id="5Tf-dm-pOP"/>
+                <constraint firstItem="bjl-PS-pAi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="A7R-LU-0d7"/>
                 <constraint firstItem="vOS-Ce-h2a" firstAttribute="leading" secondItem="CEG-kA-lct" secondAttribute="leading" id="BNh-dw-sd1"/>
                 <constraint firstItem="r6S-SZ-cUT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GE1-eA-uoo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="r6S-SZ-cUT" secondAttribute="bottom" constant="30" id="HjX-Zr-g2F"/>
+                <constraint firstItem="CEG-kA-lct" firstAttribute="top" secondItem="0iB-MY-l1m" secondAttribute="bottom" constant="10" id="I53-DG-7Kf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0iB-MY-l1m" secondAttribute="trailing" constant="20" id="SHb-GO-oHN"/>
+                <constraint firstItem="0iB-MY-l1m" firstAttribute="top" secondItem="bjl-PS-pAi" secondAttribute="bottom" constant="5" id="W2k-Se-woX"/>
                 <constraint firstItem="vOS-Ce-h2a" firstAttribute="top" secondItem="7PY-Hl-mqN" secondAttribute="bottom" constant="10" id="aVU-bg-fkN"/>
                 <constraint firstItem="l95-35-cqG" firstAttribute="top" secondItem="CEG-kA-lct" secondAttribute="bottom" constant="5" id="bfa-5q-Nvs"/>
                 <constraint firstItem="l95-35-cqG" firstAttribute="leading" secondItem="CEG-kA-lct" secondAttribute="leading" id="g1O-Yu-5Z2"/>
                 <constraint firstItem="7PY-Hl-mqN" firstAttribute="leading" secondItem="CEG-kA-lct" secondAttribute="leading" id="k4F-PX-dBj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="r6S-SZ-cUT" secondAttribute="trailing" constant="20" id="pMo-iI-zZh"/>
-                <constraint firstItem="CEG-kA-lct" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="qGM-bs-dfH"/>
+                <constraint firstItem="0iB-MY-l1m" firstAttribute="leading" secondItem="bjl-PS-pAi" secondAttribute="leading" id="tBt-kD-t5v"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vOS-Ce-h2a" secondAttribute="trailing" constant="20" id="wUL-bM-HB6"/>
                 <constraint firstItem="vOS-Ce-h2a" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="zit-4n-Zri"/>
                 <constraint firstItem="7PY-Hl-mqN" firstAttribute="top" secondItem="l95-35-cqG" secondAttribute="bottom" constant="5" id="zrX-Kk-fqp"/>

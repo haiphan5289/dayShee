@@ -201,8 +201,12 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
             guard let wSefl = self, let id = wSefl.id else {
                 return
             }
-            let p: [String: Any] = ["id": id, "reason": "Hết tiền lấy hàng"]
-            wSefl.viewModel.cancelOrder(p: p)
+            wSefl.showAlert(title: "Thông báo", message: "Bạn có muốn huỷ đơn", buttonTitles: ["Đóng", "Đồng ý"]) { idx in
+                if idx == 1 {
+                    let p: [String: Any] = ["id": id, "reason": "Hết tiền lấy hàng"]
+                    wSefl.viewModel.cancelOrder(p: p)
+                }
+            }
         }.disposed(by: disposeBag)
         return v
     }

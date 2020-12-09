@@ -99,7 +99,7 @@
                                                     <fragment content="Thay đổi">
                                                         <attributes>
                                                             <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <font key="NSFont" metaFont="system" size="15"/>
+                                                            <font key="NSFont" size="15" name="Montserrat-Regular"/>
                                                             <integer key="NSUnderline" value="1"/>
                                                         </attributes>
                                                     </fragment>
@@ -140,7 +140,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15.67" id="ZBE-l8-1Yr"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -161,7 +161,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15.67" id="LQP-VQ-hX6"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -178,8 +178,8 @@
                                                     <rect key="frame" x="0.0" y="75.666666666666686" width="309" height="69.333333333333314"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;&quot;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhh-6m-SSR">
-                                                            <rect key="frame" x="0.0" y="0.0" width="12.333333333333334" height="15.666666666666666"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="10.333333333333334" height="16"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

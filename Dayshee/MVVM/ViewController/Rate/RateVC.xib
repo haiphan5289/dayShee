@@ -18,6 +18,8 @@
             <connections>
                 <outlet property="btImagePicker" destination="UQI-1x-EIE" id="Vi3-HU-evj"/>
                 <outlet property="btRate" destination="VBs-Wl-8uN" id="XI0-bK-HJK"/>
+                <outlet property="collectionView" destination="sKK-T5-2kr" id="Ags-A8-btc"/>
+                <outlet property="imgLine" destination="15W-5z-hrL" id="6hf-5A-hrm"/>
                 <outlet property="textView" destination="RfZ-g7-wO7" id="NjE-TG-HZ9"/>
                 <outlet property="vRating" destination="Rqy-9p-JDi" id="NUk-Hf-KCg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,7 +38,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqy-9p-JDi" customClass="CosmosView" customModule="Cosmos">
-                    <rect key="frame" x="134.66666666666666" y="56" width="144.99999999999997" height="15"/>
+                    <rect key="frame" x="134.66666666666666" y="57" width="144.99999999999997" height="15"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="MlH-UR-Yh3"/>
@@ -68,31 +70,31 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá về sản phẩm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j46-oO-dRX">
-                    <rect key="frame" x="121.66666666666667" y="21" width="170.66666666666663" height="20"/>
+                    <rect key="frame" x="111.33333333333333" y="21" width="191.66666666666669" height="21"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_line" translatesAutoresizingMaskIntoConstraints="NO" id="15W-5z-hrL">
-                    <rect key="frame" x="55" y="121" width="304" height="100"/>
+                    <rect key="frame" x="55" y="122" width="304" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="ejg-FD-9A5"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-rW-GJi">
-                    <rect key="frame" x="199.66666666666666" y="149.66666666666666" width="15" height="13"/>
+                    <rect key="frame" x="199.66666666666666" y="150.66666666666666" width="15" height="13"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tải ảnh lên  (nếu có)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwG-bu-euC">
-                    <rect key="frame" x="173" y="172.66666666666666" width="68.333333333333314" height="31.333333333333343"/>
+                    <rect key="frame" x="173" y="173.66666666666666" width="68.333333333333314" height="31.333333333333343"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQI-1x-EIE">
-                    <rect key="frame" x="55" y="121" width="304" height="100"/>
+                    <rect key="frame" x="55" y="122" width="304" height="100"/>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="sKK-T5-2kr">
-                    <rect key="frame" x="75" y="236" width="264" height="70"/>
+                    <rect key="frame" x="75" y="237" width="264" height="70"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="CEE-di-Zcn"/>
@@ -120,32 +122,32 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Họ tên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-xq-nqq">
-                    <rect key="frame" x="75" y="326" width="41.666666666666657" height="16.333333333333314"/>
+                    <rect key="frame" x="75" y="327" width="47.333333333333343" height="17.333333333333314"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập họ tên" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLk-qI-OGs">
-                    <rect key="frame" x="75" y="352.33333333333331" width="264" height="17"/>
+                    <rect key="frame" x="75" y="354.33333333333331" width="264" height="17"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aC6-hK-40o">
-                    <rect key="frame" x="75" y="374.33333333333331" width="264" height="1"/>
+                    <rect key="frame" x="75" y="376.33333333333331" width="264" height="1"/>
                     <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="U51-qX-W4r"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá của bạn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL9-0J-n50">
-                    <rect key="frame" x="75" y="385.33333333333331" width="118" height="18.333333333333314"/>
+                    <rect key="frame" x="75.000000000000014" y="387.33333333333331" width="133.33333333333337" height="18.333333333333314"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RfZ-g7-wO7">
-                    <rect key="frame" x="75" y="408.66666666666669" width="264" height="230.33333333333331"/>
+                    <rect key="frame" x="75" y="410.66666666666669" width="264" height="228.33333333333331"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -197,6 +199,11 @@
             <point key="canvasLocation" x="-106" y="74"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Rqy-9p-JDi">
+            <size key="intrinsicContentSize" width="145" height="25"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic_camera" width="15" height="13"/>
         <image name="img_line" width="270" height="100"/>

@@ -146,7 +146,7 @@ extension ListDiscountVC {
         let size = CGSize(width: width, height: 100000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options,
-                                                   attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: fontSize)],
+                                                   attributes: [NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: fontSize) as Any ] ,
                                                    context: nil)
     }
 }
@@ -168,8 +168,8 @@ extension ListDiscountVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại chưa có khuyến mãi"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19) ]
-        let t = NSAttributedString(string: text, attributes: titleTextAttributes)
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }
 }

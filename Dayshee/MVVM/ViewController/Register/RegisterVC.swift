@@ -64,6 +64,7 @@ extension RegisterVC {
         btConfirm.setTitle("Đăng kí", for: .normal)
         btConfirm.backgroundColor = #colorLiteral(red: 0.007841385901, green: 0.007844363339, blue: 0.007840993814, alpha: 1)
         btConfirm.setTitleColor(.white, for: .normal)
+        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         btConfirm.clipsToBounds = true
         btConfirm.layer.cornerRadius = 5
         self.view.addSubview(btConfirm)
@@ -138,7 +139,9 @@ extension RegisterVC {
                       let img = row.cell.imgCircle.image else  {
                     return
                 }
-                wSelf.viewModel.uploadImage(p: p, img: img, urlIMG: "avatar")
+                var imgs: [UIImage] = []
+                imgs.append(img)
+                wSelf.viewModel.uploadImage(p: p, img: imgs, urlIMG: "avatar")
             })).disposed(by: disposeBag)
         
         self.locationID.distinctUntilChanged().asObservable()

@@ -13,6 +13,8 @@ import Cosmos
 
 class PDViewImage: UIView {
     
+    var actionLove:((Int) -> Void)?
+    var dislike:((Int) -> Void)?
     var addCart:((HomeDetailModel, Int) -> Void)?
     var btShareSelect:(() -> Void)?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -99,6 +101,22 @@ extension PDViewImage {
         self.btShare.rx.tap.bind { _ in
             self.btShareSelect?()
         }.disposed(by: disposeBag)
+        
+        self.btLove.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self, let item = wSelf.currentItem, let id = item.id else {
+                return
+            }
+            if wSelf.btLove.isSelected {
+                wSelf.btLove.imageView?.backgroundColor = .clear
+                wSelf.dislike?(id)
+                wSelf.btLove.isSelected = false
+            } else {
+                wSelf.btLove.imageView?.backgroundColor = .black
+                wSelf.actionLove?(id)
+                wSelf.btLove.isSelected = true
+            }
+
+        }.disposed(by: disposeBag)
                 
     }
     func setupDisplay(item: HomeDetailModel?) {
@@ -134,7 +152,7 @@ extension PDViewImage {
             bt.layer.borderWidth = 0.5
             bt.backgroundColor =  (index == 0) ? .black : .white
             bt.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            bt.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+            bt.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 13.0) 
             bt.setTitleColor((index == 0) ? .white : .black, for: .normal)
             bt.setTitle("    \(element.size ?? "")   ", for: .normal)
             bt.clipsToBounds = true

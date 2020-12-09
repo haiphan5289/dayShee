@@ -14,6 +14,8 @@ import DZNEmptyDataSet
 enum TypeCategory {
     case viewAll
     case other
+    case hotProduct
+    case discount
 }
 
 class CategoryVC: UIViewController {
@@ -67,17 +69,19 @@ extension CategoryVC {
         collectionView.register(HeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: HeaderView.identifier)
-        if categoryID != 4 {
+        switch typeCategory {
+        case .discount, .hotProduct:
+            self.topProductContant.constant = 20
+            self.title = (self.typeCategory == .hotProduct) ? "Sản phẩm nổi bật" : "Sản phẩm khuyến mãi"
+        default:
             self.view.addSubview(self.vListCateView)
             self.vListCateView.snp.makeConstraints { (make) in
                 make.left.right.equalToSuperview()
                 make.height.equalTo(50)
                 make.bottom.equalTo(self.collectionView.snp.top)
             }
-        } else {
-            self.topProductContant.constant = 20
+            title = self.titleCate
         }
-        title = self.titleCate
         self.vListCateView.dataSource = ListProductStream.share.listCategory
         self.vListCateView.mSelectCategoryID = self.categoryID
         tap.cancelsTouchesInView = false
@@ -89,18 +93,26 @@ extension CategoryVC {
             guard let wSelf = self else {
                 return
             }
+            ListProductStream.share.listCategory.forEach { (c) in
+                if c.id == id && wSelf.typeCategory != .discount && wSelf.typeCategory != .hotProduct {
+                    wSelf.title = c.category
+                }
+            }
             guard filter.minPrice != nil else {
                 wSelf.getListCate(id: id)
                 return
             }
             guard var list = ListProductStream.share.getListProductWithCaterogy(categoryID: id),
-                  var listHot = ListProductStream.share.getListCategoryHotProduct(categoryID: id) else {
+                  let listHot = ListProductStream.share.getListCategoryHotProduct(categoryID: id) else {
                 return
             }
-            let viewAll = 4
-            if id == viewAll {
-                list = ListProductStream.share.getAllProduct()
-                listHot = ListProductStream.share.getListAllHotProduct()
+            switch wSelf.typeCategory {
+            case .hotProduct:
+                list = ListProductStream.share.getListAllHotProduct()
+            case .discount:
+                list = ListProductStream.share.listDiscount()
+            default:
+                break
             }
             wSelf.dataSource = wSelf.viewModel.filterMode(list: list, filter: filter)
             wSelf.dataSourceHot = wSelf.viewModel.filterMode(list: listHot, filter: filter)
@@ -116,13 +128,16 @@ extension CategoryVC {
                 return
             }
             guard var list = ListProductStream.share.getListProductWithCaterogy(categoryID: id),
-                  var listHot = ListProductStream.share.getListCategoryHotProduct(categoryID: id) else {
+                  let listHot = ListProductStream.share.getListCategoryHotProduct(categoryID: id) else {
                 return
             }
-            let viewAll = 4
-            if id == viewAll {
-                list = ListProductStream.share.getAllProduct()
-                listHot = ListProductStream.share.getListAllHotProduct()
+            switch wSelf.typeCategory {
+            case .hotProduct:
+                list = ListProductStream.share.getListAllHotProduct()
+            case .discount:
+                list = ListProductStream.share.listDiscount()
+            default:
+                break
             }
             guard !textSearch.isEmpty, textSearch != "" else {
                 wSelf.dataSource = wSelf.viewModel.filterMode(list: list, filter: filter)
@@ -148,11 +163,6 @@ extension CategoryVC {
         }.disposed(by: disposeBag)
     }
     private func getListCate(id: Int) {
-        let viewAll = 4
-        guard id != viewAll else {
-            self.getAllProduct()
-            return
-        }
         guard let list = ListProductStream.share.getListProductWithCaterogy(categoryID: id) else {
             return
         }
@@ -195,21 +205,21 @@ extension CategoryVC: UICollectionViewDataSource {
         }
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! HeaderView
-            headerView.visualize(list: self.dataSourceHot )
-            headerView.viewHotProduct.didSelectIndex = { [weak self] id in
-                self?.moveToProductDetail(id: id)
-            }
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
-        }
-    }
+//    func collectionView(_ collectionView: UICollectionView,
+//                        viewForSupplementaryElementOfKind kind: String,
+//                        at indexPath: IndexPath) -> UICollectionReusableView {
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! HeaderView
+//            headerView.visualize(list: self.dataSourceHot )
+//            headerView.viewHotProduct.didSelectIndex = { [weak self] id in
+//                self?.moveToProductDetail(id: id)
+//            }
+//            return headerView
+//        default:
+//            assert(false, "Unexpected element kind")
+//        }
+//    }
     private func moveToProductDetail(id: Int) {
         let vc = ProductDetail(nibName: "ProductDetail", bundle: nil)
         vc.produceID = id
@@ -218,9 +228,12 @@ extension CategoryVC: UICollectionViewDataSource {
 }
 
 extension CategoryVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 280)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        if self.typeCategory == .hotProduct || self.typeCategory == .discount {
+//            return CGSize(width: 0, height: 0)
+//        }
+//        return CGSize(width: collectionView.frame.width, height: 280)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let spaceLeftRight = 10
@@ -247,8 +260,8 @@ extension CategoryVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại chưa có sản phẩm"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19) ]
-        let t = NSAttributedString(string: text, attributes: titleTextAttributes)
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }
 }

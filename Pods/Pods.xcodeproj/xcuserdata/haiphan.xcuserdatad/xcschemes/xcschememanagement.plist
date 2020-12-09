@@ -399,7 +399,7 @@
 		<key>SkeletonView.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>65</integer>
+			<integer>66</integer>
 		</dict>
 		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
@@ -453,7 +453,7 @@
 		<key>ViewAnimator.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>66</integer>
+			<integer>65</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>

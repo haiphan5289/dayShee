@@ -51,7 +51,7 @@ extension ProfileDetailVC {
         
         let btEdit: UIButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 44, height: 44)))
         let underLineButton: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 15),
+            .font: UIFont(name: "Montserrat-Regular", size: 15.0) as Any ,
             .foregroundColor: UIColor.black,
             .underlineStyle: NSUnderlineStyle.single.rawValue]
         let attributeString = NSMutableAttributedString(string: "Chỉnh sửa",
@@ -69,7 +69,9 @@ extension ProfileDetailVC {
                 self.btSelectImage.isEnabled = false
                 self.tfName.isUserInteractionEnabled = false
                 let p: [String: Any] = ["name": self.tfName.text ?? ""]
-                self.viewModel.updateProfile(p: p, img: self.img.image, urlIMG: "avatar")
+                var imgs: [UIImage] = []
+                imgs.append(self.img.image ?? UIImage())
+                self.viewModel.updateProfile(p: p, img: imgs, urlIMG: "avatar")
                 
             } else {
                 btEdit.isSelected = true
@@ -131,6 +133,9 @@ extension ProfileDetailVC {
         lbName.text = user.name
         lbLevel.text = "Cấp độ: \(user.level ?? 0)"
         lbGoal.text = "Điểm tích luỹ: \(user.points ?? 0) điểm"
+        if let text = user.avatarURL, let url = URL(string: text) {
+            img.kf.setImage(with: url)
+        }
     }
     private func getZoneDetail(list: [Location]) {
         let zone = list.filter { $0.id == userInfo?.provinceID }.first
@@ -166,7 +171,7 @@ extension ProfileDetailVC {
         }
                 
         lbLevel.textColor = .black
-        lbLevel.font = UIFont.systemFont(ofSize: 15)
+        lbLevel.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         v.addSubview(lbLevel)
         
         lbLevel.snp.makeConstraints { (make) in
@@ -177,7 +182,7 @@ extension ProfileDetailVC {
         
         
         lbName.textColor = .black
-        lbName.font = UIFont.systemFont(ofSize: 15)
+        lbName.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         v.addSubview(lbName)
         
         lbName.snp.makeConstraints { (make) in
@@ -187,7 +192,7 @@ extension ProfileDetailVC {
         }
         
         lbGoal.textColor = .black
-        lbGoal.font = UIFont.systemFont(ofSize: 15)
+        lbGoal.font = UIFont(name: "Montserrat-Regular", size: 15.0) 
         v.addSubview(lbGoal)
         
         lbGoal.snp.makeConstraints { (make) in

@@ -61,7 +61,9 @@ extension CategoryListView {
     private func getTextSize(text: String) -> CGRect{
         let size = CGSize(width: 10000, height: 50)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+        return NSString(string: text).boundingRect(with: size, options: options,
+                                                   attributes: [NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 17.0) as Any ],
+                                                   context: nil)
     }
 }
 extension CategoryListView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

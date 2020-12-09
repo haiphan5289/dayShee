@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="montserrat_regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--LoginVC-->
         <scene sceneID="TJf-zI-UUu">
@@ -28,7 +33,7 @@
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập số điện thoại" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klC-SO-Lnv">
                                                 <rect key="frame" x="49" y="0.0" width="265" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                         </subviews>
@@ -62,7 +67,7 @@
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-tI-LeZ">
                                                 <rect key="frame" x="39" y="0.0" width="209" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpa-Li-KNo">
@@ -71,6 +76,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="fDO-iw-a0H"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                                 <state key="normal" title="Hiện">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -126,12 +132,14 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihj-fK-cfn">
                                                 <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <state key="normal" title="Đăng nhập">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpg-jL-6V3">
                                                 <rect key="frame" x="157" y="0.0" width="157" height="30"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <state key="normal" title="Đăng kí">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
@@ -171,6 +179,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="y3z-MP-x5V"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
                                 <state key="normal" title="Đăng nhập">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -185,8 +194,8 @@
                                                 <rect key="frame" x="20" y="4" width="10" height="7"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mật khẩu phải có ít nhất 8 ký tự" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOe-Sf-Dy6">
-                                                <rect key="frame" x="39.999999999999986" y="-0.33333333333331439" width="190.66666666666663" height="15.666666666666666"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <rect key="frame" x="40.000000000000014" y="-0.33333333333331439" width="206.33333333333337" height="16"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                 <color key="textColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -208,8 +217,8 @@
                                                 <rect key="frame" x="20" y="4" width="10" height="7"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mật khẩu phải có ít nhất 1 ký tự in hoa" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqk-Ig-Vob">
-                                                <rect key="frame" x="39.999999999999986" y="-0.33333333333331439" width="228.66666666666663" height="15.666666666666666"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <rect key="frame" x="40.000000000000014" y="-0.33333333333331439" width="246.33333333333337" height="16"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                 <color key="textColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -231,8 +240,8 @@
                                                 <rect key="frame" x="20" y="4" width="10" height="7"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mật khẩu phải có ít nhất 1 số" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEk-vl-kKf">
-                                                <rect key="frame" x="40" y="-0.33333333333331439" width="172.66666666666666" height="15.666666666666666"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <rect key="frame" x="40" y="-0.33333333333331439" width="185" height="16"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                 <color key="textColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -253,13 +262,13 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uuV-BY-H42">
-                                <rect key="frame" x="155" y="596" width="104" height="30"/>
+                                <rect key="frame" x="147.66666666666666" y="596" width="118.99999999999997" height="30.333333333333371"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Quên mật khẩu">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <font key="NSFont" size="15" name="Montserrat-Regular"/>
                                                 <integer key="NSUnderline" value="1"/>
                                             </attributes>
                                         </fragment>

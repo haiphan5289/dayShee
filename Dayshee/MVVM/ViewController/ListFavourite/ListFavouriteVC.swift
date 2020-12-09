@@ -9,10 +9,22 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import DZNEmptyDataSet
+import Kingfisher
+import ViewAnimator
 
 class ListFavouriteVC: UIViewController {
 
     private let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
+    @VariableReplay private var dataSource: [FavouriteModel] = []
+    private var viewModel: ListFavouriteVM = ListFavouriteVM()
+    private var currentPage: Int = 1
+    private var distanceItemRequest = 5
+    {
+        didSet {
+            assert(distanceItemRequest >= 0, "Check !!!!!!")
+        }
+    }
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +64,8 @@ extension ListFavouriteVC {
         tableView.allowsSelection = false
         tableView.backgroundColor = .white
         tableView.sectionHeaderHeight = 0.1
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         self.view.addSubview(self.tableView)
         tableView.snp.makeConstraints { (make) in
             make.bottom.left.right.equalToSuperview()
@@ -61,10 +75,53 @@ extension ListFavouriteVC {
         tableView.register(ListFavouriteCell.nib, forCellReuseIdentifier: ListFavouriteCell.identifier)
     }
     private func setupRX() {
-        Observable.just([1])
-            .bind(to: tableView.rx.items(cellIdentifier: ListFavouriteCell.identifier, cellType: ListFavouriteCell.self)) {(row, element, cell) in
-//                cell.lbContent.text = "heo dõi vụ việc, luật sư Đặng Văn Cường (Trưởng Văn phòng Luật sư Chính pháp) nhận định cơ quan điều tra cần làm rõ diễn biến hành vi, đặc biệt là việc sử dụng vũ lực, gây nguy hiểm cho nhau của hai bên, đồng thời làm rõ ý thức chủ quan, tương quan lực lượng và hậu quả để xác định những hành vi bị truy cứu trách nhiệm hình sự của anh Giao cũng như nhóm bắt cóc."
+        self.viewModel.getListFavouriteCallBack()
+        
+        self.viewModel.indicator.asObservable().bind { (isLoad) in
+            isLoad ? LoadingManager.instance.show() : LoadingManager.instance.dismiss()
         }.disposed(by: disposeBag)
+        
+        self.$dataSource.asObservable()
+            .bind(to: tableView.rx.items(cellIdentifier: ListFavouriteCell.identifier, cellType: ListFavouriteCell.self)) {(row, element, cell) in
+                cell.lbName.text = "\(element.product?.name ?? "")"
+                cell.lbPrice.text = "\(element.product?.maxPrice ?? 0)"
+                guard let textUrl = element.product?.imageURL, let url = URL(string: textUrl) else {
+                    return
+                }
+                cell.img.kf.setImage(with: url)
+        }.disposed(by: disposeBag)
+        
+        self.viewModel.$listFavouriteCallBack.asObservable().bind(onNext: weakify({ (item, wSelf) in
+            guard let l = item.data else {
+                return
+            }
+            wSelf.currentPage = 1
+            wSelf.dataSource = l
+            let cells = wSelf.tableView.visibleCells
+            let rotateAnimation = AnimationType.vector(CGVector(dx: .random(in: -10...10), dy: .random(in: -30...30)))
+            UIView.animate(views: cells, animations: [rotateAnimation, rotateAnimation], duration: 0.5)
+            wSelf.tableView.scrollToTop()
+            wSelf.tableView.reloadData()
+        })).disposed(by: disposeBag)
+    }
+    private func requestData(currentPage: Int) {
+        self.viewModel.getListFavourite(page: currentPage)
+            .asObservable()
+            .bind(onNext: { [weak self] (result) in
+                switch result {
+                case .success(let value):
+                    guard let wSelf = self, let data = value.data,
+                          let model = data, let lastPage = model.total,
+                          wSelf.dataSource.count < lastPage else {
+                        return
+                    }
+                    wSelf.dataSource += model.data ?? []
+                    wSelf.tableView.beginUpdates()
+                    wSelf.tableView.endUpdates()
+                case .failure(let err):
+                    self?.showAlert(title: nil, message: err.message)
+                }
+            }).disposed(by: disposeBag)
     }
 }
 extension ListFavouriteVC: UITableViewDelegate {
@@ -72,3 +129,23 @@ extension ListFavouriteVC: UITableViewDelegate {
         return 0.1
     }
 }
+extension ListFavouriteVC: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let idx = indexPaths.last?.item else { return }
+        let total = self.dataSource.count
+        guard total - idx <= distanceItemRequest else { return }
+        self.currentPage += 1
+        requestData(currentPage: self.currentPage)
+    }
+}
+
+extension ListFavouriteVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Hiện tại bạn chưa có sản phẩm yêu thích"
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
+        return t
+    }
+}
+

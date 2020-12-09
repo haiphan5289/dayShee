@@ -24,5 +24,6 @@ class CategoryVM: ActivityTrackingProgressProtocol {
             .filter { ($0.maxPrice ?? 0) <= (filter.maxPrice ?? 0) }
             .filter { ($0.name?.lowercased().contains(textSearch.lowercased()) ?? false) }
     }
+
     
 }

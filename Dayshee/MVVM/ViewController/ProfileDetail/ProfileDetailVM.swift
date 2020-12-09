@@ -32,7 +32,7 @@ class ProfileDetailVM: ActivityTrackingProgressProtocol {
                     self.err.onNext(err)
                 }}.disposed(by: disposeBag)
     }
-    func updateProfile(p: [String: Any], img: UIImage?, urlIMG: String) {
+    func updateProfile(p: [String: Any], img: [UIImage]?, urlIMG: String) {
         RequestService.shared.APIUpload(ofType: OptionalMessageDTO<UserInfo>.self,
                                         url: SERVER + APILink.updateProfile.rawValue,
                                         parameters: p,

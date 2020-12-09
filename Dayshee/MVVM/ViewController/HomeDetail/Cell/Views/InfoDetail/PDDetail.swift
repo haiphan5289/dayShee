@@ -40,6 +40,7 @@ class PDDetail: UIView {
     @IBOutlet weak var lbAnswer: UILabel!
     @IBOutlet weak var vQuestion: UIView!
     @IBOutlet weak var vLineQuestion: UIView!
+    @IBOutlet var imgQ: [UIImageView]!
     private var didSetup: PublishSubject<Void> = PublishSubject.init()
     private var listFAQ: [ProductFAQ] = []
     private let disposeBag = DisposeBag()
@@ -116,27 +117,33 @@ extension PDDetail {
         if let att = item.dataDescription?.htmlToAttributedString  {
             let count = att.string.count
             let att1 = NSMutableAttributedString(attributedString: att)
-            att1.addAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], range: NSMakeRange(0, count))
+            att1.addAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ], range: NSMakeRange(0, count))
             tvDescription.attributedText = att1
         }
         
         if let att = item.manuals?.htmlToAttributedString {
             let count = att.string.count
             let att1 = NSMutableAttributedString(attributedString: att)
-            att1.addAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13, weight: .regular)], range: NSMakeRange(0, count))
+            att1.addAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ], range: NSMakeRange(0, count))
             lbManual.attributedText = att1
         }
         self.lbFAQ.text = "Hỏi đáp (\(item.productFaqs?.count ?? 0))"
         
         guard let listFAQ = item.productFaqs, listFAQ.count > 0 else {
-            vQuestion.removeFromSuperview()
-            vLineQuestion.removeFromSuperview()
+            self.lbQuestion.text = ""
+            self.lbAnswer.text = ""
+            self.imgQ.forEach { (u) in
+                u.isHidden = true
+            }
             didSetup.onNext(())
             return
         }
         if let firstFAQ = item.productFaqs?.first {
             self.lbQuestion.text = firstFAQ.question
             self.lbAnswer.text = firstFAQ.answer
+            self.imgQ.forEach { (u) in
+                u.isHidden = false
+            }
         }
         self.listFAQ = listFAQ
         didSetup.onNext(())

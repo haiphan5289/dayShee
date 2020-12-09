@@ -62,7 +62,7 @@ extension CategoryView {
         
         let lbAllProduct: UILabel = UILabel(frame: .zero)
         lbAllProduct.text = "Tất cả sản phẩm"
-        lbAllProduct.font = UIFont.systemFont(ofSize: 17)
+        lbAllProduct.font = UIFont(name: "Montserrat-Regular", size: 17.0) 
         self.addSubview(lbAllProduct)
         lbAllProduct.snp.makeConstraints { (make) in
             make.left.equalTo(self.collectionView)
@@ -116,8 +116,8 @@ extension CategoryView: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại chưa có sản phẩm"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19) ]
-        let t = NSAttributedString(string: text, attributes: titleTextAttributes)
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }
 }

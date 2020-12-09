@@ -41,7 +41,7 @@ extension NewPasswordVC {
 
         let lbTitle: UILabel = UILabel(frame: .zero)
         lbTitle.text = "Nhập mã xác thực"
-        lbTitle.font = UIFont.systemFont(ofSize: 22)
+        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 22.0) 
         let leftButton2 = UIBarButtonItem(customView: lbTitle)
         
         navigationItem.leftBarButtonItems = [leftBarButton, leftButton2]

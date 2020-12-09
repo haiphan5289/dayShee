@@ -68,6 +68,14 @@ extension ProductDetail {
         self.viewModel.$err.asObservable().bind(onNext: weakify({ (err, wSelf) in
             wSelf.showAlert(title: "Thông báo", message: err.message)
         })).disposed(by: disposeBag)
+        
+        self.viewModel.$favorite.asObservable().bind(onNext: weakify({ (i, wSelf) in
+            wSelf.showAlert(title: "Thông báo", message: "Bạn đã thêm sản phẩm yêu thích thành công")
+        })).disposed(by: disposeBag)
+        
+        self.viewModel.$dislike.asObservable().bind(onNext: weakify({ (i, wSelf) in
+            wSelf.showAlert(title: "Thông báo", message: "Bạn đã huỷ sản phẩm yêu thích thành công")
+        })).disposed(by: disposeBag)
     }
 }
 extension ProductDetail: UITableViewDataSource {
@@ -142,6 +150,14 @@ extension ProductDetail: UITableViewDataSource {
                     wSelf.present(activityVC, animated: true, completion: nil)
                 }
             }
+            cell.vImage.actionLove = { id in
+                let p: [String: Any] = ["product_id": id]
+                self.viewModel.sendLove(p: p)
+            }
+            cell.vImage.dislike = { id in
+                let p: [String: Any] = ["product_id": id]
+                self.viewModel.dislike(p: p)
+            }
             
             cell.vDetail.setupDisplay(item: self.item)
             cell.vDetail.updateCell = {
@@ -161,11 +177,6 @@ extension ProductDetail: UITableViewDataSource {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             
-            if let listComment = self.item?.productRatings {
-                if listComment.count > 0 {
-                    cell.addViewComment()
-                }
-            }
             cell.vComment.setupDisplay(item: self.item)
             cell.vComment.updateHeight = {
                 self.tableView.beginUpdates()

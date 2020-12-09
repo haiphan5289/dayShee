@@ -31,6 +31,9 @@ enum APILink: String {
     case tradeMark = "/trademark"
     case updateDefaultAddress = "/address/default"
     case cancelOrder = "/order/cancel"
+    case contact = "/contact"
+    case favorite = "/product/favourite"
+    case readNotifcation = "/user/notification/read"
     
     var value: String {
         return "\(self)"

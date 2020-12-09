@@ -67,7 +67,7 @@ extension HomeVC: UITableViewDataSource {
         if self.listDiscountProduct.count > 0 {
             count += 1
         }
-        return 3 + 2
+        return 2 + 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,21 +91,21 @@ extension HomeVC: UITableViewDataSource {
                 self.moveToCategory(categoryID: categoryID, title: title)
             }
             return cell
+//        case 2:
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: TradeMarkView.identifier) as? HomeCellGeneric<TradeMarkView>  else {
+//                fatalError("Please Implement")
+//            }
+//            cell.view.setupDisplay(item: self.listProduct)
+//            cell.view.setupUI(title: "Thương hiệu", hidenImage: false)
+//            cell.view.updateHeightCell(table: self.tableView, count: listHotProduct.count)
+//            cell.view.didSelectIndex = { id in
+//                self.moveToProductDetail(id: id)
+//            }
+//            cell.view.selectViewAll = {
+//                self.moveToCategoryWithAll(type: .viewAll)
+//            }
+//            return cell
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TradeMarkView.identifier) as? HomeCellGeneric<TradeMarkView>  else {
-                fatalError("Please Implement")
-            }
-            cell.view.setupDisplay(item: self.listProduct)
-            cell.view.setupUI(title: "Thương hiệu", hidenImage: false)
-            cell.view.updateHeightCell(table: self.tableView, count: listHotProduct.count)
-            cell.view.didSelectIndex = { id in
-                self.moveToProductDetail(id: id)
-            }
-            cell.view.selectViewAll = {
-                self.moveToCategoryWithAll()
-            }
-            return cell
-        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductView.identifier) as? HomeCellGeneric<ProductView>  else {
                 fatalError("Please Implement")
             }
@@ -116,10 +116,10 @@ extension HomeVC: UITableViewDataSource {
                 self.moveToProductDetail(id: id)
             }
             cell.view.selectViewAll = {
-                self.moveToCategoryWithAll()
+                self.moveToCategoryWithAll(type: .hotProduct)
             }
             return cell
-        case 4:
+        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductView.identifier) as? HomeCellGeneric<ProductView>  else {
                 fatalError("Please Implement")
             }
@@ -130,7 +130,7 @@ extension HomeVC: UITableViewDataSource {
                 self.moveToProductDetail(id: id)
             }
             cell.view.selectViewAll = {
-                self.moveToCategoryWithAll()
+                self.moveToCategoryWithAll(type: .discount)
             }
             return cell
         default:
@@ -248,14 +248,16 @@ extension HomeVC {
     }
     private func moveToCategory(categoryID: Int, title: String) {
         let vc = CategoryVC(nibName: "CategoryVC", bundle: nil)
+        vc.typeCategory = .other
         vc.categoryID = categoryID
         vc.titleCate = title
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    private func moveToCategoryWithAll() {
+    private func moveToCategoryWithAll(type: TypeCategory) {
         let vc = CategoryVC(nibName: "CategoryVC", bundle: nil)
-        vc.categoryID = 4
-        vc.titleCate = "Sản phẩm"
+        vc.typeCategory = type
+        vc.categoryID = 1
+        vc.titleCate = "Mặt nạ"
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -71,6 +71,7 @@ extension DeliveryAddress {
         tableView.backgroundColor = .white
         
         btConfirm.setTitle("Cập nhật", for: .normal)
+        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         btConfirm.backgroundColor = #colorLiteral(red: 0.007841385901, green: 0.007844363339, blue: 0.007840993814, alpha: 1)
         btConfirm.setTitleColor(.white, for: .normal)
         btConfirm.clipsToBounds = true

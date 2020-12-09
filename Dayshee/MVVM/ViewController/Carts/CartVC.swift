@@ -193,8 +193,16 @@ extension CartVC: UITableViewDataSource {
             cell.view.countProduct = { type, value in
                 self.viewModel.addProduct.onNext((type, value))
             }
-            cell.view.deleteRow = {
-                self.viewModel.indexDelete = indexPath.row
+            cell.view.deleteRow = { [weak self]  in
+                guard  let wSelf = self else {
+                    return
+                }
+                wSelf.showAlert(title: nil, message: "Bạn có muốn xoá sản phẩm", buttonTitles: ["Đóng", "Đồng ý"]) { idx in
+                    if idx == 1 {
+                        wSelf.viewModel.indexDelete = indexPath.row
+                    }
+                }
+                
             }
             return cell
         }
@@ -209,7 +217,7 @@ extension CartVC: UITableViewDelegate {
         
         let btDeleteAll: UIButton = UIButton(type: .custom)
         let underLineButton: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 13),
+            .font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ,
             .foregroundColor: UIColor.black,
             .underlineStyle: NSUnderlineStyle.single.rawValue]
         let attributeString = NSMutableAttributedString(string: "Xoá tất cả",
@@ -222,13 +230,20 @@ extension CartVC: UITableViewDelegate {
             make.height.equalTo(15)
         }
         
-        btDeleteAll.rx.tap.bind { _ in
-            self.viewModel.removeAll()
+        btDeleteAll.rx.tap.bind { [weak self] _ in
+            guard  let wSelf = self else {
+                return
+            }
+            wSelf.showAlert(title: nil, message: "Bạn có muốn xoá tất cả sản phẩm", buttonTitles: ["Đóng", "Đồng ý"]) { idx in
+                if idx == 1 {
+                    wSelf.viewModel.removeAll()
+                }
+            }
         }.disposed(by: disposeBag)
         
         let lbProduct: UILabel = UILabel(frame: .zero)
         lbProduct.text = "Bạn có \(self.dataSource.count) sản phẩm trong giỏ hàng"
-        lbProduct.font = UIFont.systemFont(ofSize: 13)
+        lbProduct.font = UIFont(name: "Montserrat-Regular", size: 13.0) 
         v.addSubview(lbProduct)
         lbProduct.snp.makeConstraints { (make) in
             make.left.equalToSuperview().inset(36)

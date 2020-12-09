@@ -64,4 +64,24 @@ class ListProductStream  {
         })
         return listCategoryHot
     }
+    func getListSale(list: [ProductOption]) -> Bool {
+        var isSale: Bool = false
+        list.forEach { (item) in
+            guard let sale = item.isSale, sale == true else {
+                isSale = false
+                return
+            }
+            isSale = true
+        }
+        return isSale
+    }
+    func listDiscount() -> [Product] {
+        return self.getAllProduct()
+            .filter { (product) -> Bool in
+                guard let l = product.productOptions else {
+                    return false
+                }
+                return self.getListSale(list: l)
+            }
+    }
 }

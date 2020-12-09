@@ -55,7 +55,7 @@ extension DeliveryDetailView {
             
             let lbPrice: UILabel = UILabel(frame: .zero)
             lbPrice.textColor = .black
-            lbPrice.font = UIFont.systemFont(ofSize: 13)
+            lbPrice.font = UIFont(name: "Montserrat-Regular", size: 13.0)
             lbPrice.text = element.price?.currency
             v.addSubview(lbPrice)
             lbPrice.snp.makeConstraints { (make) in
@@ -65,7 +65,7 @@ extension DeliveryDetailView {
             
             let lbName: UILabel = UILabel(frame: .zero)
             lbName.textColor = .black
-            lbName.font = UIFont.systemFont(ofSize: 13)
+            lbName.font = UIFont(name: "Montserrat-Regular", size: 13.0)
             lbName.text = "\(element.delivery ?? "")  (\(element.time ?? ""))"
             lbName.numberOfLines = 0
             v.addSubview(lbName)

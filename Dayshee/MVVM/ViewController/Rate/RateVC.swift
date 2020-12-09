@@ -12,10 +12,14 @@ import RxSwift
 import Cosmos
 
 class RateVC: UIViewController, ActivityTrackingProgressProtocol {
+    
+    @IBOutlet weak var imgLine: UIImageView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var btImagePicker: UIButton!
     @IBOutlet weak var vRating: CosmosView!
     @IBOutlet weak var btRate: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @VariableReplay private var dataSource: [UIImage] = []
     
     var productID: Int?
     private let disposeBag = DisposeBag()
@@ -50,6 +54,9 @@ extension RateVC {
         self.textView.textColor = #colorLiteral(red: 0.3882352941, green: 0.4470588235, blue: 0.5019607843, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        
+        collectionView.delegate = self
+        collectionView.register(RateCell.nib, forCellWithReuseIdentifier: RateCell.identifier)
     }
     private func setupRX() {
         let token = Token()
@@ -90,14 +97,34 @@ extension RateVC {
                 "rating": wSelf.vRating.rating,
                 "comment": text
             ]
-            wSelf.rate(p: p)
+            wSelf.rate(p: p, imgs: self.dataSource)
         })).disposed(by: disposeBag)
+        
+        Observable.just([UIImage(), UIImage(), UIImage()])
+            .bind(to: collectionView.rx.items(cellIdentifier: RateCell.identifier, cellType: RateCell.self)) { row, data, cell in
+                cell.img.backgroundColor = .gray
+                cell.img.image = data
+                cell.btRemove.isHidden = true
+                self.dataSource.enumerated().forEach { (i) in
+                    if row == i.offset {
+                        cell.img.image = i.element
+                        cell.btRemove.isHidden = false
+                    }
+                }
+                cell.remove = {
+                    self.dataSource.remove(at: row)
+                    self.collectionView.reloadData()
+                }
+            }.disposed(by: disposeBag)
     }
-    private func rate(p: [String : Any]) {
-        RequestService.shared.APIData(ofType: OptionalMessageDTO<RateModel>.self,
-                                      url: APILink.rate.rawValue,
-                                      parameters: p,
-                                      method: .post)
+    private func rate(p: [String : Any], imgs: [UIImage]) {
+        RequestService.shared.APIUpload(ofType: OptionalMessageDTO<RateModel>.self,
+                                         url: SERVER + APILink.rate.rawValue,
+                                         parameters: p,
+                                         method: .post,
+                                         header: nil,
+                                         urlIMG: "images[]",
+                                         img: imgs)
             .trackProgressActivity(self.indicator)
             .bind { (result) in
                 switch result {
@@ -106,6 +133,18 @@ extension RateVC {
                 case .failure(let err):
                     self.showAlert(title: nil, message: err.message)
                 }}.disposed(by: disposeBag)
+//        RequestService.shared.APIData(ofType: OptionalMessageDTO<RateModel>.self,
+//                                      url: APILink.rate.rawValue,
+//                                      parameters: p,
+//                                      method: .post)
+//            .trackProgressActivity(self.indicator)
+//            .bind { (result) in
+//                switch result {
+//                case .success( _):
+//                    self.showAlert(title: nil, message: "Cám ơn ban đã đánh giá")
+//                case .failure(let err):
+//                    self.showAlert(title: nil, message: err.message)
+//                }}.disposed(by: disposeBag)
     }
     
 }
@@ -131,6 +170,15 @@ extension RateVC: UIImagePickerControllerDelegate, UINavigationControllerDelegat
         default:
             tempImage.jpegData(compressionQuality: 0.01)
         }
+        self.dismiss(animated: true) {
+            if self.dataSource.count >= 3 {
+                self.dataSource.remove(at: 2)
+                self.dataSource.insert(tempImage, at: 0)
+            } else {
+                self.dataSource.insert(tempImage, at: 0)
+            }
+            self.collectionView.reloadData()
+        }
     }
 }
 extension RateVC: RateLoginDelegate {
@@ -138,5 +186,16 @@ extension RateVC: RateLoginDelegate {
         let vc = self
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.popToViewController(self, animated: true)
+    }
+}
+extension RateVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60, height: self.collectionView.bounds.height)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }

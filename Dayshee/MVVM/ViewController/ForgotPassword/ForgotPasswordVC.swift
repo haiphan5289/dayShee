@@ -41,7 +41,7 @@ extension ForgotPasswordVC {
 
         let lbTitle: UILabel = UILabel(frame: .zero)
         lbTitle.text = "Quên mật khẩu"
-        lbTitle.font = UIFont.systemFont(ofSize: 22)
+        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 22.0) 
         let leftButton2 = UIBarButtonItem(customView: lbTitle)
         
         navigationItem.leftBarButtonItems = [leftBarButton, leftButton2]

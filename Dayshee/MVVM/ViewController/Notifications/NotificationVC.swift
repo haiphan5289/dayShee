@@ -9,10 +9,22 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import DZNEmptyDataSet
+import Kingfisher
+import ViewAnimator
 
 class NotificationVC: BaseHiddenNavigationController {
 
     @IBOutlet weak var tableView: UITableView!
+    @VariableReplay private var dataSource: [NotificationModel] = []
+    private var viewModel: ListNotificationVM = ListNotificationVM()
+    private var currentPage: Int = 1
+    private var distanceItemRequest = 5
+    {
+        didSet {
+            assert(distanceItemRequest >= 0, "Check !!!!!!")
+        }
+    }
     private let disposeBag = DisposeBag()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,21 +46,83 @@ extension NotificationVC {
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
     }
     private func setupRX() {
-        Observable.just([1,2,3,4])
+        self.viewModel.getlistNotificationCallBack()
+        
+        self.viewModel.indicator.asObservable().bind { (isLoad) in
+            isLoad ? LoadingManager.instance.show() : LoadingManager.instance.dismiss()
+        }.disposed(by: disposeBag)
+        
+        self.$dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: NotificationCell.identifier, cellType: NotificationCell.self)) {(row, element, cell) in
-                cell.lbContent.text = "k o ko o. ko ok ok ok ko ko ko ko ko ko k okko ko ok ko. koko.  kokkokokko ko ko ko ko ko ko ko ko ko ko ko kok ok ok ok oko ko ko ko. ko ko ok ko ko koo ko kko ok. ko"
+                if let isRead = element.isRead {
+                    cell.imgDot.isHidden = isRead
+                }
         }.disposed(by: disposeBag)
         
         tableView.rx.itemSelected.bind { (idx) in
             let vc = NotificationDetailVC(nibName: "NotificationDetailVC", bundle: nil)
             vc.hidesBottomBarWhenPushed = true
+            if let id = self.dataSource[idx.row].id {
+                vc.id = id
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
+        
+        self.viewModel.$listNotificationCallBack.asObservable().bind(onNext: weakify({ (item, wSelf) in
+            guard let l = item.data else {
+                return
+            }
+            wSelf.currentPage = 1
+            wSelf.dataSource = l
+            let cells = wSelf.tableView.visibleCells
+            let rotateAnimation = AnimationType.vector(CGVector(dx: .random(in: -10...10), dy: .random(in: -30...30)))
+            UIView.animate(views: cells, animations: [rotateAnimation, rotateAnimation], duration: 0.5)
+            wSelf.tableView.scrollToTop()
+            wSelf.tableView.reloadData()
+        })).disposed(by: disposeBag)
+    }
+    private func requestData(currentPage: Int) {
+        self.viewModel.getlistNotification(page: currentPage)
+            .asObservable()
+            .bind(onNext: { [weak self] (result) in
+                switch result {
+                case .success(let value):
+                    guard let wSelf = self, let data = value.data,
+                          let model = data, let lastPage = model.total,
+                          wSelf.dataSource.count < lastPage else {
+                        return
+                    }
+                    wSelf.dataSource += model.data ?? []
+                    wSelf.tableView.beginUpdates()
+                    wSelf.tableView.endUpdates()
+                case .failure(let err):
+                    self?.showAlert(title: nil, message: err.message)
+                }
+            }).disposed(by: disposeBag)
     }
     
 }
 extension NotificationVC: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.1
+    }
+}
+extension NotificationVC: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        guard let idx = indexPaths.last?.item else { return }
+        let total = self.dataSource.count
+        guard total - idx <= distanceItemRequest else { return }
+        self.currentPage += 1
+        requestData(currentPage: self.currentPage)
+    }
+}
+
+extension NotificationVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Hiện tại bạn chưa có thông báo?"
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
+        return t
     }
 }

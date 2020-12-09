@@ -15,7 +15,7 @@ func getDataFromFileJSON(_ name: String) -> NSDictionary {
     {
         if let jsonData = try? NSData(contentsOfFile: path, options: .mappedIfSafe)
         {
-            if let jsonResult: NSDictionary = try! JSONSerialization.jsonObject(with: jsonData as Data, options: []) as! NSDictionary
+            if let jsonResult: NSDictionary = try! JSONSerialization.jsonObject(with: jsonData as Data, options: []) as? NSDictionary
             {
                 if jsonResult != nil {
                     print(jsonResult)

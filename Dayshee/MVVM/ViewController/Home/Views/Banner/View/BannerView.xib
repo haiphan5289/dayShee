@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-Zc-3HW">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                    <rect key="frame" x="0.0" y="0.0" width="394" height="120"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mz6-HX-Z6v">
                         <size key="itemSize" width="128" height="128"/>
@@ -24,9 +24,14 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </collectionView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-E1-3dI">
-                    <rect key="frame" x="0.0" y="82" width="414" height="28"/>
+                    <rect key="frame" x="0.0" y="82" width="394" height="28"/>
                     <color key="pageIndicatorTintColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </pageControl>
@@ -35,13 +40,13 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="eb2-E1-3dI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="84Z-nu-XR7"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eb2-E1-3dI" secondAttribute="trailing" id="Dv1-JI-JiH"/>
                 <constraint firstItem="ZH5-Zc-3HW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hol-HQ-xG1"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZH5-Zc-3HW" secondAttribute="trailing" id="Wbw-LP-bpl"/>
+                <constraint firstItem="ZH5-Zc-3HW" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-20" id="LPt-dq-Jyr"/>
                 <constraint firstItem="ZH5-Zc-3HW" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="XHd-WD-AeW"/>
                 <constraint firstItem="eb2-E1-3dI" firstAttribute="centerX" secondItem="ZH5-Zc-3HW" secondAttribute="centerX" id="ecJ-qK-L9e"/>
                 <constraint firstItem="ZH5-Zc-3HW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jUt-Jc-LDf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eb2-E1-3dI" secondAttribute="bottom" constant="10" id="qTo-IB-HbH"/>
+                <constraint firstItem="eb2-E1-3dI" firstAttribute="trailing" secondItem="ZH5-Zc-3HW" secondAttribute="trailing" id="yuo-YC-B7z"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

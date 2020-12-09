@@ -58,7 +58,7 @@ extension OrderDetailView {
 
             let lbPrice: UILabel = UILabel(frame: .zero)
             lbPrice.textColor = .black
-            lbPrice.font = UIFont.systemFont(ofSize: 13)
+            lbPrice.font = UIFont(name: "Montserrat-Regular", size: 13.0)
             lbPrice.text = element.price?.currency
             lbPrice.textAlignment = .right
             v.addSubview(lbPrice)
@@ -69,7 +69,7 @@ extension OrderDetailView {
             
             let lbName: UILabel = UILabel(frame: .zero)
             lbName.textColor = .black
-            lbName.font = UIFont.systemFont(ofSize: 13)
+            lbName.font = UIFont(name: "Montserrat-Regular", size: 13.0)
             lbName.text = "\(Int(element.quantity ?? 0)) x \(element.product?.name ?? "")"
             lbName.numberOfLines = 0
             lbName.textAlignment = .left

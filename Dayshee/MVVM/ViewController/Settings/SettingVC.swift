@@ -172,7 +172,14 @@ extension SettingVC {
                 //                vc = IntroduceAppVC(nibName: "IntroduceAppVC", bundle: nil)
                 break
             case .logout:
-                self.viewModel.getLogOut()
+                self.showAlert(title: "Thông báo", message: "Bạn có muốn đăng xuất", buttonTitles: ["Đóng", "Đồng ý"]) { [weak self] idx in
+                    guard let wSelf = self else {
+                        return
+                    }
+                    if idx == 1 {
+                        wSelf.viewModel.getLogOut()
+                    }
+                }
             }
             
             guard let vcScreen = vc else {
@@ -212,7 +219,7 @@ extension SettingVC: UITableViewDelegate {
         }
         
         lbName.textColor = .black
-        lbName.font = UIFont.systemFont(ofSize: 19)
+        lbName.font = UIFont(name: "Montserrat-Regular", size: 19.0)
         v.addSubview(lbName)
         
         lbName.snp.makeConstraints { (make) in
@@ -222,7 +229,7 @@ extension SettingVC: UITableViewDelegate {
         }
         
         lbLevel.textColor = .black
-        lbLevel.font = UIFont.systemFont(ofSize: 15)
+        lbLevel.font = UIFont(name: "Montserrat-Regular", size: 15.0)
         v.addSubview(lbLevel)
         
         lbLevel.snp.makeConstraints { (make) in
@@ -232,7 +239,7 @@ extension SettingVC: UITableViewDelegate {
         }
         
         lbGoal.textColor = .black
-        lbGoal.font = UIFont.systemFont(ofSize: 15)
+        lbGoal.font = UIFont(name: "Montserrat-Regular", size: 15.0) 
         v.addSubview(lbGoal)
         
         lbGoal.snp.makeConstraints { (make) in

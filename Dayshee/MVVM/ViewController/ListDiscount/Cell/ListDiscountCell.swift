@@ -25,7 +25,7 @@ class ListDiscountCell: UITableViewCell {
         let text = "....Xem thêm"
         myMutableString = NSMutableAttributedString(string: text)
 
-        myMutableString.setAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)
+        myMutableString.setAttributes([NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 14.0)
                                        , NSAttributedString.Key.foregroundColor : UIColor.blue],
                                       range: NSRange(location: 0, length: text.count))
         tvContent.attributedReadMoreText = myMutableString
@@ -35,7 +35,7 @@ class ListDiscountCell: UITableViewCell {
         var myMutableStringLess = NSMutableAttributedString()
         myMutableStringLess = NSMutableAttributedString(string: textUnless)
 
-        myMutableStringLess.setAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)
+        myMutableStringLess.setAttributes([NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 14.0) 
                                        , NSAttributedString.Key.foregroundColor : UIColor.blue],
                                       range: NSRange(location: 0, length: textUnless.count))
         tvContent.attributedReadLessText = myMutableStringLess

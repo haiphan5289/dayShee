@@ -152,7 +152,7 @@ struct RequestService {
                      parameters: Dictionary<String, Any>?,
                      method: HTTPMethod,
                      header: HTTPHeaders?,
-                     img: UIImage?,
+                     img: [UIImage]?,
                      urlIMG: String,
                      animated: Bool = false) -> Observable<JSON> {
         return Observable.create { (observe) -> Disposable in
@@ -176,10 +176,12 @@ struct RequestService {
                     }
                 }
                 if let img = img {
-                    multipartFormData.append(img.jpegData(compressionQuality: 0.1)!,
-                                             withName: urlIMG,
-                                             fileName: "\(Date().timeIntervalSince1970).png",
-                                             mimeType: "image/jpeg")
+                    img.forEach { (i) in
+                        multipartFormData.append(i.jpegData(compressionQuality: 0.1)!,
+                                                 withName: urlIMG,
+                                                 fileName: "\(Date().timeIntervalSince1970).png",
+                                                 mimeType: "image/jpeg")
+                    }
                 }
             }, to: url,
             method: method ,
@@ -217,7 +219,7 @@ struct RequestService {
                               header: HTTPHeaders?,
                               urlIMG: String,
                               animated: Bool = true,
-                              img: UIImage? ) -> Observable<ApiResult<T, ErrorService>> {
+                              img: [UIImage]? ) -> Observable<ApiResult<T, ErrorService>> {
         return Observable<ApiResult<T, ErrorService>>.create({ (observe) -> Disposable in
             self.uploadImage(url: url, parameters: parameters, method: method, header: header, img: img, urlIMG: urlIMG, animated: animated)
                 .asObservable()
