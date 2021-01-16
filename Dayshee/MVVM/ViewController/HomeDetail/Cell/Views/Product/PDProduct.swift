@@ -20,7 +20,7 @@ class PDProduct: UIView, UpdateDisplayProtocol, DisplayStaticHeightProtocol {
     var selectViewAll: (() -> Void)?
     private var dataSource: BehaviorRelay<[Product]> = BehaviorRelay.init(value: [])
     private var mSource: [Product] = []
-    private let heightCell = 160
+    private let heightCell = 245
     private let disposeBag = DisposeBag()
 }
 extension PDProduct: Weakifiable {
@@ -68,7 +68,7 @@ extension PDProduct {
 }
 extension PDProduct: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: Int(self.collectionView.bounds.width - 20) / 3, height: heightCell)
+        return CGSize(width: Int(self.collectionView.bounds.width - 20) / 2, height: heightCell)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

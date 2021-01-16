@@ -77,13 +77,14 @@ extension PDDCommentView {
                 return
             }
             let heightHeaderFooter: CGFloat = 30
+            let heightFooter: CGFloat = 40
             let heightLbNameViewCosmos: CGFloat = 33
             let spacingOutLetCell: CGFloat = 20
             wSelf.tableView.snp.updateConstraints { (make) in
                 if self.dataSource.count >= 2 {
-                    make.height.equalTo(height + (heightHeaderFooter * 2) + (heightLbNameViewCosmos * 2) + (spacingOutLetCell * 2))
+                    make.height.equalTo(height + (heightHeaderFooter + heightFooter) + (heightLbNameViewCosmos * 2) + (spacingOutLetCell * 2))
                 } else {
-                    make.height.equalTo(height + (heightHeaderFooter) + (heightLbNameViewCosmos) + (spacingOutLetCell))
+                    make.height.equalTo(height + (heightHeaderFooter + heightFooter) + (heightLbNameViewCosmos) + (spacingOutLetCell))
                 }
             }
             wSelf.updateHeight?()
@@ -97,7 +98,7 @@ extension PDDCommentView {
         self.listFAQ = list
         guard self.listFAQ.count > 0 else {
             self.tableView.snp.updateConstraints { (make) in
-                make.height.equalTo(50)
+                make.height.equalTo(80)
             }
             return
         }
@@ -124,7 +125,7 @@ extension PDDCommentView: UITableViewDelegate {
         let v: UIView = UIView(frame: .zero)
         let lbComment: UILabel = UILabel(frame: .zero)
         lbComment.text = "Nhận xét (\(self.listFAQ.count))"
-        lbComment.font = UIFont(name: "Montserrat-Regular", size: 15.0)
+        lbComment.font = UIFont(name: "Montserrat-Medium", size: 15.0)
         v.addSubview(lbComment)
         lbComment.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview()
@@ -148,7 +149,7 @@ extension PDDCommentView: UITableViewDelegate {
         let btSeeAll: UIButton = UIButton(frame: .zero)
         btSeeAll.setTitle("Xem tất cả     ", for: .normal)
         btSeeAll.setTitleColor(.black, for: .normal)
-        btSeeAll.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        btSeeAll.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         let img: UIImage = UIImage(named: "ic_chevron_black") ?? UIImage()
         btSeeAll.imageView?.snp.makeConstraints({ (make) in
             make.centerY.right.equalToSuperview()
@@ -156,7 +157,8 @@ extension PDDCommentView: UITableViewDelegate {
         btSeeAll.setImage(img, for: .normal)
         v.addSubview(btSeeAll)
         btSeeAll.snp.makeConstraints { (make) in
-            make.right.centerY.equalToSuperview()
+            make.right.equalToSuperview()
+            make.centerY.equalTo(lbComment)
         }
 
         btSeeAll.rx.tap.bind { _ in
@@ -168,17 +170,23 @@ extension PDDCommentView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let v: UIView = UIView(frame: .zero)
         
-        let btSendComment: UIButton = UIButton(frame: .zero)
-        let underLineButton: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ,
-            .foregroundColor: UIColor.black,
-            .underlineStyle: NSUnderlineStyle.single.rawValue]
-        let attributeString = NSMutableAttributedString(string: "Gửi nhận xét",
-                                                             attributes: underLineButton)
-        btSendComment.setAttributedTitle(attributeString, for: .normal)
+        let btSendComment: HighlightedButton = HighlightedButton(frame: .zero)
+//        let underLineButton: [NSAttributedString.Key: Any] = [
+//            .font: UIFont(name: "Montserrat-Medium", size: 12.0) as Any ,
+//            .foregroundColor: UIColor.black,
+//            .underlineStyle: NSUnderlineStyle.single.rawValue]
+//        let attributeString = NSMutableAttributedString(string: "Gửi nhận xét",
+//                                                             attributes: underLineButton)
+//        btSendComment.setAttributedTitle(attributeString, for: .normal)
+        btSendComment.setTitle("Gửi nhận xét", for: .normal)
+        btSendComment.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 12.0)
+        btSendComment.setTitleColor(.white, for: .normal)
+        btSendComment.clipsToBounds = true
+        btSendComment.layer.cornerRadius = 5
+        btSendComment.backgroundColor = UIColor(named: "ColorApp")
         v.addSubview(btSendComment)
         btSendComment.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         btSendComment.rx.tap.bind { _ in
@@ -192,7 +200,7 @@ extension PDDCommentView: UITableViewDelegate {
         return 30
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 30
+        return 40
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

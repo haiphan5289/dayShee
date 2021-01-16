@@ -26,7 +26,7 @@ class ListAddressDeliveryVC: UIViewController {
     var delegate: AddressModelSelectDelegate?
     var typeListAddress: typeCarListAddress = .cart
     private let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
-    private let btConfirm: UIButton = UIButton(frame: .zero)
+    private let btConfirm: HighlightedButton = HighlightedButton(frame: .zero)
     @VariableReplay private var dataSource: [AddressModel] = []
     private let viewModel: ListAddressDeliveryVM = ListAddressDeliveryVM()
     private var disposeRequest: Disposable?
@@ -62,7 +62,7 @@ extension ListAddressDeliveryVC {
 
         title = "Danh sách địa chỉ giao hàng"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)
@@ -73,8 +73,8 @@ extension ListAddressDeliveryVC {
         }
         
         btConfirm.setTitle("Thêm địa chỉ mới", for: .normal)
-        btConfirm.backgroundColor = #colorLiteral(red: 0.007841385901, green: 0.007844363339, blue: 0.007840993814, alpha: 1)
-        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
+        btConfirm.backgroundColor = UIColor(named: "ColorApp")
+        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 15.0)
         btConfirm.setTitleColor(.white, for: .normal)
         btConfirm.clipsToBounds = true
         btConfirm.layer.cornerRadius = 5
@@ -292,7 +292,7 @@ extension ListAddressDeliveryVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại bạn chưa có điạ chỉ"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ]
         let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }

@@ -89,7 +89,6 @@ extension LoginVC {
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(15)
         })
-        self.btSignIn.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 17.0) 
         self.tfNumberPhone.placeholder = "Nhập số điện thoại"
         self.tfPassword.placeholder = "Nhập mật khẩu"
         self.tfPassword.isSecureTextEntry = true
@@ -138,6 +137,21 @@ extension LoginVC {
                 let img = UIImage(named: (type.rawValue) > 0 ? "ic_arrow_right" : "" )
                 wSelf.btSignIn.setImage(img, for: .normal)
                 wSelf.btForgotPassword.isHidden = (type.rawValue) > 0 ? true : false
+                
+                switch type {
+                case .login:
+                    wSelf.btLoginHeader.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 15.0)
+                    wSelf.btLoginHeader.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                    wSelf.btRegister.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 15.0)
+                    wSelf.btRegister.setTitleColor(#colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1), for: .normal)
+                case .register:
+                    wSelf.btLoginHeader.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 15.0)
+                    wSelf.btLoginHeader.setTitleColor(#colorLiteral(red: 0.7411764706, green: 0.7411764706, blue: 0.7411764706, alpha: 1), for: .normal)
+                    wSelf.btRegister.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 15.0)
+                    wSelf.btRegister.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                default:
+                    break
+                }
             }
             wSelf.view.layoutIfNeeded()
         }.disposed(by: disposeBag)
@@ -217,7 +231,7 @@ extension LoginVC {
         self.isValid8Chacraters.asObservable().bind(onNext: weakify({ (isValid, wSelf) in
             guard isValid else {
                 wSelf.img8.image = UIImage(named: "ic_check")
-                wSelf.lb8.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+                wSelf.lb8.textColor = .red
                 return
             }
             wSelf.img8.image = UIImage(named: "ic_check")
@@ -227,7 +241,7 @@ extension LoginVC {
         self.isValidChacratersUpcase.asObservable().bind(onNext: weakify({ (isValid, wSelf) in
             guard isValid else {
                 wSelf.im1Text.image = UIImage(named: "ic_check")
-                wSelf.lb1Text.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+                wSelf.lb1Text.textColor = .red
                 return
             }
             wSelf.im1Text.image = UIImage(named: "ic_check")
@@ -237,7 +251,7 @@ extension LoginVC {
         self.isValidHaveNumber.asObservable().bind(onNext: weakify({ (isValid, wSelf) in
             guard isValid else {
                 wSelf.imgNumber.image = UIImage(named: "ic_check")
-                wSelf.lbNumber.textColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+                wSelf.lbNumber.textColor = .red
                 return
             }
             wSelf.imgNumber.image = UIImage(named: "ic_check")
@@ -245,14 +259,19 @@ extension LoginVC {
         })).disposed(by: disposeBag)
         
         self.viewModel.userInfo.asObservable().bind(onNext: weakify({ (item, wSelf) in
+            if DataLocal.share.isUpdateProvince {
+                guard let first = RealmManager.shared.getCurrentLocation()?.first else {
+                    return
+                }
+                let p: [String: Any] = ["order_province_id": first.id ?? 0]
+                wSelf.viewModel.updateProvince(p: p)
+                DataLocal.share.isUpdateProvince = false
+            }
                 guard wSelf.typeLogin != .rate else {
                     wSelf.delegateRate?.callBack()
                     return
                 }
                 self.navigationController?.popViewController()
-//                let vc = VerifyPhoneVC(nibName: "VerifyPhoneVC", bundle: nil)
-//                vc.hidesBottomBarWhenPushed = true
-//                wSelf.navigationController?.pushViewController(vc, animated: true)
             })).disposed(by: disposeBag)
         
         self.viewModel.err.asObservable().bind(onNext: weakify({ (err, wSelf) in

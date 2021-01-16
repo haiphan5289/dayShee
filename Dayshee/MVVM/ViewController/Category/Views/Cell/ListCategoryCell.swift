@@ -16,9 +16,12 @@ class ListCategoryCell: UICollectionViewCell {
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var leftArea: NSLayoutConstraint!
     @IBOutlet weak var rightArea: NSLayoutConstraint!
+    @IBOutlet weak var viewBorder: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.applyShadowAndRadius(sizeX: 0, sizeY: 3, shadowRadius: 6, shadowColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.16))
+        viewBorder.layer.cornerRadius = 10
     }
 
 }

@@ -8,7 +8,7 @@
 
 struct ListFavouriteModel: Codable {
     let currentPage: Int?
-    let data: [FavouriteModel]?
+    let data: [Product]?
     let firstPageURL: String?
     let from, lastPage: Int?
     let lastPageURL: String?
@@ -34,7 +34,7 @@ struct ListFavouriteModel: Codable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         currentPage = try values.decodeIfPresent(Int.self, forKey: .currentPage)
-        data = try values.decodeIfPresent([FavouriteModel].self, forKey: .data)
+        data = try values.decodeIfPresent([Product].self, forKey: .data)
         firstPageURL = try values.decodeIfPresent(String.self, forKey: .firstPageURL)
         from = try values.decodeIfPresent(Int.self, forKey: .from)
         lastPage = try values.decodeIfPresent(Int.self, forKey: .lastPage)

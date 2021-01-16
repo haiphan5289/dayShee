@@ -16,7 +16,7 @@ class TechnicalFeedBack: UIViewController {
     @IBOutlet weak var tfFullName: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var btSendFeedback: UIButton!
-    private var contact: PublishSubject<Contact> = PublishSubject.init()
+    private var contact: PublishSubject<String> = PublishSubject.init()
     private var err: PublishSubject<ErrorService> = PublishSubject.init()
     
     private let disposeBag = DisposeBag()
@@ -28,6 +28,9 @@ class TechnicalFeedBack: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 extension TechnicalFeedBack {
@@ -43,8 +46,9 @@ extension TechnicalFeedBack {
         }.disposed(by: disposeBag)
         
         title = "Phản hồi kỹ thuật"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)
@@ -63,8 +67,8 @@ extension TechnicalFeedBack {
             wSelf.tvContent.textColor = #colorLiteral(red: 0.06666666667, green: 0.06666666667, blue: 0.06666666667, alpha: 1)
         }).disposed(by: disposeBag)
         
-        self.contact.asObservable().bind(onNext: weakify({ (_, wSelf) in
-            wSelf.showAlert(title: "Thông báo", message: "Bạn gửi phản hồi thành công")
+        self.contact.asObservable().bind(onNext: weakify({ (msg, wSelf) in
+            wSelf.showAlert(title: "Thông báo", message: msg)
         })).disposed(by: disposeBag)
         
         self.btSendFeedback.rx.tap.bind(onNext: weakify({ (wSelf) in
@@ -90,10 +94,7 @@ extension TechnicalFeedBack {
                     guard  let wSelf = self else {
                         return
                     }
-                    guard let data = data.data, let list = data else {
-                        return
-                    }
-                    wSelf.contact.onNext(list)
+                    wSelf.contact.onNext(data.message ?? "")
                 case .failure(let err):
                     self?.err.onNext(err)
                 }

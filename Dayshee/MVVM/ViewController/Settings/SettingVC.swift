@@ -15,13 +15,13 @@ import Kingfisher
 enum IconSettingCell: Int {
     case addressDelivery
     case listProductFavourite
-    case managePoints
+//    case managePoints
     case listDiscount
     case notify
-    case feedTechnical
     case policy
     case version
     case logout
+    case feedTechnical
     
     var image: UIImage? {
         switch self {
@@ -29,8 +29,8 @@ enum IconSettingCell: Int {
             return UIImage(named: "ic_home_setting")
         case .listProductFavourite:
             return UIImage(named: "ic_heart")
-        case .managePoints:
-            return UIImage(named: "ic_award")
+//        case .managePoints:
+//            return UIImage(named: "ic_award")
         case .listDiscount:
             return UIImage(named: "ic_percent")
         case .notify:
@@ -51,14 +51,14 @@ enum IconSettingCell: Int {
             return "Danh sách địa chỉ giao hàng"
         case .listProductFavourite:
             return "Danh sách sản phẩm yêu thích"
-        case .managePoints:
-            return "Quản lý tích điểm"
+//        case .managePoints:
+//            return "Quản lý tích điểm"
         case .listDiscount:
             return "Danh sách khuyến mãi"
         case .notify:
             return "Cài đặt thông báo"
         case .feedTechnical:
-            return "Phản hồi kỹ thuật"
+            return "Góp ý"
         case .policy:
             return "Chính sách"
         case .version:
@@ -91,7 +91,9 @@ class SettingVC: BaseHiddenNavigationController {
         setupUI()
         setupRX()
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension SettingVC {
     private func setupUI() {
@@ -104,8 +106,9 @@ extension SettingVC {
             make.top.equalTo(self.vHeader.snp.bottom).inset(-10)
         }
         tableView.delegate = self
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.setStatusBar(backgroundColor: UIColor(named: "ColorApp") ?? .white)
     }
     private func setupRX() {
         
@@ -122,15 +125,15 @@ extension SettingVC {
                 wSelf.viewModel.getDetail()
             })).disposed(by: disposeBag)
         
-        Observable.just([1,2,3,4,5,6,7,8,9])
+        Observable.just([1,2,3,4,5,6,7,8])
             .bind(to: tableView.rx.items(cellIdentifier: SettingCell.identifier, cellType: SettingCell.self)) {(row, element, cell) in
                 guard let type = IconSettingCell(rawValue: row) else {
                     return
                 }
                 cell.img.image = type.image
                 cell.lbText.text = type.text
-                cell.imgArrow.isHidden = (row == 7) ? true : false
-                cell.lbVersion.text = (row == 7) ? "1.0.0" : ""
+                cell.imgArrow.isHidden = (type == .version) ? true : false
+                cell.lbVersion.text = (type == .version) ? "1.0.0" : ""
             }.disposed(by: disposeBag)
         
         Observable.combineLatest(self.viewModel.$isLogin, self.viewModel.user)
@@ -158,10 +161,10 @@ extension SettingVC {
                 vc = v
             case .listProductFavourite:
                 vc = ListFavouriteVC(nibName: "ListFavouriteVC", bundle: nil)
-            case .managePoints:
-                vc = ManagePointsVC(nibName: "ManagePointsVC", bundle: nil)
+//            case .managePoints:
+//                vc = ManagePointsVC(nibName: "ManagePointsVC", bundle: nil)
             case .listDiscount:
-                vc = ListDiscountVC(nibName: "ListDiscountVC", bundle: nil)
+                vc = ListPromotionVC(nibName: "ListPromotionVC", bundle: nil)
             case .notify:
                 vc = NotifyVC(nibName: "NotifyVC", bundle: nil)
             case .feedTechnical:
@@ -191,7 +194,7 @@ extension SettingVC {
     }
     private func updateUI(user: UserInfo) {
         lbName.text = user.name
-        lbLevel.text = "Cấp độ: \(String(user.level ?? 0))"
+        lbLevel.text = "Cấp độ: \(String(user.levelID ?? 0))"
         lbGoal.text = "Điểm tích luỹ: \(String(user.points ?? 0))"
         if let text = user.avatarURL, let url = URL(string: text) {
             img.kf.setImage(with: url)
@@ -208,7 +211,7 @@ extension SettingVC: UITableViewDelegate {
         let v: UIView = UIView()
         v.backgroundColor = .white
         
-        img.backgroundColor = .red
+        img.image = UIImage(named: "ic_place_holder")
         img.clipsToBounds = true
         img.layer.cornerRadius = 50
         v.addSubview(img)

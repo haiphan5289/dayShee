@@ -383,8 +383,6 @@ import UIKit
     /// When subclassing **RangeSeekSlider** and setting each item in **setupStyle()**, the design is reflected in Interface Builder as well.
     open func setupStyle() {
         selectedMinValue = 0
-        selectedMaxValue = maxValue
-        updateHandlePositions()
     }
 
 

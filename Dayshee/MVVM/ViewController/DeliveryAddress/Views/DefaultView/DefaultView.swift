@@ -35,7 +35,7 @@ class DefaultView: Eureka.Cell<Bool>, CellType, UpdateDisplayProtocol {
         btDefaultValue.layer.borderWidth = 0.5
         btDefaultValue.layer.borderColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         btDefaultValue.layer.cornerRadius = 7.5
-        btDefaultValue.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        btDefaultValue.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         contentView.addSubview(btDefaultValue)
         btDefaultValue.snp.makeConstraints { (make) in
             make.left.equalToSuperview().inset(55)
@@ -45,7 +45,7 @@ class DefaultView: Eureka.Cell<Bool>, CellType, UpdateDisplayProtocol {
         }
         
         lbSub.text = "Đặt làm địa chỉ mặc định"
-        lbSub.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        lbSub.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         lbSub.textColor = .black
         contentView.addSubview(lbSub)
         lbSub.snp.makeConstraints { (make) in

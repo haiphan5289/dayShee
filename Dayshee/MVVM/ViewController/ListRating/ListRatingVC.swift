@@ -23,6 +23,9 @@ class ListRatingVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension ListRatingVC {
     private func visualize() {
@@ -60,8 +63,9 @@ extension ListRatingVC {
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.height.equalTo(1)
         }
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
     }
     private func setupRX() {
         Observable.just(self.list)

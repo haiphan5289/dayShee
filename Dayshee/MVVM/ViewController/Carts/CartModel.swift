@@ -17,7 +17,10 @@ class CartModel: ActivityTrackingProgressProtocol  {
     @VariableReplay var dataSource: [HomeDetailModel] = []
     @Replay(queue: MainScheduler.asyncInstance) var indexDelete: Int
     @Replay(queue: MainScheduler.asyncInstance) var promotionCode: PromotionModel?
+    @Replay(queue: MainScheduler.asyncInstance) var giftCode: GiftCodeModel?
     @VariableReplay var listPromotion: [PromotionModel] = []
+    @Replay(queue: MainScheduler.asyncInstance) var isLogin: Bool
+    @Replay(queue: MainScheduler.asyncInstance) var cartDetail: CartModelDetail
     @Replay(queue: MainScheduler.asyncInstance) var err: String?
     private let disposeBag = DisposeBag()
     func setupRX() {
@@ -45,6 +48,15 @@ class CartModel: ActivityTrackingProgressProtocol  {
         }.disposed(by: disposeBag)
         
     }
+    func checkLogin() {
+        let token = Token()
+        if !token.tokenExists {
+            self.isLogin = false
+        } else {
+            self.isLogin = true
+        }
+    }
+    
     func removeAll() {
         RealmManager.shared.deleteCarAll()
     }
@@ -73,6 +85,24 @@ class CartModel: ActivityTrackingProgressProtocol  {
                         return
                     }
                     self.listPromotion = list
+                case .failure(let err):
+                    self.err = err.message
+                }
+            }.disposed(by: disposeBag)
+    }
+    func getCartInfo(p: [String: Any]) {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<CartModelDetail>.self,
+                                      url: APILink.cart.rawValue,
+                                      parameters: p,
+                                      method: .post)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data, let list = data else {
+                        return
+                    }
+                    self.cartDetail = list
                 case .failure(let err):
                     self.err = err.message
                 }

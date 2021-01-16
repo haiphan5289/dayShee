@@ -36,3 +36,22 @@ extension LoadXibProtocol where Self: UIView {
     }
 }
 extension UIView: LoadXibProtocol {}
+extension UIView {
+    func applyShadowAndRadius(sizeX: CGFloat, sizeY: CGFloat,shadowRadius: CGFloat, shadowColor: UIColor) {
+        self.backgroundColor = UIColor.clear
+        self.layer.shadowColor = shadowColor.cgColor
+        self.layer.shadowOffset = CGSize(width: sizeX, height: sizeY) //x,
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowRadius = shadowRadius //blur
+        
+        // add the border to subview
+        //        let borderView = UIView()
+        //        borderView.frame = self.bounds
+        //        borderView.layer.cornerRadius = 10
+        //
+        //        borderView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.16)
+        //        borderView.layer.borderWidth = 0.1
+        //        borderView.layer.masksToBounds = true
+        //        self.addSubview(borderView)
+    }
+}

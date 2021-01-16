@@ -55,7 +55,7 @@ extension DeliveryDetailView {
             
             let lbPrice: UILabel = UILabel(frame: .zero)
             lbPrice.textColor = .black
-            lbPrice.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+            lbPrice.font = UIFont(name: "Montserrat-Medium", size: 13.0)
             lbPrice.text = element.price?.currency
             v.addSubview(lbPrice)
             lbPrice.snp.makeConstraints { (make) in

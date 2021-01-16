@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+
 class NotifyVC: UIViewController {
 
     private let disposeBag = DisposeBag()
@@ -18,6 +19,9 @@ class NotifyVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 extension NotifyVC {
@@ -33,8 +37,9 @@ extension NotifyVC {
         }.disposed(by: disposeBag)
 
         title = "Cài đặt thông báo"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)

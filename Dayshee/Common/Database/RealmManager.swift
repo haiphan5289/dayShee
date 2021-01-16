@@ -283,6 +283,35 @@ class RealmManager {
             }
         }
     }
+    func getCurrentLocationRealm() -> [CurrentLocationInRealm] {
+        return realm.objects(CurrentLocationInRealm.self).toArray(ofType: CurrentLocationInRealm.self)
+    }
+    func insertOrUpdateCurrentLocation(model: Location) {
+        let items = getCurrentLocationRealm()
+
+        if let first = items.first {
+            try! realm.write {
+                first.currentLocation = try? model.toData()
+            }
+        } else {
+            let item = CurrentLocationInRealm(model: model)
+            try! realm.write {
+                realm.add(item)
+            }
+        }
+    }
+    
+    func getCurrentLocation() -> [Location]? {
+        let arr = realm.objects(CurrentLocationInRealm.self).toArray(ofType: CurrentLocationInRealm.self)
+        var datas:[Location] = []
+        for item in arr {
+            guard let model = item.currentLocation?.toCodableObject() as Location? else{
+              return []
+          }
+          datas.append(model)
+        }
+        return datas
+    }
     
     func removeAll() {
         try! realm.write {

@@ -78,10 +78,21 @@ extension PDDetail {
                     guard type == .detail else {
                         self.stackViewBottom.priority = .defaultLow
                         self.tvBottom.priority = .required
+                        self.btDescription.titleLabel?.font = UIFont(name: FONT_MEDIUM, size: 14)!
+                        self.btDetail.titleLabel?.font = UIFont(name: FONT_REGULAR, size: 14)!
+                        self.btDescription.setTitleColor(.black, for: .normal)
+                        self.btDetail.setTitleColor(.darkGray, for: .normal)
                         return
                     }
                     self.tvBottom.priority = .defaultLow
                     self.stackViewBottom.priority = .required
+                 
+                    self.btDetail.titleLabel?.font = UIFont(name: FONT_MEDIUM, size: 14)!
+                    self.btDescription.titleLabel?.font = UIFont(name: FONT_REGULAR, size: 14)!
+                    self.btDetail.setTitleColor(.black, for: .normal)
+                    self.btDescription.setTitleColor(.darkGray, for: .normal)
+
+
                 }
                 self.layoutIfNeeded()
                 self.updateCell?()
@@ -119,6 +130,8 @@ extension PDDetail {
             let att1 = NSMutableAttributedString(attributedString: att)
             att1.addAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ], range: NSMakeRange(0, count))
             tvDescription.attributedText = att1
+        } else {
+            self.hTVBottom.constant = 30
         }
         
         if let att = item.manuals?.htmlToAttributedString {

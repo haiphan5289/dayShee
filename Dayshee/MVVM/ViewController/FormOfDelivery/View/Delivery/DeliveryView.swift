@@ -68,7 +68,7 @@ extension DeliveryView {
         
             let lbName: UILabel = UILabel(frame: .zero)
             lbName.textColor = .black
-            lbName.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+            lbName.font = UIFont(name: "Montserrat-Regular", size: 12.0)
             lbName.text = "\(element.delivery ?? "")  (\(element.time ?? ""))"
             lbName.numberOfLines = 0
             v.addSubview(lbName)
@@ -80,7 +80,7 @@ extension DeliveryView {
             
             let lbPrice: UILabel = UILabel(frame: .zero)
             lbPrice.textColor = .black
-            lbPrice.font = UIFont(name: "Montserrat-Regular", size: 13.0) 
+            lbPrice.font = UIFont(name: "Montserrat-SemiBold", size: 12.0) 
             lbPrice.text = element.price?.currency
             v.addSubview(lbPrice)
             lbPrice.snp.makeConstraints { (make) in

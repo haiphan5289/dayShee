@@ -25,14 +25,15 @@ class ProductDetailCell: UITableViewCell {
         vDetail.snp.makeConstraints { (make) in
             make.top.equalTo(self.vImage.snp.bottom)
             make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
-        self.addSubview(vComment)
-        vComment.snp.makeConstraints { (make) in
-            make.top.equalTo(self.vDetail.snp.bottom)
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(10)
-        }
+//        self.addSubview(vComment)
+//        vComment.snp.makeConstraints { (make) in
+//            make.top.equalTo(self.vDetail.snp.bottom)
+//            make.left.right.equalToSuperview()
+//            make.bottom.equalToSuperview().inset(10)
+//        }
 
     }
 

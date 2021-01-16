@@ -22,6 +22,9 @@ class PolicyVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension PolicyVC {
     private func visualize() {
@@ -36,8 +39,9 @@ extension PolicyVC {
         }.disposed(by: disposeBag)
 
         title = "Chính sách"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)

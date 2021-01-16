@@ -47,8 +47,12 @@ var IS_CONNETED_INTERNET = true
 //MARK: - SERVER
 
 //let DOMAIN = "" //LIVE
-let DOMAIN = "https://dayshee.com.vn" //DEV
+//let DOMAIN = "https://dayshee.com.vn" //DEV
 //let DOMAIN = "https://woodpeckers.kendemo.com" //DEV
+let DOMAIN = "https://api.dayshee.com" //Live
+
+
+
 
 let API = "api/v1"
 

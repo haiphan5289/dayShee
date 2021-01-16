@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactVC" customModule="Dayshee" customModuleProvider="target">
+            <connections>
+                <outlet property="btConfirm" destination="NEL-df-pTH" id="lWM-bM-H4I"/>
+                <outlet property="hBottomTable" destination="y6d-Dr-TKj" id="3iy-TP-GvF"/>
+                <outlet property="tableView" destination="D6U-Tg-E6n" id="Kvn-mZ-lOw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="D6U-Tg-E6n">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="565"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEL-df-pTH">
+                    <rect key="frame" x="25" y="580" width="325" height="50"/>
+                    <color key="backgroundColor" name="ColorApp"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="8Et-pz-ami"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Gửi đi"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="D6U-Tg-E6n" secondAttribute="trailing" id="5Fj-eE-9JX"/>
+                <constraint firstItem="D6U-Tg-E6n" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="CtC-6G-FlU"/>
+                <constraint firstItem="D6U-Tg-E6n" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EvK-WQ-BSP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NEL-df-pTH" secondAttribute="trailing" constant="25" id="FK1-Iw-7QA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="NEL-df-pTH" secondAttribute="bottom" constant="37" id="RxQ-Rf-9tg"/>
+                <constraint firstItem="NEL-df-pTH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="Zom-rY-Oz0"/>
+                <constraint firstItem="NEL-df-pTH" firstAttribute="top" secondItem="D6U-Tg-E6n" secondAttribute="bottom" constant="15" id="y6d-Dr-TKj"/>
+            </constraints>
+            <point key="canvasLocation" x="86" y="67"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="ColorApp">
+            <color red="0.91399997472763062" green="0.6119999885559082" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

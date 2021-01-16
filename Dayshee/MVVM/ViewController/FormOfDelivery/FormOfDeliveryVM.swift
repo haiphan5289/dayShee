@@ -23,7 +23,7 @@ class FormOfDeliveryVM: ActivityTrackingProgressProtocol {
     func setupRX() {
         let token = Token()
         isLogin = token.tokenExists
-//        self.getListDelivery()
+        self.getListDelivery()
         self.getListAddress()
     }
     func getListDelivery() {

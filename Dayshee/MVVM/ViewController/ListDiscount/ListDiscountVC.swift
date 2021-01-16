@@ -35,6 +35,9 @@ class ListDiscountVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension ListDiscountVC {
     private func visualize() {
@@ -49,8 +52,9 @@ extension ListDiscountVC {
         }.disposed(by: disposeBag)
 
         title = "Chương trình khuyến mãi"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)
@@ -61,7 +65,7 @@ extension ListDiscountVC {
         }
         
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.backgroundColor = .white
         tableView.sectionHeaderHeight = 0.1
         tableView.prefetchDataSource = self
@@ -168,7 +172,7 @@ extension ListDiscountVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại chưa có khuyến mãi"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ]
         let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }
@@ -192,21 +196,30 @@ extension ListDiscountVC: SkeletonTableViewDataSource {
         let element = self.dataSource[indexPath.row]
         cell.lbTitle.text = element.title
         cell.lbTimeApply.text = "Áp dụng từ ngày \(element.startDate ?? "") tới ngày \(element.endDate ?? "")"
-        cell.tvContent.text = element.datumDescription
+        
+        if let att = element.shortDescription?.htmlToAttributedString {
+            let count = att.string.count
+            let att1 = NSMutableAttributedString(attributedString: att)
+            att1.addAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 12.0) as Any ], range: NSMakeRange(0, count))
+            cell.lbContent.attributedText = att1
+        }
         if let textUrl = element.imageURL, let url = URL(string: textUrl) {
             cell.img.kf.setImage(with: url)
-        }
-        cell.eventReadMore = { isSeeMore in
-            self.tableView.beginUpdates()
-            let size = self.getTextSize(text: element.datumDescription ?? "", fontSize: 14, width: cell.tvContent.bounds.width)
-            cell.hTvContent.constant = (isSeeMore) ? (size.height + 50) : 50
-            self.tableView.endUpdates()
         }
         return cell
     }
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return ListDiscountCell.identifier
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DiscountDetail(nibName: "DiscountDetail", bundle: nil)
+        let item = self.dataSource[indexPath.row]
+        vc.strHTML = item.datumDescription ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 

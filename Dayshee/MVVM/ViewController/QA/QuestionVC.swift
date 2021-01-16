@@ -27,6 +27,9 @@ class QuestionVC: UIViewController, ActivityTrackingProgressProtocol {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension QuestionVC {
     private func visualize() {
@@ -42,9 +45,10 @@ extension QuestionVC {
         
         title = "Gửi câu hỏi cho chúng tôi"
         self.textView.text = "Nhập câu hỏi"
-        self.textView.textColor = #colorLiteral(red: 0.3882352941, green: 0.4470588235, blue: 0.5019607843, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.textView.textColor = #colorLiteral(red: 0.7921568627, green: 0.7921568627, blue: 0.7921568627, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
     }
     private func setupRX() {
         let token = Token()

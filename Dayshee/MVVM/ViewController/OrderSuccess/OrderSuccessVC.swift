@@ -18,6 +18,7 @@ class OrderSuccessVC: UIViewController {
     private let disposeBag = DisposeBag()
     @IBOutlet weak var lbOrderCode: UILabel!
     @IBOutlet weak var lbTime: UILabel!
+    @IBOutlet weak var lbTimeExpected: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         visualize()
@@ -51,6 +52,7 @@ extension OrderSuccessVC {
         self.btHome.setImage(img, for: .normal)
         self.lbOrderCode.text = "\(order?.id ?? 0)"
         self.lbTime.text = "\(order?.createdAt ?? "")"
+        self.lbTimeExpected.text = "\(order?.expectedDeliveryAt ?? "")"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
         

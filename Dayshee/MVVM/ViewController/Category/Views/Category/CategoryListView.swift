@@ -14,7 +14,7 @@ class CategoryListView: UIView {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @VariableReplay var dataSource: [CategoryHome] = []
+    @VariableReplay var dataSource: [ProductHomeModel] = []
     var selectCategoryID: PublishSubject<Int> = PublishSubject.init()
     var mSelectCategoryID: Int?
     private let disposeBag = DisposeBag()
@@ -69,7 +69,7 @@ extension CategoryListView {
 extension CategoryListView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.getTextSize(text: self.dataSource[indexPath.row].category ?? "")
-        return CGSize(width: width.width + 60, height: 50)
+        return CGSize(width: width.width + 40, height: 50)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

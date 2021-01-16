@@ -18,7 +18,7 @@ class RegisterVC: FormViewController {
     
     var phone: String?
     var password: String?
-    private let btConfirm: UIButton = UIButton(frame: .zero)
+    private let btConfirm: HighlightedButton = HighlightedButton(frame: .zero)
     private var isValid: Bool = false
     private var modeTemp: RegisterTemp = RegisterTemp()
     private let viewModel: RegisterVM = RegisterVM()
@@ -49,6 +49,7 @@ extension RegisterVC {
         
         let btTitle: UIButton = UIButton()
         btTitle.setTitle("Đăng kí", for: .normal)
+        btTitle.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 20)
         btTitle.isUserInteractionEnabled = false
         btTitle.setTitleColor(.black, for: .normal)
         let leftBarButtonTitle = UIBarButtonItem(customView: btTitle)
@@ -62,9 +63,9 @@ extension RegisterVC {
         tableView.backgroundColor = .white
         
         btConfirm.setTitle("Đăng kí", for: .normal)
-        btConfirm.backgroundColor = #colorLiteral(red: 0.007841385901, green: 0.007844363339, blue: 0.007840993814, alpha: 1)
+        btConfirm.backgroundColor = UIColor(named: "ColorApp")
         btConfirm.setTitleColor(.white, for: .normal)
-        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
+        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 12.0)
         btConfirm.clipsToBounds = true
         btConfirm.layer.cornerRadius = 5
         self.view.addSubview(btConfirm)
@@ -80,7 +81,7 @@ extension RegisterVC {
         }
         self.form += [self.setupSection()]
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-SemiBold", size: 20) ?? UIImage() ]
     }
     private func setupRX() {
         
@@ -255,6 +256,7 @@ extension RegisterVC {
             row.add(rule: RuleRequired())
             row.onRowValidationChanged { [weak self] _, row in
                 self?.validate(row: row)
+                row.cell.lbTitle.textColor = (row.isValid) ? .black : .red
             }
             row.cell.tfSub.rx.text.bind { [weak self] value in
                 self?.modeTemp.name = value
@@ -268,6 +270,7 @@ extension RegisterVC {
             row.add(rule: RuleRequired())
             row.onRowValidationChanged { [weak self] _, row in
                 self?.validate(row: row)
+                row.cell.lbTitle.textColor = (row.isValid) ? .black : .red
             }
             row.cell.tfSub.rx.text.bind { [weak self] value in
                 self?.modeTemp.phone = value
@@ -279,6 +282,7 @@ extension RegisterVC {
             row.add(rule: RuleRequired())
             row.onRowValidationChanged { [weak self] _, row in
                 self?.validate(row: row)
+                row.cell.lbTitle.textColor = (row.isValid) ? .black : .red
             }
             row.cell.tfSub.rx.text.bind { [weak self] value in
                 self?.modeTemp.address = value
@@ -290,7 +294,7 @@ extension RegisterVC {
             row.add(rule: RuleRequired())
             row.onRowValidationChanged { [weak self] _, row in
                 self?.validate(row: row)
-                
+                row.cell.lbTitle.textColor = (row.isValid) ? .black : .red
             }
             row.cell.locationID.asObservable().bind(onNext: weakify({ (id, wSelf) in
                 wSelf.locationID.onNext(id)
@@ -300,8 +304,17 @@ extension RegisterVC {
         section <<< RowDetailGeneric<RowCellRegisterDistrict>.init("District", { (row) in
             row.tag = "District"
             row.add(rule: RuleRowValid(isValid: true))
+            row.add(rule: RuleRequired())
             row.onRowValidationChanged { [weak self] _, row in
                 self?.validate(row: row)
+                if row.isValid {
+                    row.cell.lbDistrict.textColor = .black
+                    row.cell.lbWard.textColor = .black
+                } else {
+                    row.cell.lbDistrict.textColor = (row.cell.tfSub.text != "") ? .black : .red
+                    row.cell.lbWard.textColor = (row.cell.tfWard.text != "") ? .black : .red
+                }
+                
             }
             row.cell.districtID.asObservable().bind(onNext: weakify({ (id, wSelf) in
                 wSelf.districtID.onNext(id)
@@ -310,12 +323,20 @@ extension RegisterVC {
             row.cell.wardID.asObservable().bind(onNext: weakify({ (id, wSelf) in
                 wSelf.wardID.onNext(id)
             })).disposed(by: disposeBag)
+            
+            Observable.merge(row.cell.tfSub.rx.text.asObservable(), row.cell.tfWard.rx.text.asObservable())
+                .skip(2)
+                .bind(onNext: weakify({ (t, wSelf) in
+                    row.cell.lbDistrict.textColor = (row.cell.tfSub.text != "") ? .black : .red
+                    row.cell.lbWard.textColor = (row.cell.tfWard.text != "") ? .black : .red
+                })).disposed(by: disposeBag)
         })
         
         section <<< RowDetailGeneric<RowCellRegisterBirthday>.init("Birthday", { (row) in
             row.add(rule: RuleRequired())
             row.onRowValidationChanged { [weak self] _, row in
                 self?.validate(row: row)
+                row.cell.lbTitle.textColor = (row.isValid) ? .black : .red
             }
             row.cell.tfSub.rx.text.bind { [weak self] value in
                 self?.modeTemp.birthday = value

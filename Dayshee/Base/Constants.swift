@@ -8,7 +8,9 @@
 
 import UIKit
 
-let TABBAR_COLOR = UIColor.init(hex: "000000")
+let TABBAR_COLOR = UIColor(named: "ColorApp")
+let BUTTON_COLOR = UIColor(named: "ButtonColor")
+let COLOR_APP = UIColor(named: "ColorApp")
 let NAVI_COLOR = UIColor.white
 let TINT_COLOR = UIColor.init(hex: "4DBFE4")
 let TEXT_COLOR = UIColor.init(hex: "89B3FF")
@@ -26,6 +28,11 @@ let TIME_FORMAT = "HH:mm"
 let DATE_TICKET_FORMAT = "MM/dd/yyyy"
 let DATE_APP_FORMAT = "dd/MM/yyyy"
 let DATETIME_APP_FORMAT = "MM/dd/yyyy HH:mm:ss"
+let LINK_ZALO = "https://zalo.me/0866929906"
+let LINK_MESSGER = "fb-messenger://user-thread/"
+let ID_MESSGER = "DaysheeCosmetics"
+let POLICY_WEBSITE = "https://dayshee.com/public/policy/index.html"
+let HDSD_WEBSITE = "https://dayshee.com/public/policy/hdsd.html"
 
 //MARK:- STATUS ORDER
 let STATUS_ORDER_PENDING = 1;

@@ -16,6 +16,24 @@ class OrderDetailVM: ActivityTrackingProgressProtocol {
     @Replay(queue: MainScheduler.asyncInstance) var cancelSuccess: Bool
     private let disposeBag = DisposeBag()
 
+    func updateStatusOrder(p: [String: Any]) {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<OrderInfo>.self,
+                                      url: APILink.updateStatus.rawValue,
+                                      parameters: p,
+                                      method: .post)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let value):
+                    guard let data = value.data, let model = data else {
+                        return
+                    }
+                    self.orderModel = model
+                case .failure(let err):
+                    self.err = err
+                }}.disposed(by: disposeBag)
+    }
+    
     func getLocaion() {
         RequestService.shared.APIData(ofType: OptionalMessageDTO<[Location]>.self,
                                       url: APILink.location.rawValue,

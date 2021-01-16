@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var locality: String?
     var device_token = ""
     var tabbar: BaseTabbarViewController?
+    var tutorial: UIViewController?
     //MARK: - BEGIN APPLICATION
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -82,7 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let token = Token()
         window = UIWindow.init(frame: UIScreen.main.bounds)
 //        Utils.shared.gotoLogin()
-        Utils.shared.gotoHome()
+//        Utils.shared.gotoHome()
+        //Alwat show Tutorial
+        Utils.shared.gotoTutorial()
 //        if token.tokenExists {
 //            Utils.shared.gotoHome()
 //            guard let email = token.email, let pass = token.password else {

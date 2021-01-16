@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TutorialCell" customModule="Dayshee" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="310" height="440"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="310" height="440"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-Nv-EdE" userLabel="vManageHiden">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="440"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eCu-0M-zFZ">
+                                <rect key="frame" x="20" y="320.5" width="270" height="79.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sử dụng mỹ phẩm đúng cách" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeX-37-dQI">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thói quen chăm sóc da hằng ngày" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPI-cC-ofK">
+                                        <rect key="frame" x="0.0" y="25" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cập nhật tin tức và công nghệ mới nhất về mỹ phẩm" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vq-2m-rFd">
+                                        <rect key="frame" x="0.0" y="50" width="270" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUẢN GIA CỦA BẠN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1p-vG-BjJ">
+                                <rect key="frame" x="76" y="262" width="158" height="18.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tutorial_manage" translatesAutoresizingMaskIntoConstraints="NO" id="0sM-GF-xoZ">
+                                <rect key="frame" x="80" y="50" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="kDB-eU-ESV"/>
+                                    <constraint firstAttribute="height" constant="150" id="xsv-4w-iI8"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eCu-0M-zFZ" firstAttribute="leading" secondItem="CZ2-Nv-EdE" secondAttribute="leading" constant="20" id="FCa-u5-XX5"/>
+                            <constraint firstItem="0sM-GF-xoZ" firstAttribute="top" secondItem="CZ2-Nv-EdE" secondAttribute="top" constant="50" id="HwH-fa-vCa"/>
+                            <constraint firstItem="u1p-vG-BjJ" firstAttribute="centerX" secondItem="CZ2-Nv-EdE" secondAttribute="centerX" id="VtB-nh-WxR"/>
+                            <constraint firstItem="eCu-0M-zFZ" firstAttribute="top" secondItem="u1p-vG-BjJ" secondAttribute="bottom" constant="40" id="i0c-FA-ndb"/>
+                            <constraint firstItem="0sM-GF-xoZ" firstAttribute="centerX" secondItem="CZ2-Nv-EdE" secondAttribute="centerX" id="ih6-5R-dJE"/>
+                            <constraint firstAttribute="trailing" secondItem="eCu-0M-zFZ" secondAttribute="trailing" constant="20" id="lx0-h0-rAf"/>
+                            <constraint firstAttribute="bottom" secondItem="eCu-0M-zFZ" secondAttribute="bottom" constant="40" id="ugT-ib-3ot"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMR-r3-77v" userLabel="vGift">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="440"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-Vz-5gJ">
+                                <rect key="frame" x="20" y="340" width="270" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qùa tặng khuyến mãi" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abj-GX-8cI">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137254901964" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cho các thành viên" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiM-zq-95R">
+                                        <rect key="frame" x="0.0" y="25" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NHIỀU ƯU ĐÃI HẤP DẪN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSl-wd-Nrr">
+                                <rect key="frame" x="59.5" y="281.5" width="191.5" height="18.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tutorial_gift" translatesAutoresizingMaskIntoConstraints="NO" id="ohk-Ul-aIP">
+                                <rect key="frame" x="80" y="50" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="7qv-5U-iCs"/>
+                                    <constraint firstAttribute="height" constant="150" id="RJa-En-TAh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Uw7-Vz-5gJ" firstAttribute="leading" secondItem="dMR-r3-77v" secondAttribute="leading" constant="20" id="0bz-Rk-oR6"/>
+                            <constraint firstItem="Uw7-Vz-5gJ" firstAttribute="top" secondItem="XSl-wd-Nrr" secondAttribute="bottom" constant="40" id="3ah-0T-10P"/>
+                            <constraint firstAttribute="trailing" secondItem="Uw7-Vz-5gJ" secondAttribute="trailing" constant="20" id="Iy4-zF-LOM"/>
+                            <constraint firstItem="ohk-Ul-aIP" firstAttribute="top" secondItem="dMR-r3-77v" secondAttribute="top" constant="50" id="NDk-QG-L0V"/>
+                            <constraint firstAttribute="bottom" secondItem="Uw7-Vz-5gJ" secondAttribute="bottom" constant="60" id="aWI-ND-wDO"/>
+                            <constraint firstItem="ohk-Ul-aIP" firstAttribute="centerX" secondItem="dMR-r3-77v" secondAttribute="centerX" id="wTB-1h-qKj"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHc-SM-erp" userLabel="vManage">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="440"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bht-M5-n7m">
+                                <rect key="frame" x="20" y="320.5" width="270" height="79.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sử dụng mỹ phẩm đúng cách" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0J-h3-Nvp">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thói quen chăm sóc da hằng ngày" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjU-cP-C9X">
+                                        <rect key="frame" x="0.0" y="25" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cập nhật tin tức và công nghệ mới nhất về mỹ phẩm" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QyC-1N-9pY">
+                                        <rect key="frame" x="0.0" y="50" width="270" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUẢN GIA CỦA BẠN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09H-8H-PKe">
+                                <rect key="frame" x="76" y="262" width="158" height="18.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tutorial_manage" translatesAutoresizingMaskIntoConstraints="NO" id="XsF-ja-KdJ">
+                                <rect key="frame" x="80" y="50" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Xd4-BH-UMI"/>
+                                    <constraint firstAttribute="height" constant="150" id="cRY-za-lAQ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bht-M5-n7m" secondAttribute="trailing" constant="20" id="67t-it-3cd"/>
+                            <constraint firstAttribute="bottom" secondItem="bht-M5-n7m" secondAttribute="bottom" constant="40" id="GOV-FI-onf"/>
+                            <constraint firstItem="bht-M5-n7m" firstAttribute="leading" secondItem="NHc-SM-erp" secondAttribute="leading" constant="20" id="H2d-1w-ykv"/>
+                            <constraint firstItem="XsF-ja-KdJ" firstAttribute="top" secondItem="NHc-SM-erp" secondAttribute="top" constant="50" id="QfE-0M-nc5"/>
+                            <constraint firstItem="09H-8H-PKe" firstAttribute="centerX" secondItem="NHc-SM-erp" secondAttribute="centerX" id="f1E-FA-G2H"/>
+                            <constraint firstItem="XsF-ja-KdJ" firstAttribute="centerX" secondItem="NHc-SM-erp" secondAttribute="centerX" id="kXo-J4-KKL"/>
+                            <constraint firstItem="bht-M5-n7m" firstAttribute="top" secondItem="09H-8H-PKe" secondAttribute="bottom" constant="40" id="kmQ-Qz-GIL"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UqS-ad-lEi" userLabel="vMarketing">
+                        <rect key="frame" x="0.0" y="0.0" width="310" height="440"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d15-hY-mVe">
+                                <rect key="frame" x="20" y="335" width="270" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khách hàng" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4K6-zm-jxO">
+                                        <rect key="frame" x="0.0" y="0.0" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đơn hàng" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u67-vA-UAf">
+                                        <rect key="frame" x="0.0" y="25" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doanh số" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAM-3d-e9d">
+                                        <rect key="frame" x="0.0" y="50" width="270" height="15"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                        <color key="textColor" red="0.67843137249999996" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUẢN LÝ KINH DOANH HOÀN HẢO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBV-Fg-wU6">
+                                <rect key="frame" x="65" y="258" width="180" height="37"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tutorial_marketing" translatesAutoresizingMaskIntoConstraints="NO" id="y7g-mw-b0I">
+                                <rect key="frame" x="80" y="50" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="JqM-99-zMy"/>
+                                    <constraint firstAttribute="height" constant="150" id="gfq-h2-wBd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="d15-hY-mVe" secondAttribute="trailing" constant="20" id="BTc-JW-p3W"/>
+                            <constraint firstItem="d15-hY-mVe" firstAttribute="leading" secondItem="UqS-ad-lEi" secondAttribute="leading" constant="20" id="Bnv-e3-OWc"/>
+                            <constraint firstItem="y7g-mw-b0I" firstAttribute="top" secondItem="UqS-ad-lEi" secondAttribute="top" constant="50" id="c5U-nI-uyq"/>
+                            <constraint firstItem="d15-hY-mVe" firstAttribute="top" secondItem="SBV-Fg-wU6" secondAttribute="bottom" constant="40" id="fg9-Nw-nWe"/>
+                            <constraint firstItem="SBV-Fg-wU6" firstAttribute="centerX" secondItem="UqS-ad-lEi" secondAttribute="centerX" id="hsh-bJ-Hy3"/>
+                            <constraint firstAttribute="bottom" secondItem="d15-hY-mVe" secondAttribute="bottom" constant="40" id="ns1-Dc-qSe"/>
+                            <constraint firstItem="y7g-mw-b0I" firstAttribute="centerX" secondItem="UqS-ad-lEi" secondAttribute="centerX" id="wBW-Yh-M6k"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="UqS-ad-lEi" secondAttribute="trailing" id="1LX-bk-orh"/>
+                <constraint firstAttribute="trailing" secondItem="NHc-SM-erp" secondAttribute="trailing" id="59l-7E-AKa"/>
+                <constraint firstAttribute="bottom" secondItem="NHc-SM-erp" secondAttribute="bottom" id="6DM-Am-rkB"/>
+                <constraint firstItem="UqS-ad-lEi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7BG-gm-t4Z"/>
+                <constraint firstItem="UqS-ad-lEi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9an-d3-U2p"/>
+                <constraint firstItem="XSl-wd-Nrr" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="EBd-xv-BpW"/>
+                <constraint firstAttribute="bottom" secondItem="CZ2-Nv-EdE" secondAttribute="bottom" id="HTh-e8-VOF"/>
+                <constraint firstItem="CZ2-Nv-EdE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NOk-YD-sP5"/>
+                <constraint firstItem="NHc-SM-erp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="OUo-fz-RJh"/>
+                <constraint firstAttribute="trailing" secondItem="dMR-r3-77v" secondAttribute="trailing" id="SXY-qx-R8s"/>
+                <constraint firstAttribute="trailing" secondItem="CZ2-Nv-EdE" secondAttribute="trailing" id="WYc-oy-dDg"/>
+                <constraint firstAttribute="bottom" secondItem="UqS-ad-lEi" secondAttribute="bottom" id="Xz9-V2-DEb"/>
+                <constraint firstItem="NHc-SM-erp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZmO-Mf-DgZ"/>
+                <constraint firstItem="dMR-r3-77v" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cjf-SO-3Jq"/>
+                <constraint firstAttribute="bottom" secondItem="dMR-r3-77v" secondAttribute="bottom" id="i3y-Y0-Ak9"/>
+                <constraint firstItem="dMR-r3-77v" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iSN-p0-TLz"/>
+                <constraint firstItem="CZ2-Nv-EdE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nhm-SK-4pF"/>
+            </constraints>
+            <connections>
+                <outlet property="lbTitle" destination="u1p-vG-BjJ" id="TXB-mA-8f8"/>
+                <outlet property="vGift" destination="dMR-r3-77v" id="9YB-ys-rnS"/>
+                <outlet property="vManahe" destination="NHc-SM-erp" id="OOu-0s-Ui3"/>
+                <outlet property="vMarketing" destination="UqS-ad-lEi" id="vL4-Ht-uvV"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_tutorial_gift" width="175" height="155"/>
+        <image name="ic_tutorial_manage" width="164" height="165"/>
+        <image name="ic_tutorial_marketing" width="151" height="150"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

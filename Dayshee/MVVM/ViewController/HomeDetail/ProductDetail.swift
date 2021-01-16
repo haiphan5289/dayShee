@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import PhotoSlider
 
 class ProductDetail: UIViewController {
     
@@ -25,7 +26,8 @@ class ProductDetail: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
+        self.viewModel.getDetailProduct(id: self.produceID ?? 0)
     }
 }
 extension ProductDetail {
@@ -44,9 +46,12 @@ extension ProductDetail {
                                                                         NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
+        tableView.sectionHeaderHeight = 0.1
         self.view.addSubview(self.tableView)
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+//            let topPadding = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
+            make.top.equalToSuperview()
         }
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,7 +59,15 @@ extension ProductDetail {
         tableView.register(HomeCellGeneric<PDProduct>.self, forCellReuseIdentifier: PDProduct.identifier)
     }
     private func setupRX() {
-        self.viewModel.getDetailProduct(id: self.produceID ?? 0)
+        
+        self.viewModel.$isLogin.asObservable()
+            .bind(onNext: weakify({ (isLogin, wSelf) in
+                guard isLogin else {
+                    wSelf.moveToLogin()
+                    return
+                }
+                wSelf.viewModel.getDetailProduct(id: wSelf.produceID ?? 0)
+            })).disposed(by: disposeBag)
         
         self.viewModel.indicator.asObservable().bind(onNext: { (item) in
             item ? LoadingManager.instance.show() : LoadingManager.instance.dismiss()
@@ -70,12 +83,19 @@ extension ProductDetail {
         })).disposed(by: disposeBag)
         
         self.viewModel.$favorite.asObservable().bind(onNext: weakify({ (i, wSelf) in
-            wSelf.showAlert(title: "Thông báo", message: "Bạn đã thêm sản phẩm yêu thích thành công")
+            wSelf.showAlert(title: nil, message: i)
+            wSelf.viewModel.getDetailProduct(id: wSelf.produceID ?? 0)
+            wSelf.tableView.reloadData()
         })).disposed(by: disposeBag)
         
         self.viewModel.$dislike.asObservable().bind(onNext: weakify({ (i, wSelf) in
             wSelf.showAlert(title: "Thông báo", message: "Bạn đã huỷ sản phẩm yêu thích thành công")
         })).disposed(by: disposeBag)
+    }
+    private func moveToLogin() {
+        let vc = STORYBOARD_AUTH.instantiateViewController(withIdentifier: LoginVC.className) as! LoginVC
+        vc.hidesBottomBarWhenPushed = false
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 extension ProductDetail: UITableViewDataSource {
@@ -109,7 +129,7 @@ extension ProductDetail: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PDProduct.identifier) as? HomeCellGeneric<PDProduct> else {
                 fatalError("Not implement")
             }
-            cell.view.setupUI(title: "Sản phẩm mua kèm" )
+            cell.view.setupUI(title: "Sản Phẩm Tương Tự" )
             cell.view.setupDisplay(item: relate)
             cell.view.didSelectIndex = { [weak self] id in
                 self?.moveToProductDetail(id: id)
@@ -151,12 +171,22 @@ extension ProductDetail: UITableViewDataSource {
                 }
             }
             cell.vImage.actionLove = { id in
+                self.viewModel.checkLogin()
                 let p: [String: Any] = ["product_id": id]
                 self.viewModel.sendLove(p: p)
             }
             cell.vImage.dislike = { id in
                 let p: [String: Any] = ["product_id": id]
                 self.viewModel.dislike(p: p)
+            }
+            cell.vImage.presentPhotoSlider = { [weak self] row in
+                guard let wSelf = self else {
+                    return
+                }
+                wSelf.presentSliderPhoto(row: row)
+            }
+            cell.vImage.backScreen = {
+                self.navigationController?.popViewController()
             }
             
             cell.vDetail.setupDisplay(item: self.item)
@@ -196,6 +226,24 @@ extension ProductDetail: UITableViewDataSource {
             }
             return cell
         }
+    }
+    private func presentSliderPhoto(row: Int) {
+        guard let item = self.item, let listImage = item.productImages, listImage.count > 0 else {
+            return
+        }
+        var listUrl: [URL] = []
+        listImage.forEach { (img) in
+            guard let urlStr = img.imageURL else {
+                return
+            }
+            guard let url: URL = URL(string: urlStr) else {
+                return
+            }
+            listUrl.append(url)
+        }
+        let slider = PhotoSlider.ViewController(imageURLs: listUrl)
+        slider.currentPage = row
+        self.present(slider, animated: true, completion: nil)
     }
     private func moveToProductDetail(id: Int) {
         let vc = ProductDetail(nibName: "ProductDetail", bundle: nil)

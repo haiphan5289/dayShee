@@ -60,7 +60,7 @@ class RowCellRegisterDistrict: Eureka.Cell<Bool>, CellType, UITextFieldDelegate,
         vDistrict.addSubview(lbDistrict)
         lbDistrict.text = "Quân/huyện"
         lbDistrict.textAlignment = .left
-        lbDistrict.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        lbDistrict.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         
         vDistrict.addSubview(lbDistrict)
         lbDistrict.snp.makeConstraints { (make) in
@@ -73,7 +73,7 @@ class RowCellRegisterDistrict: Eureka.Cell<Bool>, CellType, UITextFieldDelegate,
         tfSub.placeholder = "Chọn"
         let placeholderDistrict = tfSub.placeholder ?? "" //There should be a placeholder set in storyboard or elsewhere string or pass empty
         tfSub.attributedPlaceholder = NSAttributedString(string: placeholderDistrict, attributes: [NSAttributedString.Key.foregroundColor : colorDistrict])
-        tfSub.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        tfSub.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         tfSub.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tfSub.frame.height))
         tfSub.rightViewMode = .always
         tfSub.snp.makeConstraints { (make) in
@@ -103,7 +103,7 @@ class RowCellRegisterDistrict: Eureka.Cell<Bool>, CellType, UITextFieldDelegate,
         vWard.addSubview(lbWard)
         lbWard.text = "Phường/Xã"
         lbWard.textAlignment = .left
-        lbWard.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        lbWard.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         
         vWard.addSubview(lbWard)
         lbWard.snp.makeConstraints { (make) in
@@ -116,7 +116,7 @@ class RowCellRegisterDistrict: Eureka.Cell<Bool>, CellType, UITextFieldDelegate,
         let colorWard = UIColor.black
         let placeholderWard = tfSub.placeholder ?? "" //There should be a placeholder set in storyboard or elsewhere string or pass empty
         tfWard.attributedPlaceholder = NSAttributedString(string: placeholderWard, attributes: [NSAttributedString.Key.foregroundColor : colorWard])
-        tfWard.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        tfWard.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         tfWard.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tfWard.frame.height))
         tfWard.rightViewMode = .always
         tfWard.snp.makeConstraints { (make) in

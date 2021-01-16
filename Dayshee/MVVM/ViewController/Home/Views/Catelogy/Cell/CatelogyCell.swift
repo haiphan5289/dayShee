@@ -12,6 +12,7 @@ class CatelogyCell: UICollectionViewCell {
 
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var vBG: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

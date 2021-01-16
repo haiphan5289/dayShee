@@ -22,11 +22,11 @@ protocol KWTextFieldDelegate: class {
   // MARK: - IBInspectables
   @IBInspectable var underlineColor: UIColor = UIColor.darkGray {
     didSet {
-        underlineView.backgroundColor = .clear
+      underlineView.backgroundColor = underlineColor
     }
   }
 
-  @IBInspectable var underlineSelectedColor: UIColor = UIColor.clear
+  @IBInspectable var underlineSelectedColor: UIColor = UIColor.black
 
   @IBInspectable var textColor: UIColor = UIColor.darkText {
     didSet {

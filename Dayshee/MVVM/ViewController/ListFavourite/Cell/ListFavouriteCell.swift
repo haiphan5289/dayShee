@@ -10,9 +10,11 @@ import UIKit
 
 class ListFavouriteCell: UITableViewCell {
     
+    var removeProduce: (() -> Void)?
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbPrice: UILabel!
+    @IBOutlet weak var btRemove: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +28,6 @@ class ListFavouriteCell: UITableViewCell {
     }
     
     @IBAction func actionRemove(_ sender: UIButton) {
+        self.removeProduce?()
     }
 }

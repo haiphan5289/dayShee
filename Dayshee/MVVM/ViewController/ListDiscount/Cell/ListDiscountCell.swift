@@ -13,35 +13,36 @@ class ListDiscountCell: UITableViewCell {
 
     var eventReadMore:((Bool) -> Void)?
     @IBOutlet weak var lbTitle: UILabel!
-    @IBOutlet weak var tvContent: ReadMoreTextView!
-    @IBOutlet weak var hTvContent: NSLayoutConstraint!
+//    @IBOutlet weak var tvContent: ReadMoreTextView!
+//    @IBOutlet weak var hTvContent: NSLayoutConstraint!
     @IBOutlet weak var lbTimeApply: UILabel!
     @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var lbContent: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        var myMutableString = NSMutableAttributedString()
-
-        let text = "....Xem thêm"
-        myMutableString = NSMutableAttributedString(string: text)
-
-        myMutableString.setAttributes([NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 14.0)
-                                       , NSAttributedString.Key.foregroundColor : UIColor.blue],
-                                      range: NSRange(location: 0, length: text.count))
-        tvContent.attributedReadMoreText = myMutableString
-        
-        
-        let textUnless = "....thu gọn"
-        var myMutableStringLess = NSMutableAttributedString()
-        myMutableStringLess = NSMutableAttributedString(string: textUnless)
-
-        myMutableStringLess.setAttributes([NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 14.0) 
-                                       , NSAttributedString.Key.foregroundColor : UIColor.blue],
-                                      range: NSRange(location: 0, length: textUnless.count))
-        tvContent.attributedReadLessText = myMutableStringLess
-        tvContent.eventReadMore = { isSeeMore in
-            self.eventReadMore?(isSeeMore)
-        }
+//        var myMutableString = NSMutableAttributedString()
+//
+//        let text = "....Xem thêm"
+//        myMutableString = NSMutableAttributedString(string: text)
+//
+//        myMutableString.setAttributes([NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 14.0)
+//                                       , NSAttributedString.Key.foregroundColor : UIColor.blue],
+//                                      range: NSRange(location: 0, length: text.count))
+//        tvContent.attributedReadMoreText = myMutableString
+//
+//
+//        let textUnless = "....thu gọn"
+//        var myMutableStringLess = NSMutableAttributedString()
+//        myMutableStringLess = NSMutableAttributedString(string: textUnless)
+//
+//        myMutableStringLess.setAttributes([NSAttributedString.Key.font : UIFont(name: "Montserrat-Regular", size: 14.0)
+//                                       , NSAttributedString.Key.foregroundColor : UIColor.blue],
+//                                      range: NSRange(location: 0, length: textUnless.count))
+//        tvContent.attributedReadLessText = myMutableStringLess
+//        tvContent.eventReadMore = { isSeeMore in
+//            self.eventReadMore?(isSeeMore)
+//        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,7 +52,7 @@ class ListDiscountCell: UITableViewCell {
     }
     
     func setuoSke(count: Int) {
-        let views = [lbTitle, tvContent, lbTimeApply, img]
+        let views = [lbTitle, lbTimeApply, img]
         guard count > 0 else {
             views.forEach { (v) in
                 v?.isSkeletonable = true

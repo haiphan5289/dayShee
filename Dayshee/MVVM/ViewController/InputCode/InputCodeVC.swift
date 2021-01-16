@@ -40,7 +40,7 @@ extension InputCodeVC {
 
         let lbTitle: UILabel = UILabel(frame: .zero)
         lbTitle.text = "Nhập mã xác thực"
-        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 22.0) 
+        lbTitle.font = UIFont(name: "Montserrat-SemiBold", size: 20)
         let leftButton2 = UIBarButtonItem(customView: lbTitle)
         
         navigationItem.leftBarButtonItems = [leftBarButton, leftButton2]
@@ -49,7 +49,7 @@ extension InputCodeVC {
         }.disposed(by: disposeBag)
 
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-SemiBold", size: 15.0) ?? UIImage() ]
         let img: UIImage = UIImage(named: "ic_arrow_right") ?? UIImage()
         self.btNext.imageView?.snp.makeConstraints({ (make) in
             make.centerY.equalToSuperview()

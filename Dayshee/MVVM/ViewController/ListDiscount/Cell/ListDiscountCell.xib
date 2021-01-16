@@ -9,8 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="montserrat_regular.ttf">
-            <string>Montserrat-Regular</string>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -39,21 +42,27 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khuyến mãi tháng 12" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7H-DZ-Drw">
-                                <rect key="frame" x="20" y="120" width="280" height="20.5"/>
+                                <rect key="frame" x="20" y="120" width="280" height="24.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20.5" id="wD8-by-h92"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="wD8-by-h92"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="20"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKg-d3-tiI">
-                                <rect key="frame" x="20" y="145.5" width="290" height="16"/>
+                                <rect key="frame" x="20" y="149.5" width="290" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="bdm-X8-BR7"/>
+                                    <constraint firstAttribute="height" constant="16" id="FBS-tw-wBe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKH-zr-tNg">
+                                <rect key="frame" x="20" y="170.5" width="280" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCH-TH-t2A">
@@ -63,43 +72,25 @@
                                     <constraint firstAttribute="height" constant="1" id="Ymb-3V-08q"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem " translatesAutoresizingMaskIntoConstraints="NO" id="dbj-ku-h9r" customClass="ReadMoreTextView" customModule="ReadMoreTextView">
-                                <rect key="frame" x="15" y="166.5" width="285" height="25.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25.5" id="vrI-ET-Mgh"/>
-                                </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumNumberOfLines">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="readMoreText" value="xem thêm"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="readLessText" value="thu gọn"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldTrim" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="NCH-TH-t2A" firstAttribute="top" secondItem="dbj-ku-h9r" secondAttribute="bottom" constant="7" id="3fg-Ru-QGm"/>
                             <constraint firstAttribute="trailing" secondItem="wKg-d3-tiI" secondAttribute="trailing" constant="10" id="3ub-CW-f0B"/>
                             <constraint firstAttribute="trailing" secondItem="NCH-TH-t2A" secondAttribute="trailing" id="4jb-2w-aml"/>
                             <constraint firstItem="wKg-d3-tiI" firstAttribute="leading" secondItem="M7H-DZ-Drw" secondAttribute="leading" id="7b0-Su-iSt"/>
+                            <constraint firstItem="NCH-TH-t2A" firstAttribute="top" secondItem="KKH-zr-tNg" secondAttribute="bottom" constant="8" id="AHX-Cx-KMd"/>
+                            <constraint firstItem="KKH-zr-tNg" firstAttribute="leading" secondItem="QRe-dc-4fm" secondAttribute="leading" id="Chc-JT-p12"/>
                             <constraint firstItem="QRe-dc-4fm" firstAttribute="top" secondItem="SJP-YP-nZ8" secondAttribute="top" constant="10" id="THl-4u-r7n"/>
                             <constraint firstAttribute="trailing" secondItem="QRe-dc-4fm" secondAttribute="trailing" constant="20" id="UtI-4O-tgg"/>
                             <constraint firstAttribute="trailing" secondItem="M7H-DZ-Drw" secondAttribute="trailing" constant="20" id="dEE-Kk-ZII"/>
-                            <constraint firstAttribute="trailing" secondItem="dbj-ku-h9r" secondAttribute="trailing" constant="20" id="dcy-Re-ky8"/>
                             <constraint firstItem="M7H-DZ-Drw" firstAttribute="leading" secondItem="QRe-dc-4fm" secondAttribute="leading" id="evW-o9-Thb"/>
-                            <constraint firstItem="dbj-ku-h9r" firstAttribute="leading" secondItem="wKg-d3-tiI" secondAttribute="leading" constant="-5" id="g1h-3P-B81"/>
                             <constraint firstItem="M7H-DZ-Drw" firstAttribute="top" secondItem="QRe-dc-4fm" secondAttribute="bottom" constant="10" id="gwt-rK-tgl"/>
+                            <constraint firstItem="KKH-zr-tNg" firstAttribute="top" secondItem="wKg-d3-tiI" secondAttribute="bottom" constant="5" id="ivd-2W-EiY"/>
                             <constraint firstItem="NCH-TH-t2A" firstAttribute="leading" secondItem="SJP-YP-nZ8" secondAttribute="leading" id="kP6-8Y-sUu"/>
                             <constraint firstItem="QRe-dc-4fm" firstAttribute="leading" secondItem="SJP-YP-nZ8" secondAttribute="leading" constant="20" id="lgY-x9-WsT"/>
-                            <constraint firstItem="dbj-ku-h9r" firstAttribute="top" secondItem="wKg-d3-tiI" secondAttribute="bottom" constant="5" id="smh-37-pU5"/>
                             <constraint firstAttribute="bottom" secondItem="NCH-TH-t2A" secondAttribute="bottom" id="v7B-iE-JR0"/>
                             <constraint firstItem="wKg-d3-tiI" firstAttribute="top" secondItem="M7H-DZ-Drw" secondAttribute="bottom" constant="5" id="xTO-Pc-gbB"/>
+                            <constraint firstItem="KKH-zr-tNg" firstAttribute="trailing" secondItem="QRe-dc-4fm" secondAttribute="trailing" id="ysn-0S-qdg"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -112,20 +103,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="hTvContent" destination="vrI-ET-Mgh" id="ibD-gg-1A3"/>
                 <outlet property="img" destination="QRe-dc-4fm" id="mDg-ns-6xe"/>
+                <outlet property="lbContent" destination="KKH-zr-tNg" id="fHx-ta-94c"/>
                 <outlet property="lbTimeApply" destination="wKg-d3-tiI" id="Gn7-Di-ZuF"/>
                 <outlet property="lbTitle" destination="M7H-DZ-Drw" id="KAt-ib-ZcW"/>
-                <outlet property="tvContent" destination="dbj-ku-h9r" id="oX0-pY-Gbm"/>
             </connections>
             <point key="canvasLocation" x="115.94202898550725" y="57.589285714285708"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="dbj-ku-h9r">
-            <size key="intrinsicContentSize" width="-1" height="32"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

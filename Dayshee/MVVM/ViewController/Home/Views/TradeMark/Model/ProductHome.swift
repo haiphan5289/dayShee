@@ -15,7 +15,7 @@ struct ProductHome: Codable {
     let lastPageURL: String?
     let nextPageURL: String?
     let path: String?
-    let perPage: String?
+//    let perPage: String?
     let prevPageURL: String?
     let to: Int?
     let total: Int?
@@ -29,7 +29,7 @@ struct ProductHome: Codable {
         case lastPageURL = "last_page_url"
         case nextPageURL = "next_page_url"
         case path
-        case perPage = "per_page"
+//        case perPage = "per_page"
         case prevPageURL = "prev_page_url"
         case to, total
     }
@@ -43,7 +43,7 @@ struct ProductHome: Codable {
         lastPageURL = try values.decodeIfPresent(String.self, forKey: .lastPageURL)
         nextPageURL = try values.decodeIfPresent(String.self, forKey: .nextPageURL)
         path = try values.decodeIfPresent(String.self, forKey: .path)
-        perPage = try values.decodeIfPresent(String.self, forKey: .perPage)
+//        perPage = try values.decodeIfPresent(String.self, forKey: .perPage)
         prevPageURL = try values.decodeIfPresent(String.self, forKey: .prevPageURL)
         to = try values.decodeIfPresent(Int.self, forKey: .to)
         total = try values.decodeIfPresent(Int.self, forKey: .total)
@@ -60,11 +60,14 @@ struct Product: Codable {
     let isActive: Bool?
     let minPrice, maxPrice: Double?
     let imageURL: String?
+    let image16_9_URL: String?
     let category: CategoryHome?
     let origin: Origin?
     let trademark: Trademark?
     let productOptions: [ProductOption]?
     var count: Int?
+    let isFavourite: Bool?
+    let rating: Double?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -81,6 +84,9 @@ struct Product: Codable {
         case minPrice = "min_price"
         case maxPrice = "max_price"
         case imageURL = "image_url"
+        case image16_9_URL = "image_16_9_url"
+        case isFavourite = "is_favourite"
+        case rating
         case category, origin, trademark
         case productOptions = "product_options"
     }
@@ -101,10 +107,13 @@ struct Product: Codable {
         minPrice = try values.decodeIfPresent(Double.self, forKey: .minPrice)
         maxPrice = try values.decodeIfPresent(Double.self, forKey: .maxPrice)
         imageURL = try values.decodeIfPresent(String.self, forKey: .imageURL)
+        image16_9_URL = try values.decodeIfPresent(String.self, forKey: .image16_9_URL)
         category = try values.decodeIfPresent(CategoryHome.self, forKey: .category)
         origin = try values.decodeIfPresent(Origin.self, forKey: .origin)
         trademark = try values.decodeIfPresent(Trademark.self, forKey: .trademark)
         productOptions = try values.decodeIfPresent([ProductOption].self, forKey: .productOptions)
+        isFavourite = try values.decodeIfPresent(Bool.self, forKey: .isFavourite)
+        rating = try values.decodeIfPresent(Double.self, forKey: .rating)
         
     }
 }

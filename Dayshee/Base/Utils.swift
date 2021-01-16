@@ -39,6 +39,11 @@ class Utils {
         SHARE_APPLICATION_DELEGATE.window?.rootViewController = SHARE_APPLICATION_DELEGATE.tabbar
     }
     
+    func gotoTutorial( ) {
+        SHARE_APPLICATION_DELEGATE.tutorial = TutorialVC(nibName: "TutorialVC", bundle: nil)
+        SHARE_APPLICATION_DELEGATE.window?.rootViewController = BaseNavigationController(rootViewController: SHARE_APPLICATION_DELEGATE.tutorial!)
+    }
+    
     func gotoLogin() {
         
         let nav =  STORYBOARD_AUTH.instantiateViewController(withIdentifier: LoginVC.className) as! LoginVC

@@ -33,4 +33,11 @@ extension UIViewController {
             let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
             return phoneTest.evaluate(with: phone)
     }
+    func setStatusBar(backgroundColor: UIColor) {
+        let statusBarFrame: CGRect
+        statusBarFrame = UIApplication.shared.statusBarFrame
+        let statusBarView = UIView(frame: statusBarFrame)
+        statusBarView.backgroundColor = backgroundColor
+        view.addSubview(statusBarView)
+    }
 }

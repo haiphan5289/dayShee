@@ -17,8 +17,9 @@ class CartVC: BaseHiddenNavigationController {
     @IBOutlet weak var bottomTableView: NSLayoutConstraint!
     private var viewModel: CartModel = CartModel()
     private var total: Double = 0
-    var promotionCode: PromotionModel?
+    var promotionCode: String?
     private var dataSource: [HomeDetailModel] = []
+    private var cardDetail: CartModelDetail?
     private let isReloadTableView: PublishSubject<Bool> = PublishSubject.init()
     private let tap: UITapGestureRecognizer = UITapGestureRecognizer()
     private let disposeBag = DisposeBag()
@@ -31,6 +32,7 @@ class CartVC: BaseHiddenNavigationController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        self.viewModel.checkLogin()
         isReloadTableView.onNext(false)
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,7 +57,8 @@ extension CartVC {
         tap.cancelsTouchesInView = false
         self.tableView.addGestureRecognizer(tap)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.setStatusBar(backgroundColor: UIColor(named: "ColorApp") ?? .white)
     }
     private func setupRX() {
         self.viewModel.setupRX()
@@ -65,60 +68,92 @@ extension CartVC {
             item ? LoadingManager.instance.show() : LoadingManager.instance.dismiss()
         }).disposed(by: disposeBag)
         
+        self.viewModel.$isLogin.asObservable()
+            .bind(onNext: weakify({ (isLogin, wSelf) in
+                guard isLogin else {
+                    wSelf.moveToLogin()
+                    return
+                }
+            })).disposed(by: disposeBag)
+        
         NotificationCenter.default.rx
             .notification(Notification.Name(rawValue: PushNotificationKeys.didUpdateCartProduct.rawValue))
             .asObservable()
             .bind { _ in
+                //warning this function will be call Where can update the method getCartProduct
                 self.viewModel.dataSource = RealmManager.shared.getCartProduct()
+                self.postCart(dataSource: self.viewModel.dataSource)
             }.disposed(by: disposeBag)
         
-        Observable.combineLatest(self.viewModel.$dataSource, self.isReloadTableView)
-            .asObservable().bind(onNext: weakify({ (list, wSelf) in
-                guard list.0.count > 0 else {
-                    wSelf.dataSource = []
-                    wSelf.viewModel.totalProduct = 0
-                    wSelf.tableView.reloadData()
-                    return
-                }
-                wSelf.dataSource = list.0
-                wSelf.viewModel.totalProduct = 0
-                list.0.forEach { (item) in
-                    let total = Double(item.productOtionPrice ?? 0) * Double(item.count ?? 0)
-                    wSelf.viewModel.addProduct.onNext((TypeAddCart.add, total))
-                }
-                if list.1 {
-                    wSelf.tableView.reloadData()
-                } else {
-                    wSelf.tableView.beginUpdates()
-                    wSelf.tableView.endUpdates()
-                }
-                
-            })).disposed(by: disposeBag)
+        self.viewModel.$cartDetail.asObservable().bind(onNext: weakify({ (card, wSelf) in
+            wSelf.cardDetail = card
+            wSelf.tableView.reloadData()
+        })).disposed(by: disposeBag)
         
-        Observable.combineLatest(self.viewModel.$totalProduct, self.isReloadTableView)
-            .asObservable().bind { [weak self] (total, isReload) in
-                guard let wSelf = self else {
-                    return
-                }
-                wSelf.total = total
-                wSelf.tableView.reloadData()
-                let index = IndexPath(row: wSelf.dataSource.count, section: 0)
-                guard let cell = wSelf.tableView.cellForRow(at: index) as? HomeCellGeneric<TotalPriceView> else {
-                    return
-                }
-                cell.view.setupDiscount(total: wSelf.total, promotionCode: self?.promotionCode)
-            }.disposed(by: disposeBag)
+        self.viewModel.$dataSource.bind(onNext: weakify({ (list, wSelf) in
+            wSelf.postCart(dataSource: list)
+            wSelf.dataSource = list
+            wSelf.tableView.reloadData()
+        })).disposed(by: disposeBag)
+        
+        self.viewModel.$giftCode.asObservable().bind(onNext: weakify({ (g, wSelf) in
+            wSelf.promotionCode = g?.giftCode
+            wSelf.postCart(dataSource: wSelf.viewModel.dataSource)
+        })).disposed(by: disposeBag)
+        
+        self.viewModel.$promotionCode.asObservable().bind(onNext: weakify({ (p, wSelf) in
+            wSelf.promotionCode = p?.promotionCode
+            wSelf.postCart(dataSource: wSelf.viewModel.dataSource)
+        })).disposed(by: disposeBag)
+        
+//        Observable.combineLatest(self.viewModel.$dataSource, self.isReloadTableView)
+//            .asObservable().bind(onNext: weakify({ (list, wSelf) in
+//                guard list.0.count > 0 else {
+//                    wSelf.dataSource = []
+//                    wSelf.viewModel.totalProduct = 0
+//                    wSelf.tableView.reloadData()
+//                    return
+//                }
+//                wSelf.dataSource = list.0
+//                wSelf.viewModel.totalProduct = 0
+//                list.0.forEach { (item) in
+//                    let total = Double(item.productOtionPrice ?? 0) * Double(item.count ?? 0)
+//                    wSelf.viewModel.addProduct.onNext((TypeAddCart.add, total))
+//                }
+//                if list.1 {
+//                    wSelf.tableView.reloadData()
+//                } else {
+//                    wSelf.tableView.beginUpdates()
+//                    wSelf.tableView.endUpdates()
+//                }
+//
+//            })).disposed(by: disposeBag)
+        
+//        Observable.combineLatest(self.viewModel.$totalProduct, self.isReloadTableView)
+//            .asObservable().bind { [weak self] (total, isReload) in
+//                guard let wSelf = self else {
+//                    return
+//                }
+//                wSelf.total = total
+//                wSelf.tableView.reloadData()
+//                let index = IndexPath(row: wSelf.dataSource.count, section: 0)
+//                guard let cell = wSelf.tableView.cellForRow(at: index) as? HomeCellGeneric<TotalPriceView> else {
+//                    return
+//                }
+//                cell.view.setupDiscount(total: wSelf.total, promotionCode: self?.promotionCode)
+//            }.disposed(by: disposeBag)
         
         
-        Observable.combineLatest(self.viewModel.$promotionCode, self.viewModel.$dataSource)
-            .asObservable().bind(onNext: weakify({ (p, wSelf) in
-                let index = IndexPath(row: wSelf.dataSource.count, section: 0)
-                guard let cell = wSelf.tableView.cellForRow(at: index) as? HomeCellGeneric<TotalPriceView> else {
-                    return
-                }
-                wSelf.promotionCode = p.0
-                cell.view.setupDiscount(total: self.total, promotionCode: p.0)
-            })).disposed(by: disposeBag)
+//        Observable.combineLatest(self.viewModel.$promotionCode, self.viewModel.$dataSource)
+//            .asObservable().bind(onNext: weakify({ (p, wSelf) in
+//                wSelf.promotionCode = p.0
+////                let index = IndexPath(row: wSelf.dataSource.count, section: 0)
+////                guard let cell = wSelf.tableView.cellForRow(at: index) as? HomeCellGeneric<TotalPriceView> else {
+////                    return
+////                }
+////                cell.view.setupDiscount(total: self.total, promotionCode: p.0)
+//                wSelf.postCart(dataSource: wSelf.viewModel.dataSource)
+//            })).disposed(by: disposeBag)
         
         self.viewModel.$err.asObservable().bind(onNext: weakify({ (textErr, wSelf) in
             guard let text = textErr else {
@@ -137,6 +172,7 @@ extension CartVC {
             vc.listOrder = self.dataSource
             vc.total = self.total
             vc.promotionCode = self.promotionCode
+            vc.cardDetail = self.cardDetail
             wSelf.navigationController?.pushViewController(vc, animated: true)
         })).disposed(by: disposeBag)
         
@@ -144,7 +180,38 @@ extension CartVC {
             self.view.endEditing(true)
         }.disposed(by: disposeBag)
     }
-    func runAnimate(by keyboarInfor: KeyboardInfo?) {
+    private func moveToLogin() {
+        let vc = STORYBOARD_AUTH.instantiateViewController(withIdentifier: LoginVC.className) as! LoginVC
+        vc.hidesBottomBarWhenPushed = false
+        vc.typeLogin = .rate
+        vc.delegateRate = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    private func postCart(dataSource: [HomeDetailModel]) {
+        guard dataSource.count > 0 else {
+            return
+        }
+        var p: [String: Any] = [:]
+        var listProduct: [(Int, Int)] = []
+        dataSource.forEach { (o) in
+            guard let id = o.productOptionID, let count = o.count else {
+                return
+            }
+            let item: (Int, Int) = (id, count)
+            listProduct.append(item)
+
+        }
+        let products = listProduct.compactMap { (a,b) -> (String) in
+            return "{\"product_option_id\":\(a), \"quantity\":\(b)}"
+        }
+        p["products"] = products
+        
+        if let promotion = self.promotionCode {
+            p["gift_code"] = promotion
+        }
+        self.viewModel.getCartInfo(p: p)
+    }
+    private func runAnimate(by keyboarInfor: KeyboardInfo?) {
         guard let i = keyboarInfor else {
             return
         }
@@ -171,10 +238,13 @@ extension CartVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TotalPriceView.identifier) as? HomeCellGeneric<TotalPriceView> else {
                 fatalError("Not implement")
             }
-//            cell.view.totalPrice.text = self.total.currency
-            cell.view.setupDiscount(total: self.total, promotionCode: self.promotionCode)
+            if let card = self.cardDetail {
+                cell.view.updateUITotalPrice(cartDetail: card)
+            }
             cell.view.textPromotion = { text in
-                self.viewModel.promotionValid(text: text)
+//                self.viewModel.promotionValid(text: text)
+                self.promotionCode = text
+                self.postCart(dataSource: self.dataSource)
             }
             cell.view.removeCode = {
                 self.viewModel.promotionCode = nil
@@ -182,6 +252,11 @@ extension CartVC: UITableViewDataSource {
             cell.view.removeView(views: [cell.view.viewFeeShip])
             cell.view.animateKeyboard = { [weak self] k in
                 self?.runAnimate(by: k)
+            }
+            cell.view.listDiscount = {
+                let vc = ListPromotionVC(nibName: "ListPromotionVC", bundle: nil)
+                vc.delegate = self
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             return cell
         default:
@@ -217,7 +292,7 @@ extension CartVC: UITableViewDelegate {
         
         let btDeleteAll: UIButton = UIButton(type: .custom)
         let underLineButton: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "Montserrat-Regular", size: 13.0) as Any ,
+            .font: UIFont(name: "Montserrat-Regular", size: 12.0) as Any ,
             .foregroundColor: UIColor.black,
             .underlineStyle: NSUnderlineStyle.single.rawValue]
         let attributeString = NSMutableAttributedString(string: "Xoá tất cả",
@@ -243,7 +318,7 @@ extension CartVC: UITableViewDelegate {
         
         let lbProduct: UILabel = UILabel(frame: .zero)
         lbProduct.text = "Bạn có \(self.dataSource.count) sản phẩm trong giỏ hàng"
-        lbProduct.font = UIFont(name: "Montserrat-Regular", size: 13.0) 
+        lbProduct.font = UIFont(name: "Montserrat-Medium", size: 12.0)
         v.addSubview(lbProduct)
         lbProduct.snp.makeConstraints { (make) in
             make.left.equalToSuperview().inset(36)
@@ -262,5 +337,23 @@ extension CartVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
+    }
+}
+extension CartVC: RateLoginDelegate {
+    func callBack() {
+        self.navigationController?.popViewController(animated: true, {
+            self.postCart(dataSource: self.dataSource)
+        })
+    }
+}
+extension CartVC: SelectPromotionCallBackDelegate {
+    func selectPromotion(model: GiftCodeModel) {
+        self.navigationController?.popViewController(animated: true, {
+            self.viewModel.giftCode = model
+            guard let cell = self.tableView.cellForRow(at: IndexPath(row: self.dataSource.count, section: 0)) as? HomeCellGeneric<TotalPriceView> else {
+                return
+            }
+            cell.view.tfPromotionCode.text = model.giftCode ?? ""
+        })
     }
 }

@@ -1,5 +1,5 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.5.1)
+  - ActionSheetPicker-3.0 (2.7.1)
   - AKNumericFormatter (0.0.2)
   - Alamofire (5.2.2)
   - AlamofireImage (4.1.0):
@@ -9,7 +9,7 @@ PODS:
   - Charts/Core (3.6.0)
   - Codextended (0.3.0)
   - Cosmos (23.0.0)
-  - CropViewController (2.5.4)
+  - CropViewController (2.5.5)
   - CRRefresh (1.1.3)
   - DKCamera (1.6.7)
   - DKImagePickerController (4.3.2):
@@ -77,8 +77,8 @@ PODS:
     - FirebaseCoreDiagnosticsInterop (~> 1.0)
     - GoogleUtilities/Environment (~> 6.4)
     - GoogleUtilities/Logger (~> 6.4)
-  - FirebaseCoreDiagnostics (1.6.0):
-    - GoogleDataTransport (~> 7.2)
+  - FirebaseCoreDiagnostics (1.7.0):
+    - GoogleDataTransport (~> 7.4)
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30906.0)
@@ -98,7 +98,7 @@ PODS:
     - Protobuf (>= 3.9.2, ~> 3.9)
   - FontAwesome.swift (1.9.0)
   - FSPagerView (0.8.3)
-  - GoogleDataTransport (7.3.0):
+  - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
   - GoogleMaps (3.1.0):
     - GoogleMaps/Maps (= 3.1.0)
@@ -139,10 +139,12 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - NVActivityIndicatorView (5.0.1):
-    - NVActivityIndicatorView/Base (= 5.0.1)
-  - NVActivityIndicatorView/Base (5.0.1)
-  - PromisesObjC (1.2.10)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - PhotoSlider (1.2.0):
+    - Kingfisher
+  - PromisesObjC (1.2.11)
   - Protobuf (3.13.0)
   - RangeSeekSlider (1.8.0)
   - ReadMoreTextView (3.0.1)
@@ -157,15 +159,15 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - SDWebImage (5.9.1):
-    - SDWebImage/Core (= 5.9.1)
-  - SDWebImage/Core (5.9.1)
-  - SideMenu (6.4.9)
+  - SDWebImage (5.9.4):
+    - SDWebImage/Core (= 5.9.4)
+  - SDWebImage/Core (5.9.4)
+  - SideMenu (6.5.0)
   - SkeletonView (1.11.0)
   - SKPhotoBrowser (6.1.0)
   - SkyFloatingLabelTextField (3.8.0)
   - SnapKit (5.0.1)
-  - SVPinView (1.0.9)
+  - SVPinView (1.0.11)
   - SVProgressHUD (2.2.5)
   - SwiftDate (6.2.0)
   - SwiftPullToRefresh (3.1.1)
@@ -200,6 +202,7 @@ DEPENDENCIES:
   - KWVerificationCodeView (= 0.3.0)
   - MBProgressHUD
   - NVActivityIndicatorView
+  - PhotoSlider
   - RangeSeekSlider
   - ReadMoreTextView
   - RealmSwift (~> 4.3.2)
@@ -258,6 +261,7 @@ SPEC REPOS:
     - MBProgressHUD
     - nanopb
     - NVActivityIndicatorView
+    - PhotoSlider
     - PromisesObjC
     - Protobuf
     - RangeSeekSlider
@@ -283,14 +287,14 @@ SPEC REPOS:
     - ViewAnimator
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: e544318243b95d1e94522613238b86ccd425e881
+  ActionSheetPicker-3.0: 36da254b97a09ff89679ecb8b8510bd3e5bdc773
   AKNumericFormatter: de969ab13c504dca7aa119b558a934ccdbd1e376
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Codextended: f384271b8694376ad766ddbf2a011efbfdcee905
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
-  CropViewController: 980df34ffc499db89755b2f307f20eca00cd40c6
+  CropViewController: bd3ff11eeeaadc1e267bb9c3f3e9ee67a52d3285
   CRRefresh: 1415d4ae06837fa7bb064c44f2e102f3ef517044
   DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
@@ -303,13 +307,13 @@ SPEC CHECKSUMS:
   FirebaseAuth: ce45d7c5d46bed90159f3a73b6efbe8976ed3573
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
   FirebaseCore: 632e05cc5e1199d9147122c16d92305eb04c34bd
-  FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseInstanceID: ce993a3c3670a8f5d47ce371ac5d143c560608c5
   FirebaseMessaging: 089b7a4991425783384acc8bcefcd78c0af913bd
   FontAwesome.swift: a403b88cec950511745ba8f2decd1b6a07346d13
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
-  GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
+  GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlacePicker: fa975116ac202ac29822c0a79758ea1c4db5a95f
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
@@ -320,8 +324,9 @@ SPEC CHECKSUMS:
   KWVerificationCodeView: ad0d493e30d203c45f21f3d7b6a4d2b64be53252
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  NVActivityIndicatorView: 738e843cb8924e9e4fc3e559d0728031624bf860
-  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PhotoSlider: 0d3c864ddf6edeb1027cb39911a26b3b707e9ba9
+  PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   ReadMoreTextView: 19147adf93abce6d7271e14031a00303fe28720d
@@ -330,13 +335,13 @@ SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
-  SideMenu: 8ef57a3cfc024a2d3fc1c036c7fe98537baec9e0
+  SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SkeletonView: cc84ce90a804dd0dd7198dd802833411c8a64eaf
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SVPinView: 3dd47f5cd5ee67520ab1319a780cc0664735fafe
+  SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: d117c3eb6beed72e47d3f4d1e3bc63fa1e66d7c3
   SwiftPullToRefresh: f61d67439c5b8d66420fe57193cab8c279398e7a
@@ -345,6 +350,6 @@ SPEC CHECKSUMS:
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   ViewAnimator: 16435576cd44fca0b0d63147d5031fd3e91d295a
 
-PODFILE CHECKSUM: 7b0f88b2b71d752f59c1fa6c873f1e5e1ab3c399
+PODFILE CHECKSUM: a666f84b0b015ee5c416b98754701c5709079be1
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

@@ -11,7 +11,7 @@ import UIKit
 struct UserInfo: Codable {
     let id: Int?
     let levelID: Int?
-    let level: Int?
+    let level: Level?
     let name: String?
     let phone: String?
     let email: String?
@@ -25,6 +25,9 @@ struct UserInfo: Codable {
     let notify: Bool?
     let token: String?
     let avatarURL: String?
+    var isAgency: Bool {
+        return (level != nil ) ? true : false
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -43,7 +46,7 @@ struct UserInfo: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         levelID = try values.decodeIfPresent(Int.self, forKey: .levelID)
-        level = try values.decodeIfPresent(Int.self, forKey: .level)
+        level = try values.decodeIfPresent(Level.self, forKey: .level)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         phone = try values.decodeIfPresent(String.self, forKey: .phone)
         email = try values.decodeIfPresent(String.self, forKey: .email)
@@ -57,6 +60,25 @@ struct UserInfo: Codable {
         notify = try values.decodeIfPresent(Bool.self, forKey: .notify)
         token = try values.decodeIfPresent(String.self, forKey: .token)
         avatarURL = try values.decodeIfPresent(String.self, forKey: .avatarURL)
+    }
+}
+struct Level: Codable {
+    let id: Int?
+    let level: String?
+    let points: Double?
+    let discount: Double?
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case level = "level"
+        case points = "points"
+        case discount = "discount"
+    }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        level = try values.decodeIfPresent(String.self, forKey: .level)
+        points = try values.decodeIfPresent(Double.self, forKey: .points)
+        discount = try values.decodeIfPresent(Double.self, forKey: .discount)
     }
 }
 

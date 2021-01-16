@@ -12,12 +12,17 @@ import RxCocoa
 import Cosmos
 import RangeSeekSlider
 
+enum RouterFilter {
+    case home
+    case search
+}
+
 protocol FilterDelegate {
-    func filterProduct(filter: FilterMode)
+    func filterProduct(filter: FilterMode?)
 }
 
 class FillterVC: UIViewController {
-
+    
     @IBOutlet weak var btReset: UIButton!
     @IBOutlet weak var switchNew: UISwitch!
     @IBOutlet weak var switchMostRate: UISwitch!
@@ -27,6 +32,8 @@ class FillterVC: UIViewController {
     @IBOutlet weak var vRating: CosmosView!
     @IBOutlet weak var btDismiss: UIButton!
     var delegate: FilterDelegate?
+    var type: RouterFilter = .search
+    var firstCategory: ProductHomeModel?
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +42,7 @@ class FillterVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
     }
 }
 extension FillterVC {
@@ -44,19 +51,20 @@ extension FillterVC {
         buttonLeft.setImage(UIImage(named: "ic_arrow_left_black"), for: .normal)
         buttonLeft.contentEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         let leftBarButton = UIBarButtonItem(customView: buttonLeft)
-
+        
         navigationItem.leftBarButtonItem = leftBarButton
         buttonLeft.rx.tap.bind { _ in
             self.navigationController?.popViewController()
         }.disposed(by: disposeBag)
-
+        
         title = "Bộ lọc"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
-        rangeSlider.handleColor = .black
-        rangeSlider.handleImage = UIImage(named: "ic_range_slider")
-        rangeSlider.minLabelColor = .black
-        rangeSlider.maxLabelColor = .black
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ?? UIImage() ]
+//        if let filter = DataLocal.share.filterMode {
+//            self.rangeSlider.selectedMinValue = CGFloat(filter.minPrice ?? 0)
+//            self.rangeSlider.selectedMaxValue = CGFloat(filter.maxPrice ?? 0)
+//        }
+        
     }
     private func setupRX() {
         
@@ -68,8 +76,23 @@ extension FillterVC {
             filter.buyMost = self.switchBuyMost.isOn
             filter.rateMost = self.switchMostRate.isOn
             filter.rate = self.vRating.rating
-            wSelf.delegate?.filterProduct(filter: filter)
-            self.dismiss(animated: true, completion: nil)
+            switch self.type {
+            case .home:
+                let vc = CategoryVC(nibName: "CategoryVC", bundle: nil)
+                vc.filter = filter
+                vc.typeCategory = .other
+                guard  let first = wSelf.firstCategory else {
+                    return
+                }
+                vc.categoryID = first.id ?? 0
+                vc.titleCate = first.category ?? ""
+                vc.typeRouterFilter = .home
+                self.navigationController?.pushViewController(vc, animated: true)
+            case .search:
+                wSelf.delegate?.filterProduct(filter: filter)
+                self.dismiss(animated: true, completion: nil)
+            }
+//            DataLocal.share.filterMode = filter
         })).disposed(by: disposeBag)
         
         self.btReset.rx.tap.bind { _ in
@@ -77,11 +100,20 @@ extension FillterVC {
             self.switchMostRate.isOn = true
             self.switchBuyMost.isOn = false
             self.vRating.rating = 3
+//            self.rangeSlider.selectedMinValue = 0
+//            self.rangeSlider.selectedMaxValue = 10000000
+//            DataLocal.share.filterMode = nil
+//            self.delegate?.filterProduct(filter: nil)
             self.rangeSlider.setupStyle()
         }.disposed(by: disposeBag)
         
         self.btDismiss.rx.tap.bind { _ in
-            self.dismiss(animated: true, completion: nil)
+            switch self.type {
+            case .home:
+                self.navigationController?.popViewController()
+            case .search:
+                self.dismiss(animated: true, completion: nil)
+            }
         }.disposed(by: disposeBag)
     }
 }

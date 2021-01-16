@@ -11,10 +11,11 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-protocol DisplayStaticHeightProtocol {
+@objc protocol DisplayStaticHeightProtocol {
     static var height: CGFloat { get  }
     static var bottom: CGFloat { get }
     static var automaticHeight: Bool { get }
+    @objc optional static var ratio32: Bool { get }
 }
 
 private class CachedNib {
@@ -70,6 +71,9 @@ class HomeCellGeneric<T: UIView>: UITableViewCell, UpdateDisplayProtocol where T
             make.top.left.right.equalToSuperview()
             if !T.automaticHeight {
                 make.height.equalTo(T.height)
+            }
+            if (T.self.ratio32 ?? false) {
+                make.width.equalTo(view.snp.height).multipliedBy(1.5)
             }
             make.bottom.equalTo(T.bottom).priority(.high)
         }

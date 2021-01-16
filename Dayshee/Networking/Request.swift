@@ -275,15 +275,16 @@ struct RequestService {
                                       headers: headers).responseJSON { (response) in
                                         self.handleStatusCode(statusCode: response.response?.statusCode ?? 0)
                                         switch response.result {
-                                        case .success(let value):
+                                       case .success(let value):
                                             let swiftJsonVar = JSON(value)
                                             print("------------ API RESPONSE ---------")
-                                            print("//Method: POST")
+                                            print("//Method: \(method)")
                                             print("//Status Code: \(String(describing: response.response?.statusCode))")
                                             print("//url")
                                             print("//\(SERVER + url)")
                                             print("//Parameters")
                                             print("//\(String(describing: parameters))")
+                                        print("// Token: \(token.token ?? "")")
                                             print("//Result")
                                             print("\(swiftJsonVar)")
                                             print("--------------***END***------------------")

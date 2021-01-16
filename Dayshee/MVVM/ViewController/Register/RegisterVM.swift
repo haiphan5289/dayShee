@@ -43,6 +43,7 @@ class RegisterVM: ActivityTrackingProgressProtocol {
                                         header: nil,
                                         urlIMG: urlIMG,
                                         img: img)
+            .trackProgressActivity(self.indicator)
             .bind { (result) in
                 switch result {
                 case .success(let data):

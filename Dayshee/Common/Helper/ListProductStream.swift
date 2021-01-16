@@ -12,7 +12,7 @@ import RxSwift
 class ListProductStream  {
     static var share = ListProductStream()
     var totalProduct: ProductHome?
-    var listCategory: [CategoryHome] = []
+    var listCategory: [ProductHomeModel] = []
     var listHotProduct: [Product] = []
     var listDiscountProduct: [Product] = []
     

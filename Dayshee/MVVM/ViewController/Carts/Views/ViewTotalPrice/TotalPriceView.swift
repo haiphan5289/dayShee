@@ -18,6 +18,7 @@ class TotalPriceView: UIView, UpdateDisplayProtocol, DisplayStaticHeightProtocol
     var textPromotion: ((String) -> Void)?
     var removeCode: (() -> Void)?
     var animateKeyboard:((KeyboardInfo?) -> Void)?
+    var listDiscount: (() -> Void)?
     @IBOutlet weak var viewFeeShip: UIView!
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var lbPriceTemp: UILabel!
@@ -28,6 +29,7 @@ class TotalPriceView: UIView, UpdateDisplayProtocol, DisplayStaticHeightProtocol
     @IBOutlet weak var tfPromotionCode: UITextField!
     @IBOutlet weak var btRemoveCode: UIButton!
     @IBOutlet weak var vPromotion: UIView!
+    @IBOutlet weak var btListDiscount: UIButton!
     private let disposeBag = DisposeBag()
 }
 extension TotalPriceView: Weakifiable {
@@ -64,6 +66,11 @@ extension TotalPriceView {
             self.removeCode?()
         }.disposed(by: disposeBag)
         
+        self.btListDiscount.rx.tap.bind { _ in
+            self.listDiscount?()
+        }.disposed(by: disposeBag)
+        
+        
         let show = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification).map { KeyboardInfo($0) }
         let hide = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification).map { KeyboardInfo($0) }
         
@@ -94,14 +101,29 @@ extension TotalPriceView {
             self.lbDiscountPrice.text = (total * d).currency
         }
     }
+    func updateUITotalPrice(cartDetail: CartModelDetail) {
+        lbPriceTemp.text = cartDetail.subTotal?.currency
+        lbDiscountPrice.text = cartDetail.discountMoney?.currency
+        totalPrice.text = cartDetail.total?.currency
+        if let discount = cartDetail.promotionPercent, discount > 0 {
+            lbDiscount.text = "\(discount) %"
+        } else {
+            lbDiscount.text = ""
+        }
+        
+    }
 
     private func visualize() {
         self.lbDiscount.text = ""
+        self.tfPromotionCode.becomeFirstResponder()
     }
     func removeView(views: [UIView]) {
         views.forEach { (v) in
             v.isHidden = true
         }
+    }
+    func setupColorLabelTotapPrice() {
+        self.totalPrice.textColor = UIColor(named: "ColorApp")
     }
     func hideButtonRemove() {
         self.btRemoveCode.isHidden = true

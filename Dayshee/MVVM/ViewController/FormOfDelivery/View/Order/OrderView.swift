@@ -55,7 +55,7 @@ extension OrderView {
             
             let lbPrice: UILabel = UILabel(frame: .zero)
             lbPrice.textColor = .black
-            lbPrice.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+            lbPrice.font = UIFont(name: "Montserrat-Regular", size: 12.0)
             lbPrice.text = element.maxPrice?.currency
             v.addSubview(lbPrice)
             lbPrice.snp.makeConstraints { (make) in
@@ -65,7 +65,7 @@ extension OrderView {
             
             let lbName: UILabel = UILabel(frame: .zero)
             lbName.textColor = .black
-            lbName.font = UIFont(name: "Montserrat-Regular", size: 13.0) 
+            lbName.font = UIFont(name: "Montserrat-Regular", size: 12.0) 
             lbName.text = "\(element.count ?? 0) x \(element.name ?? "") - \(element.size ?? "") "
             lbName.numberOfLines = 0
             lbName.sizeToFit()

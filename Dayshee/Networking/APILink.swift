@@ -14,6 +14,7 @@ enum APILink: String {
     case profile = "/user/profile"
     case login = "/user/login"
     case banner = "/banner"
+    case bannerPopup = "/banner/popup"
     case category = "/category"
     case product = "/product"
     case promotion = "/promotion"
@@ -34,6 +35,13 @@ enum APILink: String {
     case contact = "/contact"
     case favorite = "/product/favourite"
     case readNotifcation = "/user/notification/read"
+    case home = "/home"
+    case agency = "/agency"
+    case bannerAdv = "/advertisement?position=home-ads-1"
+    case cart = "/order/cart"
+    case updateStatus = "/order/status"
+    case giftCode = "/user/gift"
+    case updateProvince = "/user/province"
     
     var value: String {
         return "\(self)"

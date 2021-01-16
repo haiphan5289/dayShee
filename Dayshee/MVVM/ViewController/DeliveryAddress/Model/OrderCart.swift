@@ -20,6 +20,7 @@ struct OrderCart: Codable {
     let district: District?
     let ward: Ward?
     let orderDetails: [OrderDetail]?
+    let expectedDeliveryAt: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -42,6 +43,7 @@ struct OrderCart: Codable {
         case promotionPercent = "promotion_percent"
         case delivery, province, district, ward
         case orderDetails = "order_details"
+        case expectedDeliveryAt = "expected_delivery_at"
     }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -70,7 +72,7 @@ struct OrderCart: Codable {
         district = try values.decodeIfPresent(District.self, forKey: .district)
         ward = try values.decodeIfPresent(Ward.self, forKey: .ward)
         orderDetails = try values.decodeIfPresent([OrderDetail].self, forKey: .orderDetails)
-        
+        expectedDeliveryAt = try values.decodeIfPresent(String.self, forKey: .expectedDeliveryAt)
     }
 }
 

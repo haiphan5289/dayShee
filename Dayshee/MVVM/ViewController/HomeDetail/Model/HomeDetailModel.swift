@@ -35,6 +35,8 @@ struct HomeDetailModel: Codable {
     var productOtionPrice: Double?
     var count: Int?
     var size: String?
+    let isFavourite: Bool?
+    let rating: Double?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -57,6 +59,8 @@ struct HomeDetailModel: Codable {
         case productOptions = "product_options"
         case productRatings = "product_ratings"
         case productFaqs = "product_faqs"
+        case isFavourite = "is_favourite"
+        case rating
     }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -83,6 +87,8 @@ struct HomeDetailModel: Codable {
         productOptions = try values.decodeIfPresent([ProductOption].self, forKey: .productOptions)
         productRatings = try values.decodeIfPresent([ProductRating].self, forKey: .productRatings)
         productFaqs = try values.decodeIfPresent([ProductFAQ].self, forKey: .productFaqs)
+        isFavourite = try values.decodeIfPresent(Bool.self, forKey: .isFavourite)
+        rating = try values.decodeIfPresent(Double.self, forKey: .rating)
     }
 }
 

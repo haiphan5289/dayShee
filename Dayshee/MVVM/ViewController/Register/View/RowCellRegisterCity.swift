@@ -41,7 +41,7 @@ class RowCellRegisterCity: Eureka.Cell<Int>, CellType, UITextFieldDelegate, Upda
         contentView.addSubview(lbTitle)
         lbTitle.text = "Họ tên"
         lbTitle.textAlignment = .left
-        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         lbTitle.snp.makeConstraints { (make) in
             make.top.equalToSuperview().inset(10)
             make.left.right.equalTo(55)
@@ -52,7 +52,7 @@ class RowCellRegisterCity: Eureka.Cell<Int>, CellType, UITextFieldDelegate, Upda
         tfSub.placeholder = "Chọn"
         let placeholderDistrict = tfSub.placeholder ?? "" //There should be a placeholder set in storyboard or elsewhere string or pass empty
         tfSub.attributedPlaceholder = NSAttributedString(string: placeholderDistrict, attributes: [NSAttributedString.Key.foregroundColor : colorDistrict])
-        tfSub.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        tfSub.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         tfSub.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: tfSub.frame.height))
         tfSub.rightViewMode = .always
         tfSub.snp.makeConstraints { (make) in
@@ -80,10 +80,10 @@ class RowCellRegisterCity: Eureka.Cell<Int>, CellType, UITextFieldDelegate, Upda
     private func setupRX() {
         tfSub.delegate = self
         
-//        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .valueChanged)
-//        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .editingChanged)
-//        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .editingDidEnd)
-//        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .editingDidBegin)
+        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .valueChanged)
+        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .editingChanged)
+        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .editingDidEnd)
+        tfSub.addTarget(self, action: #selector(textChanged(sender:)), for: .editingDidBegin)
         
         dataSource.bind(to: pickerView.rx.itemTitles) { (row, element) in
             return element.province
@@ -106,13 +106,9 @@ class RowCellRegisterCity: Eureka.Cell<Int>, CellType, UITextFieldDelegate, Upda
             })
             .disposed(by: disposeBag)
     }
-//    @objc func textChanged(sender: UITextField?) {
-//        guard let id = self.idLocation else {
-//            return
-//        }
-//        row.value = id
-//        row.validate()
-//    }
+    @objc func textChanged(sender: UITextField?) {
+        row.validate()
+    }
 
     
     func updateUI(title: String, placeHolder: String) {

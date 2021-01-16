@@ -99,6 +99,10 @@ extension OrdersVC {
                 cell.lbCode.text = "\(element.id ?? 0)"
                 cell.lbOrderDate.text = element.createdAt
                 cell.lbPrice.text = element.total?.currency
+                cell.actionOrderDetail = {
+                    let id = self.dataSource[row].id
+                    self.moveOrderDetail(id: id ?? 0)
+                }
                 if let status = StatusOrder(rawValue: idStatus) {
                     cell.lbStatus.text = status.textStatus
                     cell.imgStatus.image = status.img
@@ -115,11 +119,8 @@ extension OrdersVC {
         }.disposed(by: disposeBag)
         
         self.tableView.rx.itemSelected.bind(onNext: weakify({ (idx, wSelf) in
-            let vc = STORYBOARD_ORDERS.instantiateViewController(withIdentifier: OrderDetailVC.className) as! OrderDetailVC
-            vc.hidesBottomBarWhenPushed = true
             let id = wSelf.dataSource[idx.row].id
-            vc.id = id
-            self.navigationController?.pushViewController(vc, animated: true)
+            wSelf.moveOrderDetail(id: id ?? 0)
         })).disposed(by: disposeBag)
         
         self.viewModel.$listOrderCallBack.asObservable().bind(onNext: weakify({ (item, wSelf) in
@@ -130,6 +131,12 @@ extension OrdersVC {
             wSelf.dataSource = l
             wSelf.tableView.scrollToTop()
         })).disposed(by: disposeBag)
+    }
+    private func moveOrderDetail(id: Int) {
+        let vc = STORYBOARD_ORDERS.instantiateViewController(withIdentifier: OrderDetailVC.className) as! OrderDetailVC
+        vc.hidesBottomBarWhenPushed = true
+        vc.id = id
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     private func requestData(currentPage: Int) {
         self.viewModel.getListAddressCheck(page: currentPage)
@@ -172,7 +179,7 @@ extension OrdersVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại bạn chưa có đơn hàng"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ]
         let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }

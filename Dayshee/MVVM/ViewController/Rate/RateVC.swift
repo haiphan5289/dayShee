@@ -32,6 +32,9 @@ class RateVC: UIViewController, ActivityTrackingProgressProtocol {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension RateVC {
     private func visualize() {
@@ -52,9 +55,9 @@ extension RateVC {
         
         self.textView.text = "Nhập nội dung đánh giá của bạn vào đây"
         self.textView.textColor = #colorLiteral(red: 0.3882352941, green: 0.4470588235, blue: 0.5019607843, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         collectionView.delegate = self
         collectionView.register(RateCell.nib, forCellWithReuseIdentifier: RateCell.identifier)
     }
@@ -133,18 +136,6 @@ extension RateVC {
                 case .failure(let err):
                     self.showAlert(title: nil, message: err.message)
                 }}.disposed(by: disposeBag)
-//        RequestService.shared.APIData(ofType: OptionalMessageDTO<RateModel>.self,
-//                                      url: APILink.rate.rawValue,
-//                                      parameters: p,
-//                                      method: .post)
-//            .trackProgressActivity(self.indicator)
-//            .bind { (result) in
-//                switch result {
-//                case .success( _):
-//                    self.showAlert(title: nil, message: "Cám ơn ban đã đánh giá")
-//                case .failure(let err):
-//                    self.showAlert(title: nil, message: err.message)
-//                }}.disposed(by: disposeBag)
     }
     
 }

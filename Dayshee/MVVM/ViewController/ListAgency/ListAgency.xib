@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListAgency" customModule="Dayshee" customModuleProvider="target">
+            <connections>
+                <outlet property="mapView" destination="QGy-Yd-fYO" id="Wnx-gy-SZK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mU9-IE-gOY">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_insurance" translatesAutoresizingMaskIntoConstraints="NO" id="Dmh-Ni-N1B">
+                            <rect key="frame" x="20" y="15" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="Lso-lC-9xI"/>
+                                <constraint firstAttribute="height" constant="20" id="ToW-RN-Vo2"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IXY-j5-Kla">
+                            <rect key="frame" x="48" y="9.5" width="211" height="31"/>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Chính sách đại lý phân phối">
+                                        <attributes>
+                                            <font key="NSFont" size="15" name="Montserrat-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </state>
+                            <connections>
+                                <action selector="policyAction:" destination="-1" eventType="touchUpInside" id="xI0-ZF-skw"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="IXY-j5-Kla" firstAttribute="centerY" secondItem="mU9-IE-gOY" secondAttribute="centerY" id="XOT-qg-Tp7"/>
+                        <constraint firstItem="Dmh-Ni-N1B" firstAttribute="leading" secondItem="mU9-IE-gOY" secondAttribute="leading" constant="20" id="btk-pT-HkW"/>
+                        <constraint firstAttribute="height" constant="50" id="cMB-nd-oxz"/>
+                        <constraint firstItem="Dmh-Ni-N1B" firstAttribute="centerY" secondItem="mU9-IE-gOY" secondAttribute="centerY" id="rqB-eT-CNE"/>
+                        <constraint firstItem="IXY-j5-Kla" firstAttribute="leading" secondItem="Dmh-Ni-N1B" secondAttribute="trailing" constant="8" symbolic="YES" id="xQs-Ic-JUz"/>
+                    </constraints>
+                </view>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGy-Yd-fYO">
+                    <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                </mapView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mU9-IE-gOY" secondAttribute="trailing" id="3hX-9a-Y9M"/>
+                <constraint firstItem="QGy-Yd-fYO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Dv2-aM-9fr"/>
+                <constraint firstItem="QGy-Yd-fYO" firstAttribute="top" secondItem="mU9-IE-gOY" secondAttribute="bottom" id="QT2-ZC-Q96"/>
+                <constraint firstItem="mU9-IE-gOY" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="WC0-B3-uTX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QGy-Yd-fYO" secondAttribute="trailing" id="cdY-j8-ZuM"/>
+                <constraint firstItem="mU9-IE-gOY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="e51-CW-3rm"/>
+                <constraint firstAttribute="bottom" secondItem="QGy-Yd-fYO" secondAttribute="bottom" id="ssh-VB-NGY"/>
+            </constraints>
+            <point key="canvasLocation" x="136.80000000000001" y="88.605697151424295"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_insurance" width="760" height="1000"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

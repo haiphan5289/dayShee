@@ -77,8 +77,8 @@ extension TradeMarkView {
         }
         
         collectionView.delegate = self
-        collectionView.emptyDataSetSource = self
-        collectionView.emptyDataSetDelegate = self
+//        collectionView.emptyDataSetSource = self
+//        collectionView.emptyDataSetDelegate = self
         collectionView.register(TradeMarkcell.nib, forCellWithReuseIdentifier: TradeMarkcell.identifier)
     }
     func setupUI(title: String, hidenImage: Bool) {
@@ -114,16 +114,15 @@ extension TradeMarkView: UICollectionViewDelegate, UICollectionViewDelegateFlowL
         self.didSelectIndex?(id)
     }
 }
-extension TradeMarkView: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "Chưa có thương hiệu"
-        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red,
-                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
-        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
-        return t
-    }
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return 0
-    }
-
-}
+//extension TradeMarkView: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+//    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        let text = "Chưa có thương hiệu"
+//        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red,
+//                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+//        let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
+//        return t
+//    }
+//    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+//        return 0
+//    }
+//}

@@ -4,12 +4,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="montserrat_regular.ttf">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
         </array>
     </customFonts>
@@ -34,25 +38,25 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Câu hỏi của bạn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kx-Kw-Na1">
-                    <rect key="frame" x="55" y="64" width="304" height="18.5"/>
+                    <rect key="frame" x="55" y="115.5" width="304" height="17.5"/>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fib-2u-BFm">
-                    <rect key="frame" x="55" y="87.5" width="304" height="667.5"/>
+                    <rect key="frame" x="55" y="138" width="304" height="617"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-cR-WJD">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-cR-WJD" customClass="HighlightedButton" customModule="Dayshee" customModuleProvider="target">
                     <rect key="frame" x="25" y="775" width="364" height="50"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="ColorApp"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="TaB-Ha-JpA"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Gửi câu hỏi"/>
                     <userDefinedRuntimeAttributes>
@@ -61,28 +65,62 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Họ và tên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8O-2y-jNT">
+                    <rect key="frame" x="55" y="65" width="51.5" height="14"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập họ và tên" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0L4-91-KAN">
+                    <rect key="frame" x="55" y="89" width="349" height="15.5"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                            <color key="value" red="0.792156862745098" green="0.792156862745098" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eT1-eT-RvP">
+                    <rect key="frame" x="55" y="109.5" width="349" height="1"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fVq-Mm-sjH"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Fib-2u-BFm" firstAttribute="leading" secondItem="1kx-Kw-Na1" secondAttribute="leading" id="29G-2V-rXa"/>
                 <constraint firstItem="Qsy-cR-WJD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="5tt-wD-b21"/>
+                <constraint firstItem="q8O-2y-jNT" firstAttribute="top" secondItem="LzK-K9-WcZ" secondAttribute="bottom" constant="20" id="99L-nG-CLf"/>
+                <constraint firstItem="0L4-91-KAN" firstAttribute="top" secondItem="q8O-2y-jNT" secondAttribute="bottom" constant="10" id="GiW-41-4OW"/>
+                <constraint firstItem="eT1-eT-RvP" firstAttribute="trailing" secondItem="0L4-91-KAN" secondAttribute="trailing" id="M6R-Tw-iAL"/>
+                <constraint firstItem="1kx-Kw-Na1" firstAttribute="leading" secondItem="q8O-2y-jNT" secondAttribute="leading" id="MwN-CH-Zjx"/>
+                <constraint firstItem="eT1-eT-RvP" firstAttribute="top" secondItem="0L4-91-KAN" secondAttribute="bottom" constant="5" id="NE7-nU-ap2"/>
                 <constraint firstItem="LzK-K9-WcZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="PqV-7k-Oid"/>
+                <constraint firstItem="1kx-Kw-Na1" firstAttribute="top" secondItem="eT1-eT-RvP" secondAttribute="bottom" constant="5" id="Qdb-4d-wg7"/>
                 <constraint firstItem="LzK-K9-WcZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RND-2C-lKE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LzK-K9-WcZ" secondAttribute="trailing" id="Tva-FV-Ad4"/>
+                <constraint firstItem="eT1-eT-RvP" firstAttribute="leading" secondItem="0L4-91-KAN" secondAttribute="leading" id="arr-bT-F8p"/>
                 <constraint firstItem="1kx-Kw-Na1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="55" id="fbd-5i-cKI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0L4-91-KAN" secondAttribute="trailing" constant="10" id="j7v-8o-qAa"/>
                 <constraint firstItem="Fib-2u-BFm" firstAttribute="top" secondItem="1kx-Kw-Na1" secondAttribute="bottom" constant="5" id="l6A-Ua-Uu1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qsy-cR-WJD" secondAttribute="bottom" constant="37" id="pRN-B1-tGN"/>
                 <constraint firstItem="Qsy-cR-WJD" firstAttribute="top" secondItem="Fib-2u-BFm" secondAttribute="bottom" constant="20" id="q80-lM-TjU"/>
                 <constraint firstItem="Fib-2u-BFm" firstAttribute="trailing" secondItem="1kx-Kw-Na1" secondAttribute="trailing" id="uhi-43-2Bc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1kx-Kw-Na1" secondAttribute="trailing" constant="55" id="vJI-ru-b24"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qsy-cR-WJD" secondAttribute="trailing" constant="25" id="vh9-iu-iO7"/>
-                <constraint firstItem="1kx-Kw-Na1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="yDl-ei-DOq"/>
+                <constraint firstItem="0L4-91-KAN" firstAttribute="leading" secondItem="q8O-2y-jNT" secondAttribute="leading" id="xQB-T3-TH0"/>
             </constraints>
             <point key="canvasLocation" x="85.507246376811594" y="70.982142857142847"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="ColorApp">
+            <color red="0.9137254901960784" green="0.61176470588235299" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

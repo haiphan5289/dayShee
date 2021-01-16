@@ -53,6 +53,7 @@ struct NotificationModel: Codable {
     let id, userID, dataID, notificationTypeID: Int?
     let isRead: Bool?
     let createdAt, updatedAt: String?
+    let notificationType: NotificationType?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -62,6 +63,7 @@ struct NotificationModel: Codable {
         case isRead = "is_read"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case notificationType = "notification_type"
     }
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -72,6 +74,21 @@ struct NotificationModel: Codable {
         isRead = try values.decodeIfPresent(Bool.self, forKey: .isRead)
         updatedAt = try values.decodeIfPresent(String.self, forKey: .updatedAt)
         createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
+        notificationType = try values.decodeIfPresent(NotificationType.self, forKey: .notificationType)
     }
 }
-
+struct NotificationType: Codable {
+    let id: Int?
+    let message, title: String?
+    enum CodingKeys: String, CodingKey {
+        case id
+        case message
+        case title
+    }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+    }
+}

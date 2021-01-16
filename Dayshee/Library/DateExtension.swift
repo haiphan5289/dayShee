@@ -12,7 +12,7 @@ extension Date {
     private static let formatDateDefault = DateFormatter()
     func string(from format: String = "dd/MM/yyyy") -> String {
         Date.formatDateDefault.locale = Locale(identifier: "en_US_POSIX")
-        Date.formatDateDefault.dateFormat = "yyyy-MM-dd"
+        Date.formatDateDefault.dateFormat = format
         let result = Date.formatDateDefault.string(from: self)
         return result
     }

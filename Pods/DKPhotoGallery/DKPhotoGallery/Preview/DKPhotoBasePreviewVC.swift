@@ -54,7 +54,7 @@ internal extension UIView {
         toastLabel.backgroundColor = UIColor.clear
         toastLabel.textColor = UIColor.darkText
         toastLabel.textAlignment = .center
-        toastLabel.font = UIFont(name: "Montserrat-Regular", size: 12.0)
+        toastLabel.font = UIFont(name: "Montserrat-Light", size: 12.0)
         toastLabel.text = message
         
         let margin = CGFloat(20)

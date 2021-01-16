@@ -52,11 +52,11 @@ extension NoteView {
         
         self.tvNote.rx.text.orEmpty.skip(1).bind(onNext: weakify({ (text, wSelf) in
             guard text != "" else {
-                wSelf.heightNote = 40
+                wSelf.heightNote = 80
                 return
             }
             let size = text.getTextSizeNoteView(fontSize: 14, width: wSelf.tvNote.bounds.width, height: wSelf.tvNote.bounds.height)
-            wSelf.heightNote = size.height + 20
+            wSelf.heightNote = ((size.height + 20) > 80) ? (size.height + 20) : 80
             wSelf.textNote?(text)
         })).disposed(by: disposeBag)
         

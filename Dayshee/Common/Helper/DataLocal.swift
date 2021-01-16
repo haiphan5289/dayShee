@@ -8,4 +8,7 @@
 
 class DataLocal {
     public static var share = DataLocal()
+    var filterMode: FilterMode?
+    var isFirstLocationView: Bool = false
+    var isUpdateProvince: Bool = false
 }

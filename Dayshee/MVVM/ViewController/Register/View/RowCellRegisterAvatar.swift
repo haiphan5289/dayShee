@@ -47,7 +47,7 @@ class RowCellRegisterAvatar: Eureka.Cell<Bool>, CellType, UITextFieldDelegate, U
         }
         
         contentView.addSubview(lbTitle)
-        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 13.0)
+        lbTitle.font = UIFont(name: "Montserrat-Regular", size: 12.0)
         lbTitle.snp.makeConstraints { (make) in
             make.left.equalToSuperview().inset(55)
             make.centerY.equalTo(self.imgAvatar)

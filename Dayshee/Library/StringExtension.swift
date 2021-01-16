@@ -64,6 +64,16 @@ extension String {
 //        let date = dateFormatter.date(from:self)
 //        return date
 //    }
+    func toCovertDate(format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+//        dateFormatter.dateFormat = format
+        dateFormatter.dateFormat = format
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = Locale.current
+        let date = dateFormatter.date(from:"2020-01-10")
+        return date
+    }
 }
 extension UIImageView {
     func applyshadowWithCorner(containerView : UIView, cornerRadious : CGFloat){
@@ -77,4 +87,5 @@ extension UIImageView {
         self.clipsToBounds = true
         self.layer.cornerRadius = cornerRadious
     }
+
 }

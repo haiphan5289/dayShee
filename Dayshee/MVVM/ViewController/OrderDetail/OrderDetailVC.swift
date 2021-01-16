@@ -29,7 +29,9 @@ class OrderDetailVC: UIViewController {
         visualize()
         setupRX()
     }
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension OrderDetailVC {
     private func visualize() {
@@ -44,9 +46,9 @@ extension OrderDetailVC {
         }.disposed(by: disposeBag)
         
         title = "Chi tiết đơn hàng"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
@@ -65,6 +67,7 @@ extension OrderDetailVC {
         tableView.register(HomeCellGeneric<OrderDetailView>.self, forCellReuseIdentifier: OrderDetailView.identifier)
         tableView.register(HomeCellGeneric<TotalPriceView>.self, forCellReuseIdentifier: TotalPriceView.identifier)
         tableView.register(HomeCellGeneric<NoteView>.self, forCellReuseIdentifier: NoteView.identifier)
+        tableView.register(HomeCellGeneric<TrackOrderView>.self, forCellReuseIdentifier: TrackOrderView.identifier)
         
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
@@ -104,11 +107,34 @@ extension OrderDetailVC {
             self.viewModel.getLocaion()
         }
     }
+    private func showActionSheetStatus() {
+        guard let stt = self.orderInfo?.orderStatus?.status, let textStt = StatusOrder(rawValue: stt) else {
+            return
+        }
+        var listStatus: [StatusOrder] = []
+        switch textStt {
+        case .PENDING:
+            listStatus = [.DELIVERING, .DELIVERED, .COMPLETED,.CANCELED]
+        case .DELIVERING:
+            listStatus = [.DELIVERED, .COMPLETED,.CANCELED]
+        case .DELIVERED:
+            listStatus = [.DELIVERING, .COMPLETED,.CANCELED]
+        default:
+            break
+        }
+        self.showAlert(type: .actionSheet,
+                       title: nil,
+                       message: nil, buttonTitles: listStatus.map { return $0.textStatus },
+                       highlightedButtonIndex: nil) { (idx) in
+            let p: [String: Any] = ["id": self.id ?? 0, "status": listStatus[idx].rawValue]
+            self.viewModel.updateStatusOrder(p: p)
+        }
+    }
 
 }
 extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
@@ -116,7 +142,7 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withClass: InforOrderTBCell.self)
             cell.actionNext = {
                 let vc = TrackingOrder(nibName: "TrackingOrder", bundle: nil)
-                vc.orderStatuses = self.orderInfo?.orderStatuses
+                vc.orderStatuses = self.orderInfo?.orderStatuses ?? []
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             }
@@ -125,7 +151,19 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
             }
             cell.setupInfoOrder(item: item)
             return cell
-        case 1 :
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TrackOrderView.identifier) as? HomeCellGeneric<TrackOrderView> else {
+                fatalError("Not implement")
+            }
+            if let orderStt = self.orderInfo?.orderStatuses {
+                cell.setupDisplay(item: orderStt)
+            }
+            cell.view.updateHeight = {
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            }
+            return cell
+        case 2 :
             let cell = tableView.dequeueReusableCell(withClass: AddressOrderTBCell.self)
             guard let item = self.orderInfo else {
                 return cell
@@ -142,7 +180,7 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
 //            }
 //            cell.view.setupDisplay(item: [deliveryMode])
 //            return cell
-        case 2:
+        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OrderDetailView.identifier) as? HomeCellGeneric<OrderDetailView> else {
                 fatalError("Not implement")
             }
@@ -155,7 +193,7 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
                 self.tableView.endUpdates()
             }
             return cell
-        case 3:
+        case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteView.identifier) as? HomeCellGeneric<NoteView> else {
                 fatalError("Not implement")
             }
@@ -171,6 +209,7 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
             }
             cell.view.hideButtonRemove()
             cell.view.removeView(views: [cell.view.vPromotion])
+            cell.view.setupColorLabelTotapPrice()
             guard let item = self.orderInfo else {
                 return cell
             }
@@ -184,10 +223,15 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let v: UIView = UIView()
-        let btCancel: UIButton = UIButton(frame: .zero)
-        btCancel.setTitle("Huỷ đơn", for: .normal)
-        btCancel.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15)
-        btCancel.backgroundColor = .black
+        let btCancel: HighlightedButton = HighlightedButton(frame: .zero)
+        let token = Token()
+        if let agency = token.user?.isAgency, agency {
+            btCancel.setTitle("Cập nhật đơn hàng", for: .normal)
+        } else {
+            btCancel.setTitle("Huỷ đơn", for: .normal)
+        }
+        btCancel.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 15)
+        btCancel.backgroundColor = UIColor(named: "ColorApp")
         btCancel.clipsToBounds = true
         btCancel.layer.cornerRadius = 6
         v.addSubview(btCancel)
@@ -196,9 +240,13 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
             make.height.equalTo(44)
             make.left.right.equalToSuperview().inset(20)
         }
-        
         btCancel.rx.tap.bind { [weak self] _ in
             guard let wSefl = self, let id = wSefl.id else {
+                return
+            }
+            let token = Token()
+            guard let agency = token.user?.isAgency, !agency else {
+                wSefl.showActionSheetStatus()
                 return
             }
             wSefl.showAlert(title: "Thông báo", message: "Bạn có muốn huỷ đơn", buttonTitles: ["Đóng", "Đồng ý"]) { idx in
@@ -217,6 +265,14 @@ extension OrderDetailVC : UITableViewDataSource , UITableViewDelegate {
         guard let stt = item.orderStatus?.status, let textStt = StatusOrder(rawValue: stt) else {
             return 0
         }
+        let token = Token()
+        guard let agency = token.user?.isAgency, !agency else {
+            if textStt == .PENDING || textStt == .DELIVERED || textStt == .DELIVERING {
+                return 100
+            }
+            return 0
+        }
+        
         if textStt == .PENDING {
             return 100
         }

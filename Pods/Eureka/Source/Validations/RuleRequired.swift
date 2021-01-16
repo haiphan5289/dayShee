@@ -36,11 +36,7 @@ public struct RuleRequired<T: Equatable>: RuleType {
 
     public func isValid(value: T?) -> ValidationError? {
         if let str = value as? String {
-            if str.isEmpty {
-                return validationError
-            } else {
-                return nil
-            }
+            return str.isEmpty ? validationError : nil
         }
         return value != nil ? nil : validationError
     }

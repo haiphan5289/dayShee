@@ -59,7 +59,7 @@ struct DiscountModel: Codable {
     let startDate, endDate: String?
     let imageURL: String?
     let category: CategoryListDiscount?
-    let postImages: [String]?
+    let postImages: [PostImage]?
     let products: [Product]?
 
     enum CodingKeys: String, CodingKey {
@@ -91,7 +91,7 @@ struct DiscountModel: Codable {
         endDate = try values.decodeIfPresent(String.self, forKey: .endDate)
         imageURL = try values.decodeIfPresent(String.self, forKey: .imageURL)
         category = try values.decodeIfPresent(CategoryListDiscount.self, forKey: .category)
-        postImages = try values.decodeIfPresent([String].self, forKey: .postImages)
+        postImages = try values.decodeIfPresent([PostImage].self, forKey: .postImages)
         products = try values.decodeIfPresent([Product].self, forKey: .products)
     }
 
@@ -101,4 +101,21 @@ struct DiscountModel: Codable {
 struct CategoryListDiscount: Codable {
     let id: Int
     let category: String
+}
+// MARK: - PostImage
+struct PostImage: Codable {
+    let id, postID: Int?
+    let image: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case postID = "post_id"
+        case image
+    }
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        postID = try values.decodeIfPresent(Int.self, forKey: .postID)
+        image = try values.decodeIfPresent(String.self, forKey: .image)
+    }
 }

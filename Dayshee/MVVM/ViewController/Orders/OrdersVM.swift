@@ -15,7 +15,7 @@ class OrdersVM: ActivityTrackingProgressProtocol {
     @Replay(queue: MainScheduler.asyncInstance) var listOrderCallBack: OrderPaging
     private let disposeBag = DisposeBag()
     func getListAddressCheck(page: Int) ->  Observable<ApiResult<OptionalMessageDTO<OrderPaging>, ErrorService>>  {
-        let url = "/order?status=0&page=\(page)&per_page=10"
+        let url = "/order?page=\(page)&per_page=10"
        return RequestService.shared.APIData(ofType: OptionalMessageDTO<OrderPaging>.self,
                                       url: url,
                                       parameters: nil,
@@ -26,7 +26,7 @@ class OrdersVM: ActivityTrackingProgressProtocol {
             }
     }
     func getListAddressCallBack() {
-        let url = "/order?status=0&page=1&per_page=10"
+        let url = "/order?page=1&per_page=10"
         RequestService.shared.APIData(ofType: OptionalMessageDTO<OrderPaging>.self,
                                       url: url,
                                       parameters: nil,

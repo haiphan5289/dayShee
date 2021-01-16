@@ -70,11 +70,16 @@ public extension UIViewController {
     ///   - completion: (Optional) completion block to be invoked when any one of the buttons is tapped. It passes the index of the tapped button as an argument
     /// - Returns: UIAlertController object (discardable).
     @discardableResult
-    func showAlert(title: String?, message: String?, buttonTitles: [String]? = nil, highlightedButtonIndex: Int? = nil, completion: ((Int) -> Void)? = nil) -> UIAlertController {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func showAlert(type: UIAlertController.Style = .alert, title: String?, message: String?, buttonTitles: [String]? = nil, highlightedButtonIndex: Int? = nil, completion: ((Int) -> Void)? = nil) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: type)
         var allButtons = buttonTitles ?? [String]()
         if allButtons.count == 0 {
             allButtons.append("OK")
+        }
+        
+        if type == .actionSheet {
+            let btCancel = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
+            alertController.addAction(btCancel)
         }
 
         for index in 0..<allButtons.count {

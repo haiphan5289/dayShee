@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="7ue-7L-aDn">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="l5M-Da-lnD">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xev-Sd-VJe"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Xev-Sd-VJe" firstAttribute="bottom" secondItem="7ue-7L-aDn" secondAttribute="bottom" id="dnt-0c-6yU"/>
-                            <constraint firstItem="7ue-7L-aDn" firstAttribute="leading" secondItem="Xev-Sd-VJe" secondAttribute="leading" id="gbT-89-Wl4"/>
-                            <constraint firstItem="7ue-7L-aDn" firstAttribute="top" secondItem="Xev-Sd-VJe" secondAttribute="top" id="kCP-Wb-a2b"/>
-                            <constraint firstItem="Xev-Sd-VJe" firstAttribute="trailing" secondItem="7ue-7L-aDn" secondAttribute="trailing" id="pVQ-9j-NCq"/>
+                            <constraint firstItem="l5M-Da-lnD" firstAttribute="top" secondItem="Xev-Sd-VJe" secondAttribute="top" id="KMo-SS-T9I"/>
+                            <constraint firstItem="l5M-Da-lnD" firstAttribute="leading" secondItem="Xev-Sd-VJe" secondAttribute="leading" id="Pjn-6U-EgW"/>
+                            <constraint firstItem="Xev-Sd-VJe" firstAttribute="trailing" secondItem="l5M-Da-lnD" secondAttribute="trailing" id="R4d-GI-x2H"/>
+                            <constraint firstItem="Xev-Sd-VJe" firstAttribute="bottom" secondItem="l5M-Da-lnD" secondAttribute="bottom" id="RSr-RW-xgD"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,5 +38,8 @@
     </scenes>
     <resources>
         <image name="logo.png" width="512" height="511"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -25,6 +25,9 @@ class BannerVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension BannerVC {
     private func visualize() {
@@ -39,11 +42,12 @@ extension BannerVC {
         }.disposed(by: disposeBag)
         
         title = "Chi tiết"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         self.tvContent.text = item?.datumDescription
         
-        guard let textUrl = item?.sliderURL, let url = URL(string: textUrl) else {
+        guard let textUrl = item?.bannerURL, let url = URL(string: textUrl) else {
             return
         }
         imgUrl.kf.setImage(with: url)

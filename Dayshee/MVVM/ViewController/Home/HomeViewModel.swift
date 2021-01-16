@@ -11,12 +11,45 @@ import RxCocoa
 
 class HomeViewModel: ActivityTrackingProgressProtocol {
     var listBanner: PublishSubject<[Banner]> = PublishSubject.init()
+    var listBannerFooter: PublishSubject<[Banner]> = PublishSubject.init()
+    var listBannerAdv: PublishSubject<BannerAdv> = PublishSubject.init()
     var listCategory: PublishSubject<[CategoryHome]> = PublishSubject.init()
-    var listProduct: PublishSubject<ProductHome> = PublishSubject.init()
+//    var listProduct: PublishSubject<ProductHome> = PublishSubject.init()
+    var location: PublishSubject<[Location]> = PublishSubject.init()
+    var listProductCategory: PublishSubject<[ProductHomeModel]> = PublishSubject.init()
+    var listProductFilter: PublishSubject<ProductHome> = PublishSubject.init()
     var listTrademark: PublishSubject<[Trademark]> = PublishSubject.init()
+    @VariableReplay var isLogin: Bool = false
+    @Replay(queue: MainScheduler.asyncInstance) var updateProvince: ProvinceOrderModel
     var listHotProduct: [Product]?
     var err: PublishSubject<ErrorService> = PublishSubject.init()
     private let disposeBag = DisposeBag()
+    
+    func getLocaion() {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<[Location]>.self,
+                                      url: APILink.location.rawValue,
+                                      parameters: nil,
+                                      method: .get)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let value):
+                    guard let data = value.data, let model = data else {
+                        return
+                    }
+                    self.location.onNext(model)
+                    self.insertRealm(items: model)
+                case .failure(let err):
+                    self.err.onNext(err)
+                }}.disposed(by: disposeBag)
+    }
+    
+    private func insertRealm(items: [Location]) {
+        items.forEach { (value) in
+            let v = LocationRealm(model: value)
+            RealmManager.shared.insertLocation(item: v)
+        }
+    }
     
     func getListTradeMark() {
         RequestService.shared.APIData(ofType: OptionalMessageDTO<[Trademark]>.self,
@@ -36,6 +69,32 @@ class HomeViewModel: ActivityTrackingProgressProtocol {
                 }
             }.disposed(by: disposeBag)
     }
+    func updateProvince(p: [String: Any]) {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<ProvinceOrderModel>.self,
+                                      url: APILink.updateProvince.rawValue,
+                                      parameters: p,
+                                      method: .post)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data, let list = data else {
+                        return
+                    }
+                    self.updateProvince = list
+                case .failure(let err):
+                    self.err.onNext(err)
+                }
+            }.disposed(by: disposeBag)
+    }
+    func checkLogin() {
+        let token = Token()
+        if !token.tokenExists {
+            self.isLogin = false
+        } else {
+            self.isLogin = true
+        }
+    }
     func getListBanner() {
         RequestService.shared.APIData(ofType: OptionalMessageDTO<[Banner]>.self,
                                       url: APILink.banner.rawValue,
@@ -49,6 +108,42 @@ class HomeViewModel: ActivityTrackingProgressProtocol {
                         return
                     }
                     self.listBanner.onNext(list)
+                case .failure(let err):
+                    self.err.onNext(err)
+                }
+            }.disposed(by: disposeBag)
+    }
+    func getListBannerPopup() {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<[Banner]>.self,
+                                      url: APILink.bannerPopup.rawValue,
+                                      parameters: nil,
+                                      method: .get)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data, let list = data else {
+                        return
+                    }
+                    self.listBannerFooter.onNext(list)
+                case .failure(let err):
+                    self.err.onNext(err)
+                }
+            }.disposed(by: disposeBag)
+    }
+    func getListBannerAdv() {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<BannerAdv>.self,
+                                      url: APILink.bannerAdv.rawValue,
+                                      parameters: nil,
+                                      method: .get)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data, let list = data else {
+                        return
+                    }
+                    self.listBannerAdv.onNext(list)
                 case .failure(let err):
                     self.err.onNext(err)
                 }
@@ -72,8 +167,11 @@ class HomeViewModel: ActivityTrackingProgressProtocol {
                 }
             }.disposed(by: disposeBag)
     }
-    func getProduct() {
-        let url = "?key_word&category_id&is_hot&page=1&per_page=10"
+    func getProductFilter(id: Int, idx: IndexPath, filter: FilterMode) {
+        var url = "?per_page=10&page=1&category_id=\(id)?min_price=\(filter.minPrice ?? 0)"
+        if let max = filter.maxPrice {
+            url += "?max_price=\(max)"
+        }
         RequestService.shared.APIData(ofType: OptionalMessageDTO<ProductHome>.self,
                                       url: APILink.product.rawValue + url,
                                       parameters: nil,
@@ -85,7 +183,47 @@ class HomeViewModel: ActivityTrackingProgressProtocol {
                     guard let data = data.data, let list = data else {
                         return
                     }
-                    self.listProduct.onNext(list)
+//                    self.listProductCategory.onNext((list, idx))
+                case .failure(let err):
+                    self.err.onNext(err)
+                }
+            }.disposed(by: disposeBag)
+    }
+    func getCateloryWithFilter(filter: FilterMode) {
+        var url: String = "/product?min_price=\(filter.minPrice ?? 0)"
+        if let max = filter.maxPrice {
+            url += "?max_price=\(max)"
+        }
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<ProductHome>.self,
+                                      url: url,
+                                      parameters: nil,
+                                      method: .get)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data, let list = data else {
+                        return
+                    }
+                    self.listProductFilter.onNext(list)
+                case .failure(let err):
+                    self.err.onNext(err)
+                }
+            }.disposed(by: disposeBag)
+    }
+    func getProduct() {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<[ProductHomeModel]>.self,
+                                      url: APILink.home.rawValue,
+                                      parameters: nil,
+                                      method: .get)
+            .trackProgressActivity(self.indicator)
+            .bind { (result) in
+                switch result {
+                case .success(let data):
+                    guard let data = data.data, let list = data else {
+                        return
+                    }
+                    self.listProductCategory.onNext(list)
                 case .failure(let err):
                     self.err.onNext(err)
                 }

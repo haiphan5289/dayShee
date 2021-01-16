@@ -27,7 +27,7 @@ class DeliveryAddress: FormViewController {
     
     var delegate: UpdateAddressDelegate?
     var typeAddress: TypeAddress = .addNewCart
-    private let btConfirm: UIButton = UIButton(frame: .zero)
+    private let btConfirm: HighlightedButton = HighlightedButton(frame: .zero)
     private var dataSource: [Location] = []
     private let viewModel: DeliveryAddressVM = DeliveryAddressVM()
     private var locationID: BehaviorRelay<Int?> = BehaviorRelay.init(value: nil)
@@ -65,14 +65,14 @@ extension DeliveryAddress {
         
         title = "Nhập địa chỉ giao hàng"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
         
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         
         btConfirm.setTitle("Cập nhật", for: .normal)
-        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 15.0)
-        btConfirm.backgroundColor = #colorLiteral(red: 0.007841385901, green: 0.007844363339, blue: 0.007840993814, alpha: 1)
+        btConfirm.titleLabel?.font = UIFont(name: "Montserrat-Medium", size: 15.0)
+        btConfirm.backgroundColor = UIColor(named: "ColorApp")
         btConfirm.setTitleColor(.white, for: .normal)
         btConfirm.clipsToBounds = true
         btConfirm.layer.cornerRadius = 5

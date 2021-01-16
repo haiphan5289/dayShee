@@ -11,14 +11,21 @@ import RxCocoa
 import RxSwift
 import Kingfisher
 
-class BannerView: UIView, UpdateDisplayProtocol, DisplayStaticHeightProtocol {
-    
+enum TypeImageRatioBanner {
+    case productHome
+    case other
+}
+
+class BannerView: UIView, UpdateDisplayProtocol, DisplayStaticHeightProtocol {    
     var didSelectIndex: ((Banner) -> Void)?
+    var typeImageRatioBanner: TypeImageRatioBanner = .other
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
-    static var height: CGFloat { return 120 }
+    
+    static var height: CGFloat { return 0 }
     static var bottom: CGFloat { return 0 }
     static var automaticHeight: Bool { return false }
+    static var ratio32: Bool { return true }
     private let disposeBag = DisposeBag()
     private var dataSource: BehaviorRelay<[Banner]> = BehaviorRelay.init(value: [])
     private var list: [Banner] = []
@@ -40,11 +47,11 @@ class BannerView: UIView, UpdateDisplayProtocol, DisplayStaticHeightProtocol {
 extension BannerView: Weakifiable {
     override func awakeFromNib() {
         super.awakeFromNib()
+        visualize()
         setupRX()
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        visualize()
     }
     override func removeFromSuperview() {
         superview?.removeFromSuperview()
@@ -57,8 +64,11 @@ extension BannerView {
         autoScroll()
         self.dataSource
             .bind(to: self.collectionView.rx.items(cellIdentifier: BannerCell.identifier, cellType: BannerCell.self)) { row, data, cell in
-                guard let textUrl = data.sliderURL, let url = URL(string: textUrl) else {
+                guard let textUrl = data.bannerURL, let url = URL(string: textUrl) else {
                     return
+                }
+                if self.typeImageRatioBanner == .productHome {
+//                    cell.imgRatio.priority = .defaultLow
                 }
                 cell.img.kf.setImage(with: url)
         }.disposed(by: disposeBag)
@@ -73,7 +83,7 @@ extension BannerView {
     private func autoScroll() {
         disposeScroll?.dispose()
         
-        disposeScroll = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.asyncInstance)
+        disposeScroll = Observable<Int>.interval(.seconds(5), scheduler: MainScheduler.asyncInstance)
             .bind(onNext: weakify({ (_, wSelf) in
                 guard wSelf.dataSource.value.count > 0 else {
                     return

@@ -119,4 +119,20 @@ class AddressDefaultInRealm: Object {
         super.init()
     }
 }
+class CurrentLocationInRealm: Object {
+    @objc dynamic var currentLocation: Data?
+
+    init(model: Location) {
+        super.init()
+        do {
+            currentLocation = try model.toData()
+        } catch let err {
+            print("\(err.localizedDescription)")
+        }
+
+    }
+    required init() {
+        super.init()
+    }
+}
 

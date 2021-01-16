@@ -14,7 +14,7 @@ import UIKit
  */
 @IBDesignable
 public class ReadMoreTextView: UITextView {
-    public var eventReadMore:((Bool) -> Void)?
+    
     public override init(frame: CGRect, textContainer: NSTextContainer?) {
         readMoreTextPadding = .zero
         readLessTextPadding = .zero
@@ -90,6 +90,7 @@ public class ReadMoreTextView: UITextView {
             setNeedsLayout()
         }
     }
+    
     /**
      The text to append to the original text when not trimming.
      */
@@ -191,11 +192,7 @@ public class ReadMoreTextView: UITextView {
             attributedText = _originalAttributedText
             _needsUpdateTrim = false
         }
-        if needsTrim() {
-            showLessText()
-        } else {
-            showMoreText()
-        }
+        needsTrim() ? showLessText() : showMoreText()
     }
     
     public override var intrinsicContentSize : CGSize {
@@ -267,7 +264,6 @@ public class ReadMoreTextView: UITextView {
         
         invalidateIntrinsicContentSize()
         invokeOnSizeChangeIfNeeded()
-        self.eventReadMore?(false)
     }
     
     private func showMoreText() {
@@ -287,7 +283,6 @@ public class ReadMoreTextView: UITextView {
         
         invalidateIntrinsicContentSize()
         invokeOnSizeChangeIfNeeded()
-        self.eventReadMore?(true)
     }
     
     private func invokeOnSizeChangeIfNeeded() {

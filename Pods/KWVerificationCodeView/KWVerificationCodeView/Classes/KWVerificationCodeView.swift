@@ -24,7 +24,7 @@ public protocol KWVerificationCodeViewDelegate: class {
   @IBInspectable public var underlineColor: UIColor = UIColor.darkGray {
     didSet {
       for textFieldView in textFieldViews {
-        textFieldView.underlineColor = .clear
+        textFieldView.underlineColor = underlineColor
       }
     }
   }
@@ -32,7 +32,7 @@ public protocol KWVerificationCodeViewDelegate: class {
   @IBInspectable public var underlineSelectedColor: UIColor = UIColor.black {
     didSet {
       for textFieldView in textFieldViews {
-        textFieldView.underlineSelectedColor = .clear
+        textFieldView.underlineSelectedColor = underlineSelectedColor
       }
     }
   }

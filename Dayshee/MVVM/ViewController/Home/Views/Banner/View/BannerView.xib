@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,12 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="BannerView" customModule="Dayshee" customModuleProvider="target">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="BannerView" customModule="Dayshee" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-Zc-3HW">
-                    <rect key="frame" x="0.0" y="0.0" width="394" height="120"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-Zc-3HW">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mz6-HX-Z6v">
                         <size key="itemSize" width="128" height="128"/>
@@ -31,7 +31,7 @@
                     </userDefinedRuntimeAttributes>
                 </collectionView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-E1-3dI">
-                    <rect key="frame" x="0.0" y="82" width="394" height="28"/>
+                    <rect key="frame" x="0.0" y="82" width="414" height="28"/>
                     <color key="pageIndicatorTintColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                     <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </pageControl>
@@ -39,11 +39,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="eb2-E1-3dI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="84Z-nu-XR7"/>
-                <constraint firstItem="ZH5-Zc-3HW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hol-HQ-xG1"/>
-                <constraint firstItem="ZH5-Zc-3HW" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-20" id="LPt-dq-Jyr"/>
+                <constraint firstItem="eb2-E1-3dI" firstAttribute="leading" secondItem="ZH5-Zc-3HW" secondAttribute="leading" id="Jyw-Hu-frL"/>
+                <constraint firstItem="ZH5-Zc-3HW" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LPt-dq-Jyr"/>
+                <constraint firstItem="ZH5-Zc-3HW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="VTt-Oe-zxM"/>
                 <constraint firstItem="ZH5-Zc-3HW" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="XHd-WD-AeW"/>
-                <constraint firstItem="eb2-E1-3dI" firstAttribute="centerX" secondItem="ZH5-Zc-3HW" secondAttribute="centerX" id="ecJ-qK-L9e"/>
                 <constraint firstItem="ZH5-Zc-3HW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jUt-Jc-LDf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eb2-E1-3dI" secondAttribute="bottom" constant="10" id="qTo-IB-HbH"/>
                 <constraint firstItem="eb2-E1-3dI" firstAttribute="trailing" secondItem="ZH5-Zc-3HW" secondAttribute="trailing" id="yuo-YC-B7z"/>

@@ -16,7 +16,7 @@ import ViewAnimator
 class ListFavouriteVC: UIViewController {
 
     private let tableView: UITableView = UITableView(frame: .zero, style: .grouped)
-    @VariableReplay private var dataSource: [FavouriteModel] = []
+    @VariableReplay private var dataSource: [Product] = []
     private var viewModel: ListFavouriteVM = ListFavouriteVM()
     private var currentPage: Int = 1
     private var distanceItemRequest = 5
@@ -35,6 +35,9 @@ class ListFavouriteVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension ListFavouriteVC {
     private func visualize() {
@@ -50,7 +53,8 @@ extension ListFavouriteVC {
 
         title = "Danh sách sản phẩm yêu thích"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = .white
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)
@@ -61,7 +65,7 @@ extension ListFavouriteVC {
         }
         
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.backgroundColor = .white
         tableView.sectionHeaderHeight = 0.1
         tableView.emptyDataSetSource = self
@@ -83,13 +87,34 @@ extension ListFavouriteVC {
         
         self.$dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: ListFavouriteCell.identifier, cellType: ListFavouriteCell.self)) {(row, element, cell) in
-                cell.lbName.text = "\(element.product?.name ?? "")"
-                cell.lbPrice.text = "\(element.product?.maxPrice ?? 0)"
-                guard let textUrl = element.product?.imageURL, let url = URL(string: textUrl) else {
-                    return
+                cell.lbName.text = "\(element.name ?? "")"
+                
+                if let textUrl = element.imageURL, let url = URL(string: textUrl) {
+                    cell.img.kf.setImage(with: url)
                 }
-                cell.img.kf.setImage(with: url)
+                
+                if let first = element.productOptions?.first {
+                    cell.lbPrice.text = first.price?.currency
+                }
+                
+                cell.removeProduce = {
+                    guard let id = element.id else {
+                        return
+                    }
+                    let p: [String: Any] = ["product_id": id]
+                    self.viewModel.dislike(p: p)
+                    self.dataSource.remove(at: row)
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
+                }
         }.disposed(by: disposeBag)
+        
+        self.tableView.rx.itemSelected.bind(onNext: weakify({ (idx, wSelf) in
+            let vc = ProductDetail(nibName: "ProductDetail", bundle: nil)
+            let id = self.dataSource[idx.row].id
+            vc.produceID = id
+            self.navigationController?.pushViewController(vc, animated: true)
+        })).disposed(by: disposeBag)
         
         self.viewModel.$listFavouriteCallBack.asObservable().bind(onNext: weakify({ (item, wSelf) in
             guard let l = item.data else {
@@ -103,6 +128,13 @@ extension ListFavouriteVC {
             wSelf.tableView.scrollToTop()
             wSelf.tableView.reloadData()
         })).disposed(by: disposeBag)
+        
+        self.viewModel.$dislike.asObservable().bind { [weak self] (f) in
+            guard let wSefl = self else {
+                return
+            }
+            wSefl.showAlert(title: nil, message: f)
+        }.disposed(by: disposeBag)
     }
     private func requestData(currentPage: Int) {
         self.viewModel.getListFavourite(page: currentPage)
@@ -143,7 +175,7 @@ extension ListFavouriteVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại bạn chưa có sản phẩm yêu thích"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ]
         let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }

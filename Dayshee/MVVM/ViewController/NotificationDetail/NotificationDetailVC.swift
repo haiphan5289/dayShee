@@ -12,10 +12,13 @@ import RxCocoa
 
 class NotificationDetailVC: UIViewController, ActivityTrackingProgressProtocol {
 
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var lbTime: UILabel!
+    @IBOutlet weak var tvContent: UITextView!
     private var readNotifcation: PublishSubject<ReadNotificationModel> = PublishSubject.init()
     private var msgAlert: PublishSubject<String> = PublishSubject.init()
     private var err: PublishSubject<ErrorService> = PublishSubject.init()
-    var id: Int?
+    var item: NotificationModel?
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,9 @@ class NotificationDetailVC: UIViewController, ActivityTrackingProgressProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 extension NotificationDetailVC {
@@ -40,8 +46,9 @@ extension NotificationDetailVC {
         }.disposed(by: disposeBag)
 
         title = "Chi tiết"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         let vLine: UIView = UIView(frame: .zero)
         vLine.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         self.view.addSubview(vLine)
@@ -50,7 +57,6 @@ extension NotificationDetailVC {
             make.top.equalTo(self.view.safeAreaLayoutGuide)
             make.height.equalTo(1)
         }
-        
         self.indicator.asObservable().bind(onNext: { (item) in
             item ? LoadingManager.instance.show() : LoadingManager.instance.dismiss()
         }).disposed(by: disposeBag)
@@ -63,9 +69,13 @@ extension NotificationDetailVC {
 //            wSelf.showAlert(title: nil, message: msg)
         })).disposed(by: disposeBag)
         
-        guard  let id = self.id else {
+        guard  let item = self.item, let id = item.id else {
             return
         }
+        self.lbTitle.text = item.notificationType?.title
+        self.tvContent.text = item.notificationType?.message
+        self.lbTime.text = item.updatedAt
+        
         let p: [String: Any] = ["id": id]
         RequestService.shared.APIData(ofType: OptionalMessageDTO<ReadNotificationModel>.self,
                                       url: APILink.readNotifcation.rawValue,

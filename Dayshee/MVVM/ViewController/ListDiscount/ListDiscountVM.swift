@@ -33,7 +33,7 @@ class ListDiscountVM: ActivityTrackingProgressProtocol {
                                       parameters: nil,
                                       method: .get)
             .trackProgressActivity(self.indicator)
-            .bind { (result) in
+            .subscribe(onNext: { (result) in
                 switch result {
                 case .success(let value):
                     guard let data = value.data, let model = data else {
@@ -42,6 +42,10 @@ class ListDiscountVM: ActivityTrackingProgressProtocol {
                     self.listDiscountCallBack = model
                 case .failure(let err):
                     self.err = err
-                }}.disposed(by: disposeBag)
+                }
+            }, onError: { (err) in
+                print("\(err.localizedDescription)")
+            })
+            .disposed(by: disposeBag)
     }
 }

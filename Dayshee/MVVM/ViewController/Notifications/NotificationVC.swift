@@ -34,6 +34,9 @@ class NotificationVC: BaseHiddenNavigationController {
         visualize()
         setupRX()
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 extension NotificationVC {
     private func visualize() {
@@ -43,7 +46,8 @@ extension NotificationVC {
         tableView.delegate = self
         tableView.register(NotificationCell.nib, forCellReuseIdentifier: NotificationCell.identifier)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 19.0) ?? UIImage() ]
+        self.setStatusBar(backgroundColor: UIColor(named: "ColorApp") ?? .white)
     }
     private func setupRX() {
         self.viewModel.getlistNotificationCallBack()
@@ -54,6 +58,12 @@ extension NotificationVC {
         
         self.$dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: NotificationCell.identifier, cellType: NotificationCell.self)) {(row, element, cell) in
+                guard let notify = element.notificationType else {
+                    return
+                }
+                cell.lbTitle.text = notify.title
+                cell.lbContent.text = notify.message
+                cell.lbTime.text = element.updatedAt
                 if let isRead = element.isRead {
                     cell.imgDot.isHidden = isRead
                 }
@@ -62,9 +72,7 @@ extension NotificationVC {
         tableView.rx.itemSelected.bind { (idx) in
             let vc = NotificationDetailVC(nibName: "NotificationDetailVC", bundle: nil)
             vc.hidesBottomBarWhenPushed = true
-            if let id = self.dataSource[idx.row].id {
-                vc.id = id
-            }
+            vc.item = self.dataSource[idx.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
         
@@ -121,7 +129,7 @@ extension NotificationVC: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = "Hiện tại bạn chưa có thông báo?"
         let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ]
+                                   NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15) ]
         let t = NSAttributedString(string: text, attributes: titleTextAttributes as [NSAttributedString.Key : Any])
         return t
     }

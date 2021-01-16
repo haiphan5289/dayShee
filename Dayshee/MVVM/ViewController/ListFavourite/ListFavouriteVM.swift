@@ -13,6 +13,7 @@ class ListFavouriteVM: ActivityTrackingProgressProtocol {
     @Replay(queue: MainScheduler.asyncInstance) var err: ErrorService
     @Replay(queue: MainScheduler.asyncInstance) var listFavourite: ListFavouriteModel
     @Replay(queue: MainScheduler.asyncInstance) var listFavouriteCallBack: ListFavouriteModel
+    @Replay(queue: MainScheduler.asyncInstance) var dislike: String
     private let disposeBag = DisposeBag()
     func getListFavourite(page: Int) ->  Observable<ApiResult<OptionalMessageDTO<ListFavouriteModel>, ErrorService>>  {
         let url = "/product/favourite?product_id=1&page=\(page)&per_page=10"
@@ -26,7 +27,7 @@ class ListFavouriteVM: ActivityTrackingProgressProtocol {
             }
     }
     func getListFavouriteCallBack() {
-        let url = "/product/favourite?product_id=1&page=1&per_page=10"
+        let url = "/product/favourite?&page=1&per_page=10"
         RequestService.shared.APIData(ofType: OptionalMessageDTO<ListFavouriteModel>.self,
                                       url: url,
                                       parameters: nil,
@@ -60,6 +61,24 @@ class ListFavouriteVM: ActivityTrackingProgressProtocol {
                 case .failure(let err):
                     self.err = err
                 }}.disposed(by: disposeBag)
+    }
+    func dislike(p: [String: Any]) {
+        RequestService.shared.APIData(ofType: OptionalMessageDTO<FavouriteModel>.self,
+                                      url: APILink.favorite.rawValue,
+                                      parameters: p,
+                                      method: .post)
+            .trackProgressActivity(self.indicator)
+            .bind { [weak self] (result) in
+                                        switch result {
+                                        case .success(let data):
+                                            guard  let wSelf = self else {
+                                                return
+                                            }
+                                            wSelf.dislike = data.message ?? ""
+                                        case .failure(let err):
+                                            self?.err = err
+                                        }
+                                      }.disposed(by: disposeBag)
     }
 }
 

@@ -91,8 +91,9 @@ extension ProfileDetailVC {
         }.disposed(by: disposeBag)
         
         title = "Thông tin cá nhân"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Regular", size: 19.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 15.0) ?? UIImage() ]
+        self.navigationController?.navigationBar.barTintColor = UIColor(named: "ColorApp")
         guard let user = self.userInfo else {
             return
         }
@@ -131,10 +132,12 @@ extension ProfileDetailVC {
         tfAddress.text = user.address
         tfBirthday.text = user.birthday
         lbName.text = user.name
-        lbLevel.text = "Cấp độ: \(user.level ?? 0)"
+        lbLevel.text = "Cấp độ: \(user.levelID ?? 0)"
         lbGoal.text = "Điểm tích luỹ: \(user.points ?? 0) điểm"
         if let text = user.avatarURL, let url = URL(string: text) {
             img.kf.setImage(with: url)
+        } else {
+            img.image = UIImage(named: "ic_place_holder")
         }
     }
     private func getZoneDetail(list: [Location]) {
@@ -160,7 +163,6 @@ extension ProfileDetailVC {
         v.layer.borderWidth = 1
         v.layer.borderColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
         
-        img.backgroundColor = .red
         img.clipsToBounds = true
         img.layer.cornerRadius = 50
         v.addSubview(img)
@@ -171,7 +173,7 @@ extension ProfileDetailVC {
         }
                 
         lbLevel.textColor = .black
-        lbLevel.font = UIFont(name: "Montserrat-Regular", size: 15.0)
+        lbLevel.font = UIFont(name: "Montserrat-Medium", size: 12.0)
         v.addSubview(lbLevel)
         
         lbLevel.snp.makeConstraints { (make) in
@@ -182,7 +184,7 @@ extension ProfileDetailVC {
         
         
         lbName.textColor = .black
-        lbName.font = UIFont(name: "Montserrat-Regular", size: 15.0)
+        lbName.font = UIFont(name: "Montserrat-SemiBold", size: 15.0)
         v.addSubview(lbName)
         
         lbName.snp.makeConstraints { (make) in
@@ -192,7 +194,7 @@ extension ProfileDetailVC {
         }
         
         lbGoal.textColor = .black
-        lbGoal.font = UIFont(name: "Montserrat-Regular", size: 15.0) 
+        lbGoal.font = UIFont(name: "Montserrat-Medium", size: 12.0) 
         v.addSubview(lbGoal)
         
         lbGoal.snp.makeConstraints { (make) in
